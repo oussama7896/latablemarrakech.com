@@ -21,63 +21,63 @@ const experiences = [
     slug: "villa_chef",
     description: "Your private chef takes full command of your villa kitchen. From amuse-bouche through dessert, every course is tailored to your group. The ultimate in bespoke luxury dining.",
     detail: "From 4 guests — from 90 EUR/person",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Rooftop Dinner",
     slug: "rooftop_dinner",
     description: "Dine on a candlelit rooftop above the medina as the city's amber lights flicker to life below. Star-gazing and exceptional cuisine, with the sounds of Marrakech as your backdrop.",
     detail: "From 2 guests — from 130 EUR/person",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Family Dining",
     slug: "family_dining",
     description: "A generous Moroccan feast designed for families — mezze, slow-cooked tagines, fresh couscous, and pastries. Warm, abundant, and joyful.",
     detail: "From 6 guests — from 75 EUR/person",
-    image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Luxury Breakfast",
     slug: "luxury_breakfast",
     description: "Begin your Marrakech morning with a spread of freshly baked msemen, artisan cheeses, local honey, seasonal fruits, and hand-ground coffee. A ritual worth rising early for.",
     detail: "From 2 guests — from 45 EUR/person",
-    image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Birthday Event",
     slug: "birthday_event",
     description: "A fully orchestrated birthday dinner or celebration. Custom cake, bespoke menu, decorated table, and a culinary performance designed to honour the guest of the evening.",
     detail: "From 4 guests — from 110 EUR/person",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Moroccan Traditional Experience",
     slug: "moroccan_experience",
     description: "The full ceremony: harira soup, bastilla, lamb tagine, couscous, mint tea poured from height, and chebakia pastries. Morocco served with reverence.",
     detail: "From 2 guests — from 85 EUR/person",
-    image: "https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/5737365/pexels-photo-5737365.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Cooking Class",
     slug: "cooking_class",
     description: "Learn to command the spice box. A half-day guided kitchen experience where you prepare and then savour a full Moroccan meal under the instruction of a master chef.",
     detail: "From 2 guests — from 65 EUR/person",
-    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Desert Dining Experience",
     slug: "desert_dining",
     description: "A once-in-a-lifetime dinner set in the Agafay Desert as the sun dissolves into the dunes. Berber lanterns, live Gnawa music, and a menu inspired by the nomadic table.",
     detail: "From 2 guests — from 160 EUR/person",
-    image: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Event Catering",
     slug: "event_catering",
     description: "Full-service catering for private events, corporate gatherings, and celebrations in Marrakech. Customised menu, professional service, and impeccable execution.",
     detail: "20+ guests — contact for pricing",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.pexels.com/photos/5737365/pexels-photo-5737365.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function Experiences() {
       {/* Hero */}
       <section className="relative h-80 flex items-end justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
           alt="Private chef experiences in Marrakech"
           className="absolute inset-0 w-full h-full object-cover"
         />

@@ -118,7 +118,7 @@ export default function Chef() {
 
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
+                  src="https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=800&q=85"
                   alt="Moroccan spices and ingredients"
                   className="w-full h-full object-cover"
                 />

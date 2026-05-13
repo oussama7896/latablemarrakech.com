@@ -11,17 +11,17 @@ const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const images = [
   { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80", alt: "Elegant dinner table setting Marrakech" },
-  { src: "https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=900&q=80", alt: "Moroccan tagine private chef" },
-  { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80", alt: "Luxury food presentation" },
-  { src: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80", alt: "Desert dining Agafay Marrakech" },
-  { src: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=900&q=80", alt: "Moroccan spices and herbs" },
-  { src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80", alt: "Private dining candlelight Marrakech" },
-  { src: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=900&q=80", alt: "Family feast Moroccan cuisine" },
-  { src: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=80", alt: "Luxury breakfast Riad Marrakech" },
-  { src: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80", alt: "Rooftop dinner Marrakech medina" },
-  { src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80", alt: "Moroccan cooking class experience" },
+  { src: "https://images.pexels.com/photos/5737365/pexels-photo-5737365.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan tagine private chef" },
+  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Luxury food presentation" },
+  { src: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Desert dining Agafay Marrakech" },
+  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan spices and herbs" },
+  { src: "https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Private dining candlelight Marrakech" },
+  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Family feast Moroccan cuisine" },
+  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Luxury breakfast Riad Marrakech" },
+  { src: "https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Rooftop dinner Marrakech medina" },
+  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan cooking class experience" },
   { src: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80", alt: "Private chef at work Marrakech" },
-  { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80", alt: "Intimate private dining room" },
+  { src: "https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Intimate private dining room" },
 ];
 
 export default function Gallery() {
@@ -35,7 +35,7 @@ export default function Gallery() {
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
           alt="Gallery La Table Marrakech"
           className="absolute inset-0 w-full h-full object-cover"
         />

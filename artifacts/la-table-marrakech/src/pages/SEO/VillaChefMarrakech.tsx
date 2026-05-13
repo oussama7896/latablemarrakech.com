@@ -18,7 +18,7 @@ export default function VillaChefMarrakech() {
       {/* Hero */}
       <section className="relative h-screen max-h-[700px] flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1920&q=80"
           alt="Villa private chef Marrakech"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -91,7 +91,7 @@ export default function VillaChefMarrakech() {
               </div>
               <div className="aspect-video overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=800&q=80"
+                  src="https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=800&q=85"
                   alt="Villa dinner Marrakech group dining"
                   className="w-full h-full object-cover"
                 />

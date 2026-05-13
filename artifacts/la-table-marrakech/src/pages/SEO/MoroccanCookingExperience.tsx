@@ -20,7 +20,7 @@ export default function MoroccanCookingExperience() {
       {/* Hero */}
       <section className="relative h-screen max-h-[700px] flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.pexels.com/photos/5737365/pexels-photo-5737365.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
           alt="Moroccan cooking class Marrakech private chef"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -79,7 +79,7 @@ export default function MoroccanCookingExperience() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="space-y-8">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
+                  src="https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=800&q=85"
                   alt="Moroccan spices and ingredients cooking class"
                   className="w-full h-full object-cover"
                 />

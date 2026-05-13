@@ -113,7 +113,7 @@ export default function FAQ() {
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1920&q=80"
           alt="FAQ La Table Marrakech"
           className="absolute inset-0 w-full h-full object-cover"
         />

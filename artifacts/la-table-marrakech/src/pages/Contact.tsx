@@ -110,7 +110,7 @@ export default function Contact() {
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
           alt="Elegant restaurant interior"
           className="absolute inset-0 w-full h-full object-cover"
         />

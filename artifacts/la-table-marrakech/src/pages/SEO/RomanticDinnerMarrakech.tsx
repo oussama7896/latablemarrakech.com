@@ -94,7 +94,7 @@ export default function RomanticDinnerMarrakech() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
               <div className="aspect-[3/4] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80"
+                  src="https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=800&q=85"
                   alt="Romantic candlelit dinner Marrakech"
                   className="w-full h-full object-cover"
                 />
