@@ -3,13 +3,18 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: La Table Marrakech API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: reservations
+    description: Reservation management
+  - name: admin
+    description: Admin operations
+
 paths:
   /healthz:
     get:
@@ -24,6 +29,116 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /reservations:
+    post:
+      operationId: createReservation
+      tags: [reservations]
+      summary: Create a new reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReservationInput"
+      responses:
+        "201":
+          description: Reservation created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        "400":
+          description: Invalid input
+
+    get:
+      operationId: listReservations
+      tags: [admin]
+      summary: List all reservations (admin)
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, confirmed, cancelled, completed]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        "200":
+          description: List of reservations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReservationList"
+
+  /reservations/{id}:
+    get:
+      operationId: getReservation
+      tags: [reservations]
+      summary: Get a reservation by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Reservation details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        "404":
+          description: Not found
+
+    patch:
+      operationId: updateReservationStatus
+      tags: [admin]
+      summary: Update reservation status (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReservationStatusUpdate"
+      responses:
+        "200":
+          description: Updated reservation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        "404":
+          description: Not found
+
+  /reservations/stats:
+    get:
+      operationId: getReservationStats
+      tags: [admin]
+      summary: Get reservation statistics for admin dashboard
+      responses:
+        "200":
+          description: Reservation stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReservationStats"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +149,172 @@ components:
       required:
         - status
 
+    ReservationInput:
+      type: object
+      required:
+        - name
+        - email
+        - whatsapp
+        - country
+        - guests
+        - date
+        - time
+        - location
+        - experienceType
+      properties:
+        name:
+          type: string
+          minLength: 2
+        email:
+          type: string
+          format: email
+        whatsapp:
+          type: string
+        country:
+          type: string
+        guests:
+          type: integer
+          minimum: 1
+          maximum: 50
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+        location:
+          type: string
+        experienceType:
+          type: string
+          enum:
+            - romantic_dinner
+            - villa_chef
+            - rooftop_dinner
+            - family_dining
+            - luxury_breakfast
+            - birthday_event
+            - moroccan_experience
+            - cooking_class
+            - desert_dining
+            - event_catering
+        dietaryPreferences:
+          type: ["string", "null"]
+        message:
+          type: ["string", "null"]
+
+    ReservationStatusUpdate:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: [pending, confirmed, cancelled, completed]
+        notes:
+          type: ["string", "null"]
+
+    Reservation:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - whatsapp
+        - country
+        - guests
+        - date
+        - time
+        - location
+        - experienceType
+        - status
+        - createdAt
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        whatsapp:
+          type: string
+        country:
+          type: string
+        guests:
+          type: integer
+        date:
+          type: string
+        time:
+          type: string
+        location:
+          type: string
+        experienceType:
+          type: string
+        dietaryPreferences:
+          type: ["string", "null"]
+        message:
+          type: ["string", "null"]
+        status:
+          type: string
+        notes:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+
+    ReservationList:
+      type: object
+      required:
+        - reservations
+        - total
+        - page
+        - limit
+      properties:
+        reservations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Reservation"
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    ReservationStats:
+      type: object
+      required:
+        - total
+        - pending
+        - confirmed
+        - cancelled
+        - completed
+        - byExperience
+        - recentReservations
+      properties:
+        total:
+          type: integer
+        pending:
+          type: integer
+        confirmed:
+          type: integer
+        cancelled:
+          type: integer
+        completed:
+          type: integer
+        byExperience:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExperienceCount"
+        recentReservations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Reservation"
+
+    ExperienceCount:
+      type: object
+      required:
+        - experienceType
+        - count
+      properties:
+        experienceType:
+          type: string
+        count:
+          type: integer

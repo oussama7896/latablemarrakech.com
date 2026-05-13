@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "r-3UJJE6Sh2Dh4cw5DcjE"
+uri = "file://artifacts/la-table-marrakech/public/images/hero-riad.png"
+type = "image"
+title = "Candlelit riad golden hour"
+
+[[generated]]
+id = "HqCdGW9sOcgBTVOnZ2dEm"
+uri = "file://artifacts/la-table-marrakech/public/images/romantic-dinner.png"
+type = "image"
+title = "Romantic rooftop dinner"
+
+[[generated]]
+id = "nD4xr_NOFBt3qr6Tk8aRf"
+uri = "file://artifacts/la-table-marrakech/public/images/villa-chef.png"
+type = "image"
+title = "Villa private chef"
+
+[[generated]]
+id = "VulCyO-9jIYnIRLsePuCP"
+uri = "file://artifacts/la-table-marrakech/public/images/moroccan-experience.png"
+type = "image"
+title = "Traditional Moroccan tagine"
+
+[[generated]]
+id = "EwSsd_OatHeFEhaoaC9Jh"
+uri = "file://artifacts/la-table-marrakech/public/images/desert-dining.png"
+type = "image"
+title = "Desert dining setup"
+
+[[generated]]
+id = "XiYaeFYt3l-r9oa9ZcMnK"
+uri = "file://artifacts/la-table-marrakech/public/images/luxury-breakfast.png"
+type = "image"
+title = "Luxury Moroccan breakfast"
+
+[[generated]]
+id = "sAuKx2yjgX5Nq_Ev3O2d6"
+uri = "file://artifacts/la-table-marrakech/public/images/gallery-plating.png"
+type = "image"
+title = "Fine dining plating"
+
+[[generated]]
+id = "XT94sUP3qJIMWTCLZc87T"
+uri = "file://artifacts/la-table-marrakech/public/images/gallery-tea.png"
+type = "image"
+title = "Pouring mint tea"

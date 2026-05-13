@@ -1,0 +1,225 @@
+```text
+Create a premium luxury restaurant-style website for a private chef booking service called “La Table Marrakech”.
+
+The website targets tourists visiting Marrakech who want to book a private chef experience in villas, riads, Airbnbs, desert camps, rooftop dinners, romantic events, family dinners, luxury breakfasts, Moroccan cooking experiences, and special occasions.
+
+The entire website must feel:
+- elegant
+- luxury
+- warm Moroccan atmosphere
+- modern high-end restaurant aesthetic
+- cinematic food presentation
+- extremely polished UI/UX
+- mobile-first
+- conversion optimized
+- SEO optimized
+
+DESIGN DIRECTION:
+Use a visual identity inspired by:
+- luxury Marrakech riads
+- candlelight dining
+- terracotta + black + cream + gold palette
+- premium typography
+- soft shadows
+- immersive food photography
+- elegant animations
+- smooth scrolling
+- refined spacing
+- modern fine-dining websites
+
+The website should feel like:
+“A Michelin-level private dining experience in Marrakech.”
+
+MAIN GOAL:
+Convert tourists into reservations quickly and elegantly.
+
+IMPORTANT UX RULES:
+- Fast loading
+- Clear CTA buttons everywhere
+- Sticky reserve button on mobile
+- Large readable typography
+- Smooth booking flow
+- High trust visuals
+- Elegant section transitions
+- Accessible design
+- Minimal but premium
+- Highly emotional visuals
+- Strong storytelling
+
+PAGES TO CREATE:
+1. Home
+2. Experiences
+3. Private Chef Services
+4. About Chef
+5. Gallery
+6. Testimonials
+7. FAQ
+8. Contact / Reservation
+9. SEO landing pages for different tourist searches
+
+HOME PAGE STRUCTURE:
+- Hero section with cinematic background
+- Headline:
+  “Private Chef Experiences in Marrakech”
+- Subheadline:
+  “Luxury Moroccan and international dining experiences in your villa, riad, or private event.”
+- CTA buttons:
+  “Reserve Your Experience”
+  “View Experiences”
+
+Include:
+- luxury food cards
+- featured experiences
+- trust indicators
+- testimonials
+- chef introduction
+- how it works
+- premium experience showcase
+- FAQ
+- final CTA section
+
+SERVICES:
+Include sections for:
+- Romantic Dinner
+- Villa Private Chef
+- Rooftop Dinner
+- Family Dining
+- Luxury Breakfast
+- Birthday Events
+- Moroccan Traditional Experience
+- Cooking Classes
+- Desert Dining Experience
+- Event Catering
+
+BOOKING SYSTEM:
+VERY IMPORTANT.
+
+Create a complete booking/reservation system with:
+- Name
+- Email
+- WhatsApp number
+- Country
+- Number of guests
+- Date
+- Time
+- Location in Marrakech
+- Experience type
+- Dietary preferences
+- Message
+
+WHEN USER SUBMITS:
+1. Save automatically to Google Sheets
+2. Send automatic WhatsApp notification
+3. Send confirmation email
+4. Show elegant success modal
+
+GOOGLE SHEETS INTEGRATION:
+Use Google Apps Script webhook or API.
+
+WHATSAPP INTEGRATION:
+Use WhatsApp Business API or Twilio WhatsApp integration.
+
+The booking system must be fully functional and production ready.
+
+ADMIN FEATURES:
+- Reservation dashboard
+- Booking status
+- Export reservations
+- Simple admin panel
+- Reservation notifications
+
+SEO REQUIREMENTS:
+EXTREMELY IMPORTANT.
+
+The website must be deeply optimized for SEO.
+
+Include:
+- perfect semantic HTML
+- schema markup
+- local business schema
+- restaurant schema
+- FAQ schema
+- Open Graph metadata
+- Twitter metadata
+- optimized title tags
+- optimized meta descriptions
+- image alt optimization
+- internal linking
+- sitemap.xml
+- robots.txt
+- canonical URLs
+- fast Core Web Vitals
+- lazy loading
+- structured headings
+- keyword optimized content
+- local SEO optimization
+
+MAIN SEO KEYWORDS:
+- private chef Marrakech
+- chef at villa Marrakech
+- luxury dining Marrakech
+- Marrakech private dining
+- private cook Marrakech
+- Moroccan chef experience
+- villa chef Marrakech
+- romantic dinner Marrakech
+- chef for tourists Marrakech
+- luxury chef Morocco
+- riad private chef
+- home chef Marrakech
+- dinner experience Marrakech
+
+CREATE SEO LANDING PAGES FOR:
+- Private Chef in Marrakech
+- Private Chef for Villas in Marrakech
+- Romantic Dinner in Marrakech
+- Luxury Dining Experience Marrakech
+- Moroccan Cooking Experience
+- Birthday Dinner Marrakech
+- Rooftop Dining Marrakech
+- Desert Dinner Experience Marrakech
+
+TECH STACK:
+Use:
+- Next.js
+- React
+- Tailwind CSS
+- Framer Motion
+- TypeScript
+- Responsive design
+- Server-side rendering for SEO
+- Optimized image loading
+- API routes for reservations
+
+ANIMATIONS:
+- Smooth premium transitions
+- Elegant hover effects
+- Soft fade-ins
+- Luxury scrolling experience
+- Subtle motion only
+- No excessive animations
+
+CONTENT STYLE:
+- emotional
+- premium
+- elegant
+- luxury hospitality tone
+- persuasive but refined
+
+INCLUDE:
+- beautiful footer
+- Instagram section
+- Google reviews section
+- WhatsApp floating button
+- multilingual ready structure (English/French/Arabic)
+- trust badges
+- premium testimonials
+
+MOBILE UX:
+Must be PERFECT on mobile devices because tourists mostly use phones.
+
+FINAL RESULT:
+The website must look like a world-class luxury dining brand, not a template.
+
+It should feel premium enough that tourists instantly trust the service and want to reserve immediately.
+```
