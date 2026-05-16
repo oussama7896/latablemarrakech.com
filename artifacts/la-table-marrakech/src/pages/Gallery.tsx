@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Link } from "wouter";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
@@ -119,3 +119,7 @@ export default function Gallery() {
     </>
   );
 }
+
+
+
+

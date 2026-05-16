@@ -14,7 +14,6 @@ import Gallery from "@/pages/Gallery";
 import Testimonials from "@/pages/Testimonials";
 import FAQ from "@/pages/FAQ";
 import Contact from "@/pages/Contact";
-import Admin from "@/pages/Admin";
 
 // SEO Pages
 import PrivateChefMarrakech from "@/pages/SEO/PrivateChefMarrakech";
@@ -35,7 +34,7 @@ const queryClient = new QueryClient({
 
 function Router() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-screen">
       <ScrollToTop />
       <Navbar />
       <main className="flex-grow">
@@ -47,7 +46,6 @@ function Router() {
           <Route path="/testimonials" component={Testimonials} />
           <Route path="/faq" component={FAQ} />
           <Route path="/contact" component={Contact} />
-          <Route path="/admin" component={Admin} />
           
           <Route path="/private-chef-marrakech" component={PrivateChefMarrakech} />
           <Route path="/romantic-dinner-marrakech" component={RomanticDinnerMarrakech} />

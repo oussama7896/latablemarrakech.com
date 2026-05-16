@@ -144,7 +144,7 @@ export function Cinematic() {
           </button>
           <div className="mt-4 flex items-center justify-center gap-2 text-white/30 sans text-xs">
             <span>or WhatsApp</span>
-            <span>+212 600 000 000</span>
+            <span>+212 721 354 757</span>
           </div>
           <div className="mt-12 grid grid-cols-3 gap-4 text-center">
             {[["150+", "Dinners"], ["4.9★", "Rating"], ["12", "Experiences"]].map(([n, l]) => (

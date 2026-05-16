@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import {
   useGetReservationStats,
   getGetReservationStatsQueryKey,
   useListReservations,
   getListReservationsQueryKey,
   useUpdateReservationStatus,
+  ListReservationsStatus,
 } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -20,6 +21,10 @@ const statusColors: Record<string, string> = {
   cancelled: "bg-red-100 text-red-800",
   completed: "bg-zinc-100 text-zinc-600",
 };
+
+const STATUS_FILTERS = ["", "pending", "confirmed", "completed", "cancelled"] as const;
+
+type StatusFilter = (typeof STATUS_FILTERS)[number];
 
 const experienceLabels: Record<string, string> = {
   romantic_dinner: "Romantic Dinner",
@@ -36,7 +41,7 @@ const experienceLabels: Record<string, string> = {
 
 export default function Admin() {
   const queryClient = useQueryClient();
-  const [statusFilter, setStatusFilter] = useState<string>("");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("");
   const [page, setPage] = useState(1);
 
   const { data: stats, isLoading: statsLoading } = useGetReservationStats({
@@ -54,9 +59,9 @@ export default function Admin() {
 
   const updateStatus = useUpdateReservationStatus();
 
-  const handleStatusChange = (id: number, status: string) => {
+  const handleStatusChange = (id: number, status: ListReservationsStatus) => {
     updateStatus.mutate(
-      { id, data: { status: status as "pending" | "confirmed" | "cancelled" | "completed" } },
+      { id, data: { status } },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: getGetReservationStatsQueryKey() });
@@ -130,7 +135,7 @@ export default function Admin() {
             <div className="p-6 border-b border-border flex flex-col md:flex-row md:items-center gap-4 justify-between">
               <h2 className="font-serif text-xl">All Reservations</h2>
               <div className="flex gap-2 flex-wrap">
-                {["", "pending", "confirmed", "completed", "cancelled"].map((s) => (
+                {STATUS_FILTERS.map((s) => (
                   <button
                     key={s}
                     onClick={() => { setStatusFilter(s); setPage(1); }}
@@ -191,7 +196,7 @@ export default function Admin() {
                           <select
                             className="text-xs border border-border bg-background py-1 px-2"
                             defaultValue={r.status}
-                            onChange={(e) => handleStatusChange(r.id, e.target.value)}
+                            onChange={(e) => handleStatusChange(r.id, e.target.value as ListReservationsStatus)}
                             data-testid={`select-status-${r.id}`}
                             disabled={updateStatus.isPending}
                           >
@@ -242,3 +247,5 @@ export default function Admin() {
     </>
   );
 }
+
+

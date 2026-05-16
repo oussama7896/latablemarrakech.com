@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Heart } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
@@ -130,3 +130,7 @@ export default function RomanticDinnerMarrakech() {
     </>
   );
 }
+
+
+
+

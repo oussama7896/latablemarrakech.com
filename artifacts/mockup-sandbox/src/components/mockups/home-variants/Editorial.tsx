@@ -144,7 +144,7 @@ export function Editorial() {
           WHATSAPP US DIRECTLY
         </button>
         <div style={{ marginTop: 16, display: "flex", justifyContent: "space-between", fontSize: 10, color: "#9a8060", borderTop: "1px solid #d4c8b0", paddingTop: 12 }}>
-          <span>+212 600 000 000</span>
+          <span>+212 721 354 757</span>
           <span>contact@latablemarrakech.com</span>
         </div>
       </div>

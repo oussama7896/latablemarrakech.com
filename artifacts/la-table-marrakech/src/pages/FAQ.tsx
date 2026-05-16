@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.06 } } };
 
@@ -79,7 +79,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
       <motion.div
         initial={false}
         animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
+        transition={{ duration: 0.35, ease: easeOut }}
         className="overflow-hidden"
       >
         <p className="text-muted-foreground leading-relaxed pb-7 pr-8">{faq.answer}</p>
@@ -146,7 +146,7 @@ export default function FAQ() {
           >
             <p className="text-muted-foreground mb-4">Still have a question?</p>
             <a
-              href="https://wa.me/212600000000"
+              href="https://wa.me/212721354757"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="btn-faq-whatsapp"
@@ -167,3 +167,7 @@ export default function FAQ() {
     </>
   );
 }
+
+
+
+

@@ -1,0 +1,30 @@
+﻿
+> @workspace/la-table-marrakech@0.0.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+src/pages/Admin.tsx(2,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/Admin.tsx(137,54): error TS2345: Argument of type 'string' is not assignable to parameter of type 'SetStateAction<"" | ListReservationsStatus>'.
+src/pages/Chef.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/Contact.tsx(2,55): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/Experiences.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/FAQ.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/Gallery.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/Home.tsx(9,3): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/SEO/MoroccanCookingExperience.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/SEO/PrivateChefMarrakech.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/SEO/RomanticDinnerMarrakech.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/SEO/VillaChefMarrakech.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+src/pages/Testimonials.tsx(1,38): error TS2724: '"framer-motion"' has no exported member named 'linear'. Did you mean 'isNear'?
+node.exe : npm error Lifecycle script `typecheck` failed with error:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\younesstalha\AppData\R ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm error Lifec...led with error:    :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm error code 2
+npm error path C:\Users\younesstalha\Desktop\Gourmet-Gateway\artifacts\la-table-marrakech
+npm error workspace @workspace/la-table-marrakech@0.0.0
+npm error location C:\Users\younesstalha\Desktop\Gourmet-Gateway\artifacts\la-table-marrakech
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc -p tsconfig.json --noEmit

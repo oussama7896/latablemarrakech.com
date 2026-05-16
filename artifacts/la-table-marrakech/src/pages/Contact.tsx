@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, easeOut, easeInOut, backOut } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -7,12 +7,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useCreateReservation } from "@workspace/api-client-react";
+
 import { CheckCircle, X } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 
 const reservationSchema = z.object({
@@ -56,10 +56,8 @@ const experienceOptions = [
 ];
 
 export default function Contact() {
-  const [showSuccess, setShowSuccess] = useState(false);
-  const createReservation = useCreateReservation();
-
-  const form = useForm<ReservationFormValues>({
+   const [showSuccess, setShowSuccess] = useState(false);
+   const form = useForm<ReservationFormValues>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
       name: "",
@@ -76,31 +74,33 @@ export default function Contact() {
     },
   });
 
-  const onSubmit = (values: ReservationFormValues) => {
-    createReservation.mutate(
-      {
-        data: {
-          name: values.name,
-          email: values.email,
-          whatsapp: values.whatsapp,
-          country: values.country,
-          guests: values.guests,
-          date: values.date,
-          time: values.time,
-          location: values.location,
-          experienceType: values.experienceType,
-          dietaryPreferences: values.dietaryPreferences || undefined,
-          message: values.message || undefined,
-        },
-      },
-      {
-        onSuccess: () => {
-          setShowSuccess(true);
-          form.reset();
-        },
-      }
-    );
-  };
+   const onSubmit = (values: ReservationFormValues) => {
+     // Format reservation data for WhatsApp message
+     const whatsappMessage = `
+New Reservation Request:
+Name: ${values.name}
+Email: ${values.email}
+WhatsApp: ${values.whatsapp}
+Country: ${values.country}
+Guests: ${values.guests}
+Date: ${values.date}
+Time: ${values.time}
+Location: ${values.location}
+Experience Type: ${values.experienceType}
+Dietary Preferences: ${values.dietaryPreferences || 'None'}
+Message: ${values.message || 'None'}
+     `.trim();
+     
+     // Encode the message for URL
+     const encodedMessage = encodeURIComponent(whatsappMessage);
+     
+     // Open WhatsApp with the pre-filled message
+     window.open(`https://wa.me/212721354757?text=${encodedMessage}`, '_blank');
+     
+     // Show success message
+     setShowSuccess(true);
+     form.reset();
+   };
 
   return (
     <>
@@ -135,8 +135,8 @@ export default function Contact() {
               <div className="space-y-6 text-sm text-muted-foreground">
                 <div>
                   <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">WhatsApp</p>
-                  <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                    +212 600 000 000
+                  <a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    +212 721 354 757
                   </a>
                 </div>
                 <div>
@@ -330,14 +330,13 @@ export default function Contact() {
                     )}
                   />
 
-                  <button
-                    type="submit"
-                    disabled={createReservation.isPending}
-                    data-testid="button-submit"
-                    className="w-full py-5 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-60 uppercase tracking-[0.2em] text-sm transition-colors"
-                  >
-                    {createReservation.isPending ? "Sending..." : "Send Reservation Request"}
-                  </button>
+                   <button
+                     type="submit"
+                     data-testid="button-submit"
+                     className="w-full py-5 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-60 uppercase tracking-[0.2em] text-sm transition-colors"
+                   >
+                     Send Reservation Request
+                   </button>
                 </form>
               </Form>
             </div>
@@ -359,7 +358,7 @@ export default function Contact() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: easeOut }}
               onClick={(e) => e.stopPropagation()}
               className="bg-background max-w-md w-full p-12 text-center relative"
               data-testid="success-modal"
@@ -384,7 +383,7 @@ export default function Contact() {
       {/* Sticky Mobile Button */}
       <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-zinc-950 p-4 border-t border-zinc-800">
         <a
-          href="https://wa.me/212600000000"
+          href="https://wa.me/212721354757"
           target="_blank"
           rel="noopener noreferrer"
           className="block w-full text-center py-4 bg-green-600 text-white uppercase tracking-[0.2em] text-sm"
@@ -395,3 +394,7 @@ export default function Contact() {
     </>
   );
 }
+
+
+
+

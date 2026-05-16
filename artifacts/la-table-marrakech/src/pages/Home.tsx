@@ -4,6 +4,9 @@ import {
   useTransform,
   useSpring,
   useInView,
+  easeOut,
+  easeInOut,
+  backOut,
 } from "framer-motion";
 import { Link } from "wouter";
 import { useRef } from "react";
@@ -12,7 +15,7 @@ import { ArrowRight, Star, Users, ChefHat, MapPin } from "lucide-react";
 /* ─── Variants ──────────────────────────────────────────────────────────── */
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: easeOut } },
 };
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -119,7 +122,7 @@ function AnimatedStat({ value, label, icon }: { value: string; label: string; ic
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      transition={{ duration: 0.7, ease: easeOut }}
       className="text-center"
     >
       {icon}
@@ -166,7 +169,7 @@ export default function Home() {
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] text-amber-300 pointer-events-none"
           style={{ rotate: 0 }}
         >
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" }}>
+          <motion.div animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" as const }}>
             <MoroccanOrnament className="w-full h-full" />
           </motion.div>
         </motion.div>
@@ -184,7 +187,7 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1.1, ease: "easeOut" }}
+            transition={{ delay: 0.5, duration: 1.1, ease: easeOut }}
             className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.93] mb-8"
           >
             Private Chef
@@ -204,7 +207,7 @@ export default function Home() {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 1.2, duration: 0.8, ease: easeOut }}
             className="w-24 h-px bg-amber-400/50 mx-auto mb-8 origin-left"
           />
 
@@ -250,7 +253,7 @@ export default function Home() {
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: easeInOut }}
             className="w-px h-14 bg-gradient-to-b from-white/50 to-transparent"
           />
           <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/40">Scroll</span>
@@ -279,7 +282,7 @@ export default function Home() {
 
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" as const }}
             className="flex gap-4 py-6 will-change-transform"
             style={{ width: "max-content" }}
           >
@@ -331,7 +334,7 @@ export default function Home() {
                   loading="lazy"
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.06 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
+                  transition={{ duration: 0.7, ease: easeOut }}
                 />
                 {/* Gradient always visible */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -423,7 +426,7 @@ export default function Home() {
                   loading="lazy"
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  transition={{ duration: 0.6, ease: easeOut }}
                 />
               </motion.div>
             ))}
@@ -458,7 +461,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 1, ease: easeOut }}
               className="relative"
             >
               <div className="relative aspect-[3/4] overflow-hidden">
@@ -487,7 +490,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
+              transition={{ duration: 1, ease: easeOut, delay: 0.15 }}
               className="md:pl-8 pt-8 md:pt-0"
             >
               <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-6">The Chef</p>
@@ -576,7 +579,7 @@ export default function Home() {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+              transition={{ duration: 1.5, ease: easeOut, delay: 0.3 }}
               className="absolute top-8 left-1/8 right-1/8 h-px bg-primary/20 hidden md:block origin-left"
             />
             {STEPS.map((step, i) => (
@@ -590,7 +593,7 @@ export default function Home() {
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 * i + 0.2, duration: 0.5, ease: "backOut" }}
+                  transition={{ delay: 0.1 * i + 0.2, duration: 0.5, ease: backOut }}
                   className="font-serif text-6xl text-primary/15 mb-4"
                 >
                   {step.number}
@@ -675,7 +678,7 @@ export default function Home() {
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 1.5, ease: easeOut }}
           className="absolute inset-0"
         >
           <img
@@ -718,7 +721,7 @@ export default function Home() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href="https://wa.me/212600000000"
+              href="https://wa.me/212721354757"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-green-400 hover:text-green-400 uppercase tracking-[0.2em] text-sm transition-all duration-300"
@@ -742,7 +745,7 @@ export default function Home() {
 
       {/* ── WHATSAPP FLOAT ───────────────────────────────────────────────── */}
       <motion.a
-        href="https://wa.me/212600000000"
+        href="https://wa.me/212721354757"
         target="_blank"
         rel="noopener noreferrer"
         data-testid="whatsapp-float"
@@ -761,3 +764,6 @@ export default function Home() {
     </>
   );
 }
+
+
+
