@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
@@ -152,7 +152,7 @@ export default function Experiences() {
           <h2 className="font-serif text-3xl md:text-4xl mb-6">Not Sure Which Experience is Right for You?</h2>
           <p className="text-zinc-300 mb-10 leading-relaxed">Message us on WhatsApp and we will personally help you choose the perfect evening.</p>
           <a
-            href="https://wa.me/212600000000"
+            href="https://wa.me/212721354757"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-12 py-4 bg-amber-600 hover:bg-amber-700 text-white uppercase tracking-[0.2em] text-sm transition-colors"
@@ -164,3 +164,7 @@ export default function Experiences() {
     </>
   );
 }
+
+
+
+

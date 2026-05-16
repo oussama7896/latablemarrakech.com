@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Star } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
@@ -22,7 +22,7 @@ export default function PrivateChefMarrakech() {
           "name": "La Table Marrakech",
           "description": "Private chef experiences in Marrakech for tourists",
           "url": "https://latablemarrakech.com",
-          "telephone": "+212600000000",
+          "telephone": "+212721354757",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Marrakech",
@@ -131,3 +131,7 @@ export default function PrivateChefMarrakech() {
     </>
   );
 }
+
+
+
+

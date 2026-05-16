@@ -39,7 +39,7 @@ export function Footer() {
           <h4 className="text-white font-serif uppercase tracking-widest text-sm mb-6">Contact</h4>
           <ul className="space-y-3 text-sm">
             <li><a href="mailto:reservations@latablemarrakech.com" className="hover:text-primary transition-colors">reservations@latablemarrakech.com</a></li>
-            <li><a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+212 600 000 000</a></li>
+            <li><a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+212 721 354 757</a></li>
             <li className="pt-4">
               <Link href="/contact" className="inline-block border border-zinc-700 hover:border-primary hover:text-primary transition-colors px-4 py-2 uppercase tracking-wider text-xs">
                 Make a Reservation
@@ -54,7 +54,6 @@ export function Footer() {
         <div className="flex gap-4">
           <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-          <Link href="/admin" className="hover:text-white transition-colors opacity-30">Admin</Link>
         </div>
       </div>
     </footer>
