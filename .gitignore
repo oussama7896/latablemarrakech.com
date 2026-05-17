@@ -52,3 +52,6 @@ C1682.MP4
 # stray non-npm lockfiles
 pnpm-lock.yaml
 yarn.lock
+
+# Hostinger deploy credentials (keep secret)
+.env.deploy
