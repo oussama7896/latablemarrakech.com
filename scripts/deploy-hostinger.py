@@ -221,6 +221,21 @@ def main() -> int:
     if not DIST_DIR.is_dir():
         sys.exit(f"Build output not found at {DIST_DIR}")
 
+    # Sanity check: a real Vite build always produces index.html and an
+    # assets/ folder. If they're missing, the build was killed mid-way
+    # (e.g. SIGPIPE from a piped parent process) and uploading would
+    # break the live site by deleting all the hashed assets.
+    if not (DIST_DIR / "index.html").is_file():
+        sys.exit(
+            f"index.html missing from {DIST_DIR} — build looks incomplete.\n"
+            "Re-run without --no-build, or rebuild and retry."
+        )
+    if not (DIST_DIR / "assets").is_dir():
+        sys.exit(
+            f"assets/ missing from {DIST_DIR} — build looks incomplete.\n"
+            "Re-run without --no-build, or rebuild and retry."
+        )
+
     local_files = collect_local_files(DIST_DIR)
     local_rels = {p.relative_to(DIST_DIR).as_posix() for p in local_files}
     total_bytes = sum(p.stat().st_size for p in local_files)
