@@ -59,3 +59,8 @@ yarn.lock
 # python bytecode
 __pycache__/
 *.pyc
+
+# personal local dev helpers
+.local_serve.sh
+.ssl_poll.sh
+.local_*.sh
