@@ -1,0 +1,43 @@
+# La Table Marrakech — Hostinger / Apache / LiteSpeed config
+# Generated; copied into dist/public on every build.
+
+# ── Force HTTPS ──────────────────────────────────────────────
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── SPA fallback ─────────────────────────────────────────────
+# Serve real files / directories untouched, send everything else to index.html
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^ index.html [L]
+
+# ── Long cache for hashed assets ─────────────────────────────
+<IfModule mod_headers.c>
+  <FilesMatch "\.(?:js|css|woff2?|ttf|otf|eot|svg|jpe?g|png|webp|avif|gif|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML should not be cached aggressively (so users see fresh deploys)
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ── Compression ──────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# ── Security headers ─────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ── Don't index junk ─────────────────────────────────────────
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
