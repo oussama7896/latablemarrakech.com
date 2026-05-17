@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "vite",
-  "installCommand": "npm install",
-  "buildCommand": "npm --workspace @workspace/la-table-marrakech run build",
+  "framework": null,
+  "installCommand": "npm install --no-audit --no-fund",
+  "buildCommand": "npm run build --workspace=@workspace/la-table-marrakech",
   "outputDirectory": "artifacts/la-table-marrakech/dist/public",
   "rewrites": [
     { "source": "/((?!assets/).*)", "destination": "/index.html" }

@@ -48,3 +48,7 @@ Thumbs.db
 .cache/
 .local/
 C1682.MP4
+
+# stray non-npm lockfiles
+pnpm-lock.yaml
+yarn.lock
