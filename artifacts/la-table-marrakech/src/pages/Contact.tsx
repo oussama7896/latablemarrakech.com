@@ -108,6 +108,7 @@ Message: ${values.message || 'None'}
     <>
       <title>Reserve A Private Chef In Marrakech — La Table Marrakech</title>
       <meta name="description" content="Book a private chef for your villa, riad, or rooftop in Marrakech. WhatsApp +212 721 354 757 — usually under an hour to reply, in English or French." />
+      <link rel="canonical" href="https://latablemarrakech.com/contact" />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">

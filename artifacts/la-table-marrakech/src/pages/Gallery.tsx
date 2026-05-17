@@ -31,6 +31,7 @@ export default function Gallery() {
     <>
       <title>Gallery — La Table Marrakech Private Chef Experiences</title>
       <meta name="description" content="Browse the gallery of La Table Marrakech private chef experiences — from candlelit romantic dinners to Moroccan feasts, rooftop evenings, and desert dining in the Agafay." />
+      <link rel="canonical" href="https://latablemarrakech.com/gallery" />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">

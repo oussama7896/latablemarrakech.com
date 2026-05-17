@@ -86,6 +86,7 @@ export default function Experiences() {
     <>
       <title>Ten Ways To Eat Well In Marrakech — La Table Marrakech</title>
       <meta name="description" content="Romantic dinners, villa chefs, rooftop tables, cooking classes, desert dining and more. Pick the evening you want — or message us on WhatsApp and we'll help you choose." />
+      <link rel="canonical" href="https://latablemarrakech.com/experiences" />
 
       {/* Hero */}
       <section className="relative h-80 flex items-end justify-center overflow-hidden">

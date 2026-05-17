@@ -37,6 +37,7 @@ export default function Chef() {
     <>
       <title>The Chef — Twenty Years In The Kitchen | La Table Marrakech</title>
       <meta name="description" content="Trained in Paris. Cooked at Palais Namaskar. Now cooks one table at a time for travellers in Marrakech. Meet the chef behind La Table Marrakech." />
+      <link rel="canonical" href="https://latablemarrakech.com/chef" />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[800px] flex items-center overflow-hidden">

@@ -93,6 +93,7 @@ export default function FAQ() {
     <>
       <title>Frequently Asked Questions — La Table Marrakech Private Chef</title>
       <meta name="description" content="Everything you need to know about booking a private chef in Marrakech. FAQs about dietary requirements, locations, pricing, booking process, and more." />
+      <link rel="canonical" href="https://latablemarrakech.com/faq" />
 
       {/* Schema: FAQ */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{

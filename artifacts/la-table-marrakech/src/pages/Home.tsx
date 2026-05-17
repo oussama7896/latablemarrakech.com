@@ -147,6 +147,7 @@ export default function Home() {
     <>
       <title>Private Chef in Marrakech | Villa, Riad & Desert Dining — La Table Marrakech</title>
       <meta name="description" content="A private chef at your villa, riad, or in the Agafay desert. Romantic dinners, family feasts, cooking classes — designed for travellers in Marrakech. Message on WhatsApp." />
+      <link rel="canonical" href="https://latablemarrakech.com/" />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">

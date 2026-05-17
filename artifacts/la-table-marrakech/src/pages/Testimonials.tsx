@@ -64,6 +64,7 @@ export default function Testimonials() {
     <>
       <title>Guest Testimonials — La Table Marrakech</title>
       <meta name="description" content="Read testimonials from guests who have experienced La Table Marrakech private chef dinners. From romantic dinners to desert dining, discover what makes our experiences unforgettable." />
+      <link rel="canonical" href="https://latablemarrakech.com/testimonials" />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
