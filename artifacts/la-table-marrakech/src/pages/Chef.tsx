@@ -41,7 +41,11 @@ export default function Chef() {
       {/* Hero */}
       <section className="relative h-screen max-h-[800px] flex items-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1600&q=75"
+          srcSet="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1600&q=75 1600w"
+          sizes="100vw"
+          fetchPriority="high"
+          decoding="async"
           alt="Private chef La Table Marrakech"
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
@@ -120,8 +124,10 @@ export default function Chef() {
 
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=800&q=85"
+                  src="https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=720&q=75"
                   alt="Moroccan spices and ingredients"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

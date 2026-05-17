@@ -26,15 +26,13 @@ const staggerFast = { visible: { transition: { staggerChildren: 0.08 } } };
 
 /* ─── Data ───────────────────────────────────────────────────────────────── */
 const MARQUEE_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=600&q=80", alt: "Moroccan tagine" },
-  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan spices" },
-  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan mint tea" },
-  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan couscous" },
-  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan lanterns" },
-  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan spice souk" },
-  { src: "https://images.pexels.com/photos/5737365/pexels-photo-5737365.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan food platter" },
-  { src: "https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Dining under stars Marrakech" },
-  { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80", alt: "Candlelit dinner" },
+  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=320&q=70", alt: "Moroccan tagine" },
+  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan spices" },
+  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan mint tea" },
+  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan couscous" },
+  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan lanterns" },
+  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan spice souk" },
+  { src: "https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Dining under stars Marrakech" },
 ];
 
 const EXPERIENCES = [
@@ -43,37 +41,37 @@ const EXPERIENCES = [
     tag: "For Two · From €120",
     description: "Candlelit table, slow service, a menu built around the two of you.",
     href: "/romantic-dinner-marrakech",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=720&q=75",
   },
   {
     title: "Villa Private Chef",
     tag: "For Your Group · From €90",
     description: "Your kitchen, our chef, your menu. From amuse-bouche to mint tea.",
     href: "/villa-chef-marrakech",
-    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1000&q=85",
+    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=720&q=75",
   },
   {
     title: "Moroccan Cooking Class",
     tag: "Hands-on · From €65",
     description: "Morning at the souk, then cook (and eat) a full Moroccan lunch.",
     href: "/moroccan-cooking-experience",
-    image: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
+    image: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=720&q=75",
   },
   {
     title: "Desert Dining",
     tag: "Agafay · From €160",
     description: "Dinner under the stars, Berber lanterns, Gnawa music as the sun goes.",
     href: "/experiences",
-    image: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
+    image: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=720&q=75",
   },
 ];
 
 const FOOD_MOSAIC = [
-  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80", alt: "Slow-cooked tagine", span: "row-span-2" },
-  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan mint tea ceremony", span: "" },
-  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan spice palette", span: "" },
-  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Friday couscous", span: "" },
-  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Riad lanterns at dusk", span: "" },
+  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=600&q=75", alt: "Slow-cooked tagine", span: "row-span-2" },
+  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Moroccan mint tea ceremony", span: "" },
+  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Moroccan spice palette", span: "" },
+  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Friday couscous", span: "" },
+  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Riad lanterns at dusk", span: "" },
 ];
 
 const TESTIMONIALS = [
@@ -154,7 +152,11 @@ export default function Home() {
       <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
+            src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80"
+            srcSet="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=800&q=70 800w, https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1200&q=75 1200w, https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80 1600w"
+            sizes="100vw"
+            fetchPriority="high"
+            decoding="async"
             alt="Elegant Moroccan dining table at night"
             className="w-full h-full object-cover object-center"
           />
@@ -291,6 +293,10 @@ export default function Home() {
                 <img
                   src={img.src}
                   alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={256}
+                  height={176}
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                 />
               </div>
@@ -333,6 +339,7 @@ export default function Home() {
                   src={exp.image}
                   alt={exp.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.06 }}
                   transition={{ duration: 0.7, ease: easeOut }}
@@ -425,6 +432,7 @@ export default function Home() {
                   src={img.src}
                   alt={img.alt}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.6, ease: easeOut }}
@@ -468,8 +476,10 @@ export default function Home() {
               <div className="relative aspect-[3/4] overflow-hidden">
                 <motion.img
                   style={{ y: chefImgSpring }}
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=85"
+                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=720&q=75"
                   alt="Private Chef in Marrakech"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[110%] object-cover object-top -mt-[5%]"
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-zinc-950 to-transparent" />
@@ -511,9 +521,9 @@ export default function Home() {
               {/* Ingredients strip */}
               <div className="flex gap-6 mb-10 overflow-x-auto pb-2">
                 {[
-                  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", label: "Spices" },
-                  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", label: "Souk" },
-                  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", label: "Mint Tea" },
+                  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=160&q=70", label: "Spices" },
+                  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=160&q=70", label: "Souk" },
+                  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=160&q=70", label: "Mint Tea" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -524,7 +534,7 @@ export default function Home() {
                     className="shrink-0 text-center"
                   >
                     <div className="w-20 h-20 overflow-hidden mb-2">
-                      <img src={item.src} alt={item.label} className="w-full h-full object-cover" />
+                      <img src={item.src} alt={item.label} loading="lazy" decoding="async" width={80} height={80} className="w-full h-full object-cover" />
                     </div>
                     <span className="text-[0.6rem] uppercase tracking-widest text-zinc-500">{item.label}</span>
                   </motion.div>
@@ -684,7 +694,11 @@ export default function Home() {
           className="absolute inset-0"
         >
           <img
-            src="https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
+            src="https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=1600&q=75"
+            srcSet="https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=800&q=70 800w, https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=1600&q=75 1600w"
+            sizes="100vw"
+            loading="lazy"
+            decoding="async"
             alt="Moroccan lantern evening dinner"
             className="w-full h-full object-cover"
           />

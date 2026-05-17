@@ -112,7 +112,11 @@ Message: ${values.message || 'None'}
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
         <img
-          src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
+          src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1600&q=75"
+          srcSet="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=800&q=70 800w, https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1600&q=75 1600w"
+          sizes="100vw"
+          fetchPriority="high"
+          decoding="async"
           alt="Elegant restaurant interior"
           className="absolute inset-0 w-full h-full object-cover"
         />

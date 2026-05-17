@@ -45,6 +45,30 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (id.includes("framer-motion") || id.includes("motion-dom") || id.includes("motion-utils")) {
+            return "framer-motion";
+          }
+          if (id.includes("@radix-ui")) return "radix";
+          if (id.includes("react-hook-form") || id.includes("@hookform") || id.includes("/zod/")) {
+            return "forms";
+          }
+          if (
+            id.includes("/react/") ||
+            id.includes("/react-dom/") ||
+            id.includes("/scheduler/")
+          ) {
+            return "react-core";
+          }
+          return "vendor";
+        },
+      },
+    },
   },
   server: {
     port,
