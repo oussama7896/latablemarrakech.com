@@ -9,9 +9,9 @@ const fadeUp = {
 const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
 
 const credentials = [
-  "Trained at Le Cordon Bleu Paris",
-  "20+ years of private dining experience",
-  "Former chef at Palais Namaskar, Marrakech",
+  "Le Cordon Bleu, Paris — 2003",
+  "20+ years cooking, 7 in private dining",
+  "Former Sous Chef, Palais Namaskar Marrakech",
   "Specialist in Moroccan and Mediterranean cuisine",
   "Featured in Condé Nast Traveller",
   "Speaks English, French, Arabic, and Darija",
@@ -19,24 +19,24 @@ const credentials = [
 
 const values = [
   {
-    title: "Sourced at Dawn",
-    desc: "Every morning begins at the Mellah market. Only what is ripe, seasonal, and exceptional earns a place on the menu.",
+    title: "Bought That Morning",
+    desc: "We start at the market by 7am. If it isn't ripe, it isn't on your plate tonight. The menu we sent you might shift slightly by service — that's a good sign.",
   },
   {
-    title: "Composed with Intent",
-    desc: "Each dish tells a story — of a spice route, a grandmother's recipe, or a childhood memory of tagine steam rising through a riad courtyard.",
+    title: "Built Around You",
+    desc: "Before we cook, we ask. Allergies, of course. But also: what you ate yesterday, what you're tired of, what you've never tried. Then the menu gets built around the answers.",
   },
   {
-    title: "Served with Presence",
-    desc: "Dinner is not merely eaten. It is experienced. Our chef is present throughout — explaining, adjusting, and ensuring every moment is memorable.",
+    title: "Cooked In The Room",
+    desc: "The chef stays the whole evening. He'll pour the first glass, explain each course, adjust on the fly. It's not service. It's company.",
   },
 ];
 
 export default function Chef() {
   return (
     <>
-      <title>The Private Chef — La Table Marrakech</title>
-      <meta name="description" content="Meet the private chef behind La Table Marrakech. A master of Moroccan and Mediterranean cuisine with 20 years of experience creating unforgettable private dining experiences." />
+      <title>The Chef — Twenty Years In The Kitchen | La Table Marrakech</title>
+      <meta name="description" content="Trained in Paris. Cooked at Palais Namaskar. Now cooks one table at a time for travellers in Marrakech. Meet the chef behind La Table Marrakech." />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[800px] flex items-center overflow-hidden">
@@ -54,13 +54,14 @@ export default function Chef() {
             className="max-w-xl text-white"
           >
             <motion.p variants={fadeUp} className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-6">
-              The Artisan
+              The Chef
             </motion.p>
-            <motion.h1 variants={fadeUp} className="font-serif text-5xl md:text-7xl leading-tight mb-8">
-              Where Tradition Meets Precision
+            <motion.h1 variants={fadeUp} className="font-serif text-5xl md:text-7xl leading-[1.05] mb-8">
+              Twenty years.<br />
+              <span className="italic text-amber-200">One obsession.</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="text-white/70 text-lg leading-relaxed">
-              Twenty years. One obsession: the perfect dinner.
+              Trained in Paris. Cooked at Palais Namaskar. Walked away to cook for one table at a time.
             </motion.p>
           </motion.div>
         </div>
@@ -78,21 +79,22 @@ export default function Chef() {
             >
               <p className="text-xs tracking-[0.4em] uppercase text-primary mb-6">The Story</p>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-10">
-                Born in Fez,<br />
-                <span className="italic">Refined in Paris</span>
+                Born in Fez.<br />
+                <span className="italic">Refined in Paris.</span><br />
+                Came home to cook.
               </h2>
               <div className="space-y-6 text-muted-foreground leading-relaxed">
                 <p>
-                  Growing up in the medina of Fez, food was ceremony. His grandmother's hands — dusted in cumin and coriander — shaped his earliest understanding of what a meal could mean. Not sustenance. Devotion.
+                  He grew up in the medina of Fez, in a house where the kitchen was the loudest room. His grandmother taught him the order of spices before he could read — cumin first, then coriander, ginger last, never rushed.
                 </p>
                 <p>
-                  A scholarship brought him to Le Cordon Bleu in Paris at twenty-two. He spent a decade in European kitchens, learning the architecture of French cuisine — its precision, its silence, its discipline. But the flavours he craved always pulled him south.
+                  At twenty-two, a scholarship took him to Le Cordon Bleu in Paris. He stayed a decade. Worked the line in three Michelin kitchens. Learned the silence and the precision of French cuisine — and missed Morocco the whole time.
                 </p>
                 <p>
-                  He returned to Morocco and joined the kitchen at Palais Namaskar, one of Marrakech's most celebrated luxury hotels. It was there he understood that his true calling was not the restaurant — it was the intimate table. The private dinner where a chef could know, truly know, the people he was cooking for.
+                  He came back, took the kitchen at Palais Namaskar, one of Marrakech's most celebrated hotels. But cooking for a hundred strangers a night was never the point. The dinners that mattered to him were the small ones. Six people. One table. A long evening.
                 </p>
                 <p>
-                  La Table Marrakech was born from that conviction.
+                  So he left. La Table Marrakech started with one private dinner in 2018. Now he cooks four nights a week, for whoever is in town — and still treats each one like the first.
                 </p>
               </div>
             </motion.div>
@@ -138,8 +140,8 @@ export default function Chef() {
             variants={fadeUp}
             className="text-center mb-20"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Philosophy</p>
-            <h2 className="font-serif text-4xl md:text-5xl">A Meal is a Memory</h2>
+            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Way He Cooks</p>
+            <h2 className="font-serif text-4xl md:text-5xl">Three things, every time.</h2>
           </motion.div>
           <motion.div
             initial="hidden"
@@ -167,15 +169,26 @@ export default function Chef() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h2 className="font-serif text-4xl mb-6">Reserve Your Table</h2>
-            <p className="text-muted-foreground mb-10">Let us compose an evening you will speak of for years.</p>
-            <Link
-              href="/contact"
-              data-testid="btn-chef-cta"
-              className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-12 py-5 uppercase tracking-[0.2em] text-xs"
-            >
-              Begin Your Experience <ArrowRight className="w-3 h-3" />
-            </Link>
+            <h2 className="font-serif text-4xl mb-6">Want him to cook for you?</h2>
+            <p className="text-muted-foreground mb-10">One message is enough to start.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/212721354757"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="btn-chef-cta-whatsapp"
+                className="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-12 py-5 uppercase tracking-[0.2em] text-xs"
+              >
+                WhatsApp The Chef <ArrowRight className="w-3 h-3" />
+              </a>
+              <Link
+                href="/contact"
+                data-testid="btn-chef-cta-form"
+                className="inline-flex items-center justify-center gap-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors px-12 py-5 uppercase tracking-[0.2em] text-xs"
+              >
+                Or Send A Form
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

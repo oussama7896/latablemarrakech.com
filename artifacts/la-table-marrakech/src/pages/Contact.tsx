@@ -25,6 +25,7 @@ const reservationSchema = z.object({
   time: z.string().min(1, "Time is required"),
   location: z.string().min(3, "Location in Marrakech is required"),
   experienceType: z.enum([
+    "not_sure",
     "romantic_dinner",
     "villa_chef",
     "rooftop_dinner",
@@ -43,6 +44,7 @@ const reservationSchema = z.object({
 type ReservationFormValues = z.infer<typeof reservationSchema>;
 
 const experienceOptions = [
+  { value: "not_sure", label: "Not sure — help me pick" },
   { value: "romantic_dinner", label: "Romantic Dinner" },
   { value: "villa_chef", label: "Villa Private Chef" },
   { value: "rooftop_dinner", label: "Rooftop Dinner" },
@@ -104,8 +106,8 @@ Message: ${values.message || 'None'}
 
   return (
     <>
-      <title>Reserve Your Experience — La Table Marrakech</title>
-      <meta name="description" content="Book your private chef experience in Marrakech. Romantic dinners, villa dining, cooking classes, and more. Fill out the reservation form and we will confirm within 24 hours." />
+      <title>Reserve A Private Chef In Marrakech — La Table Marrakech</title>
+      <meta name="description" content="Book a private chef for your villa, riad, or rooftop in Marrakech. WhatsApp +212 721 354 757 — usually under an hour to reply, in English or French." />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
@@ -115,9 +117,31 @@ Message: ${values.message || 'None'}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 pb-12 text-center text-white">
-          <p className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-3">Begin Your Experience</p>
-          <h1 className="font-serif text-4xl md:text-6xl">Reserve Your Table</h1>
+        <div className="relative z-10 pb-12 text-center text-white px-6">
+          <p className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-3">Let's Cook You Dinner</p>
+          <h1 className="font-serif text-4xl md:text-6xl mb-3">Reserve your evening.</h1>
+          <p className="text-white/70 max-w-xl mx-auto text-sm md:text-base">Two ways: message us on WhatsApp (fastest), or fill in the form and we'll come back to you within the day.</p>
+        </div>
+      </section>
+
+      {/* WhatsApp Fast-Path Band */}
+      <section className="bg-zinc-950 text-white py-12 border-b border-zinc-800">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="md:flex-1 md:pr-8">
+              <h2 className="font-serif text-2xl md:text-3xl leading-tight mb-2">The fastest way to book is WhatsApp.</h2>
+              <p className="text-zinc-400 text-sm md:text-base leading-relaxed">Tell us the date, how many of you, and where you're staying. We usually reply in under an hour.</p>
+            </div>
+            <a
+              href="https://wa.me/212721354757"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="contact-whatsapp-band"
+              className="shrink-0 inline-block text-center px-8 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-xs md:text-sm transition-colors"
+            >
+              WhatsApp +212 721 354 757
+            </a>
+          </div>
         </div>
       </section>
 
@@ -131,34 +155,37 @@ Message: ${values.message || 'None'}
           >
             {/* Contact Info */}
             <div className="md:col-span-1">
-              <h2 className="font-serif text-2xl mb-8">Get in Touch</h2>
+              <h2 className="font-serif text-2xl mb-8">Get In Touch</h2>
               <div className="space-y-6 text-sm text-muted-foreground">
                 <div>
-                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">WhatsApp</p>
+                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">WhatsApp — usually under an hour</p>
                   <a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                     +212 721 354 757
                   </a>
                 </div>
                 <div>
-                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">Email</p>
+                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">If you prefer email</p>
                   <a href="mailto:reservations@latablemarrakech.com" className="hover:text-primary transition-colors">
                     reservations@latablemarrakech.com
                   </a>
                 </div>
                 <div>
-                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">Location</p>
-                  <p>Marrakech, Morocco</p>
-                  <p className="text-xs mt-1">We come to you — villa, riad, rooftop, desert camp</p>
+                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">Where we cook</p>
+                  <p>We come to you — your villa, riad, rooftop, or the desert.</p>
                 </div>
                 <div>
-                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">Response Time</p>
-                  <p>Within 24 hours</p>
+                  <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">Response time</p>
+                  <p>Within the day, every day.</p>
                 </div>
               </div>
             </div>
 
             {/* Form */}
             <div className="md:col-span-2">
+              <div className="mb-8">
+                <h2 className="font-serif text-2xl mb-2">Prefer to write it all out?</h2>
+                <p className="text-sm text-muted-foreground">Fill this in and we'll reply with a menu suggestion, a price, and a confirmation — usually within the day.</p>
+              </div>
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -171,9 +198,9 @@ Message: ${values.message || 'None'}
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="uppercase tracking-wider text-xs">Full Name</FormLabel>
+                          <FormLabel className="uppercase tracking-wider text-xs">Your Name</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="Your full name" data-testid="input-name" />
+                            <Input {...field} placeholder="Sophie & Marc" data-testid="input-name" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -186,7 +213,7 @@ Message: ${values.message || 'None'}
                         <FormItem>
                           <FormLabel className="uppercase tracking-wider text-xs">Email</FormLabel>
                           <FormControl>
-                            <Input {...field} type="email" placeholder="your@email.com" data-testid="input-email" />
+                            <Input {...field} type="email" placeholder="Where we'll send your confirmation" data-testid="input-email" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -197,9 +224,9 @@ Message: ${values.message || 'None'}
                       name="whatsapp"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="uppercase tracking-wider text-xs">WhatsApp Number</FormLabel>
+                          <FormLabel className="uppercase tracking-wider text-xs">WhatsApp</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="+1 234 567 8900" data-testid="input-whatsapp" />
+                            <Input {...field} placeholder="+33 6 12 34 56 78" data-testid="input-whatsapp" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -210,9 +237,9 @@ Message: ${values.message || 'None'}
                       name="country"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="uppercase tracking-wider text-xs">Country</FormLabel>
+                          <FormLabel className="uppercase tracking-wider text-xs">Where You're Travelling From</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="Your country" data-testid="input-country" />
+                            <Input {...field} placeholder="France" data-testid="input-country" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -223,7 +250,7 @@ Message: ${values.message || 'None'}
                       name="guests"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="uppercase tracking-wider text-xs">Number of Guests</FormLabel>
+                          <FormLabel className="uppercase tracking-wider text-xs">How Many Of You?</FormLabel>
                           <FormControl>
                             <Input {...field} type="number" min={1} max={50} placeholder="2" data-testid="input-guests" />
                           </FormControl>
@@ -249,7 +276,7 @@ Message: ${values.message || 'None'}
                       name="time"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="uppercase tracking-wider text-xs">Preferred Time</FormLabel>
+                          <FormLabel className="uppercase tracking-wider text-xs">Preferred Time <span className="lowercase tracking-normal text-muted-foreground normal-case text-[10px] ml-1">most dinners start at 19:30</span></FormLabel>
                           <FormControl>
                             <Input {...field} type="time" data-testid="input-time" />
                           </FormControl>
@@ -262,7 +289,7 @@ Message: ${values.message || 'None'}
                       name="experienceType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="uppercase tracking-wider text-xs">Experience Type</FormLabel>
+                          <FormLabel className="uppercase tracking-wider text-xs">Which Experience?</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger data-testid="select-experience">
@@ -288,9 +315,9 @@ Message: ${values.message || 'None'}
                     name="location"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="uppercase tracking-wider text-xs">Your Location in Marrakech</FormLabel>
+                        <FormLabel className="uppercase tracking-wider text-xs">Where Are You Staying?</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder="Villa name, Riad address, or neighbourhood" data-testid="input-location" />
+                          <Input {...field} placeholder="Riad name, villa, or neighbourhood" data-testid="input-location" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -302,9 +329,9 @@ Message: ${values.message || 'None'}
                     name="dietaryPreferences"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="uppercase tracking-wider text-xs">Dietary Preferences (optional)</FormLabel>
+                        <FormLabel className="uppercase tracking-wider text-xs">Anything We Should Know? (optional)</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder="Vegetarian, no shellfish, gluten-free..." data-testid="input-dietary" />
+                          <Input {...field} placeholder="Vegetarian, no shellfish, peanut allergy…" data-testid="input-dietary" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -316,12 +343,12 @@ Message: ${values.message || 'None'}
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="uppercase tracking-wider text-xs">Additional Message (optional)</FormLabel>
+                        <FormLabel className="uppercase tracking-wider text-xs">Tell Us About The Evening (optional)</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
                             rows={4}
-                            placeholder="Special occasion, specific requests, or anything else you would like us to know..."
+                            placeholder="Anniversary? Surprise? First night in Marrakech? Anything helps."
                             data-testid="input-message"
                           />
                         </FormControl>
@@ -335,7 +362,7 @@ Message: ${values.message || 'None'}
                      data-testid="button-submit"
                      className="w-full py-5 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-60 uppercase tracking-[0.2em] text-sm transition-colors"
                    >
-                     Send Reservation Request
+                     Send & Continue On WhatsApp →
                    </button>
                 </form>
               </Form>
@@ -370,11 +397,11 @@ Message: ${values.message || 'None'}
                 <X className="w-5 h-5" />
               </button>
               <CheckCircle className="w-12 h-12 text-primary mx-auto mb-6" />
-              <h2 className="font-serif text-3xl mb-4">Reservation Received</h2>
+              <h2 className="font-serif text-3xl mb-4">Got it.</h2>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Thank you for choosing La Table Marrakech. We will reach out personally within 24 hours to confirm every detail of your experience.
+                We've opened WhatsApp with your request. Send it through and we'll reply within the hour. If you closed the WhatsApp tab, message us directly: <a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+212 721 354 757</a>.
               </p>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">A pleasure awaits you.</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">A pleasure awaits.</p>
             </motion.div>
           </motion.div>
         )}

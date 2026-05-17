@@ -40,29 +40,29 @@ const MARQUEE_IMAGES = [
 const EXPERIENCES = [
   {
     title: "Romantic Dinner",
-    tag: "For Two",
-    description: "A candlelit evening crafted for two. Intimate, personal, and utterly unforgettable.",
+    tag: "For Two · From €120",
+    description: "Candlelit table, slow service, a menu built around the two of you.",
     href: "/romantic-dinner-marrakech",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85",
   },
   {
     title: "Villa Private Chef",
-    tag: "Groups & Families",
-    description: "Your villa, your menu. A full dining experience tailored to your group's desires.",
+    tag: "For Your Group · From €90",
+    description: "Your kitchen, our chef, your menu. From amuse-bouche to mint tea.",
     href: "/villa-chef-marrakech",
     image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1000&q=85",
   },
   {
     title: "Moroccan Cooking Class",
-    tag: "Cultural",
-    description: "Learn the ancient art of Moroccan cuisine, guided by a master chef in your own kitchen.",
+    tag: "Hands-on · From €65",
+    description: "Morning at the souk, then cook (and eat) a full Moroccan lunch.",
     href: "/moroccan-cooking-experience",
     image: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
   {
     title: "Desert Dining",
-    tag: "Agafay",
-    description: "Dine under the stars above the medina with lanterns and Gnawa music as your backdrop.",
+    tag: "Agafay · From €160",
+    description: "Dinner under the stars, Berber lanterns, Gnawa music as the sun goes.",
     href: "/experiences",
     image: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
   },
@@ -95,10 +95,10 @@ const TESTIMONIALS = [
 ];
 
 const STEPS = [
-  { number: "01", title: "Choose Your Experience", desc: "Browse our curated experiences and select the one that speaks to your soul." },
-  { number: "02", title: "Send Your Reservation", desc: "Complete the booking form with your details, date, and preferences." },
-  { number: "03", title: "Personal Confirmation", desc: "We reach out within 24 hours to confirm every detail personally." },
-  { number: "04", title: "Relax & Savour", desc: "Your chef arrives. You simply enjoy the most memorable meal of your journey." },
+  { number: "01", title: "Tell Us What You Want", desc: "Message on WhatsApp. A date, how many of you, where you're staying. That's enough to start." },
+  { number: "02", title: "We Design Your Evening", desc: "We send a menu, a price, and a few questions back. Tweak anything." },
+  { number: "03", title: "Confirm The Night", desc: "Send a small deposit. Everything else — shopping, setup, service — is on us." },
+  { number: "04", title: "Sit Down And Eat", desc: "We arrive two hours before. You arrive at the table." },
 ];
 
 /* ─── Moroccan SVG Ornament ─────────────────────────────────────────────── */
@@ -147,8 +147,8 @@ export default function Home() {
 
   return (
     <>
-      <title>La Table Marrakech — Private Chef Experiences in Marrakech</title>
-      <meta name="description" content="Book a private chef in Marrakech for romantic dinners, villa dining, cooking classes, rooftop experiences, and luxury breakfasts. Michelin-level private dining for tourists." />
+      <title>Private Chef in Marrakech | Villa, Riad & Desert Dining — La Table Marrakech</title>
+      <meta name="description" content="A private chef at your villa, riad, or in the Agafay desert. Romantic dinners, family feasts, cooking classes — designed for travellers in Marrakech. Message on WhatsApp." />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
@@ -181,16 +181,16 @@ export default function Home() {
             transition={{ delay: 0.3, duration: 1.2 }}
             className="text-xs uppercase mb-8 text-amber-300/90"
           >
-            Marrakech — Private Chef Experiences
+            Marrakech · Private Chef · In Your Riad Or Villa
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1.1, ease: easeOut }}
-            className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.93] mb-8"
+            className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.02] md:leading-[0.95] mb-8"
           >
-            Private Chef
+            A private chef at your table.
             <br />
             <motion.span
               initial={{ opacity: 0, x: -30 }}
@@ -198,10 +198,8 @@ export default function Home() {
               transition={{ delay: 0.9, duration: 1 }}
               className="italic text-amber-200/90"
             >
-              Experiences
+              In Marrakech, tonight.
             </motion.span>
-            <br />
-            in Marrakech
           </motion.h1>
 
           <motion.div
@@ -217,7 +215,7 @@ export default function Home() {
             transition={{ delay: 1, duration: 0.9 }}
             className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed mb-12"
           >
-            Luxury Moroccan and international dining in your villa, riad, or private event.
+            We come to your riad, villa, rooftop, or the desert — and cook the kind of dinner you'll still be talking about a year from now.
           </motion.p>
 
           <motion.div
@@ -226,20 +224,22 @@ export default function Home() {
             transition={{ delay: 1.2, duration: 0.9 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link
-              href="/contact"
-              data-testid="hero-cta-reserve"
+            <a
+              href="https://wa.me/212721354757"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="hero-cta-whatsapp"
               className="group px-10 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-sm transition-all duration-300 flex items-center justify-center gap-3"
             >
-              Reserve Your Experience
+              Message Us On WhatsApp
               <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-            </Link>
+            </a>
             <Link
               href="/experiences"
               data-testid="hero-cta-experiences"
               className="px-10 py-4 border border-white/40 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-sm transition-all duration-300"
             >
-              View Experiences
+              See The Experiences
             </Link>
           </motion.div>
         </motion.div>
@@ -264,10 +264,10 @@ export default function Home() {
       <section className="bg-zinc-950 text-white py-16">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-            <AnimatedStat value="5.0" label="Average Rating" icon={<Star className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-            <AnimatedStat value="500+" label="Guests Served" icon={<Users className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-            <AnimatedStat value="10+" label="Unique Experiences" icon={<ChefHat className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-            <AnimatedStat value="Marrakech" label="& Agafay Desert" icon={<MapPin className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
+            <AnimatedStat value="5.0" label="Guest Rating" icon={<Star className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
+            <AnimatedStat value="200" label="Dinners Cooked" icon={<Users className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
+            <AnimatedStat value="10" label="Experiences" icon={<ChefHat className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
+            <AnimatedStat value="Marrakech" label="+ Agafay Desert" icon={<MapPin className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
           </div>
         </div>
       </section>
@@ -309,8 +309,9 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-24"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Curated Experiences</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-foreground">Dining Unlike Any Other</h2>
+            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Choose Your Evening</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-foreground">Not sure what you want? Start here.</h2>
+            <p className="text-muted-foreground mt-6 max-w-xl mx-auto leading-relaxed">Four ways most of our guests begin. Pick one, or message us and we'll match the evening to your trip.</p>
             <div className="w-12 h-px bg-primary mx-auto mt-8" />
           </motion.div>
 
@@ -361,7 +362,7 @@ export default function Home() {
                     initial={{ x: 0 }}
                     whileHover={{ x: 4 }}
                   >
-                    <Link href={exp.href}>Discover</Link>
+                    <Link href={exp.href}>See This</Link>
                     <ArrowRight className="w-3 h-3" />
                   </motion.div>
                 </div>
@@ -381,7 +382,7 @@ export default function Home() {
               data-testid="btn-all-experiences"
               className="group inline-flex items-center gap-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 px-12 py-4 uppercase tracking-[0.2em] text-xs"
             >
-              All Experiences
+              See All Experiences
               <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -398,12 +399,12 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-20"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Flavours of Morocco</p>
+            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Flavours</p>
             <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight">
-              Every Dish, a Story
+              What Morocco actually tastes like.
             </h2>
             <p className="text-zinc-400 mt-6 max-w-xl mx-auto leading-relaxed">
-              From slow-simmered tagines perfumed with preserved lemon and saffron, to bastilla dusted in cinnamon and icing sugar — Morocco's culinary vocabulary is unlike any other on earth.
+              Lamb tagine that's been on the fire since morning. Bastilla — pigeon pie, dusted in icing sugar and cinnamon, the most surprising thing you'll eat all week. Mint tea poured from a height so it foams. None of it is what you ate in the medina restaurants.
             </p>
           </motion.div>
 
@@ -495,16 +496,16 @@ export default function Home() {
             >
               <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-6">The Chef</p>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-8">
-                Twenty Years of<br />
-                <span className="italic text-amber-200">Moroccan Culinary</span><br />
-                Mastery
+                Twenty years in the kitchen.<br />
+                <span className="italic text-amber-200">One obsession:</span><br />
+                your evening.
               </h2>
               <div className="w-8 h-px bg-amber-600 mb-8" />
               <p className="text-zinc-300 leading-relaxed mb-6">
-                Trained in the finest kitchens of Marrakech and France, our chef brings a profound reverence for Morocco's spice-laden culinary heritage together with the precision of modern European technique.
+                He trained in Paris, cooked at Palais Namaskar, and walked away from restaurants because the best part of his work was never the dining room — it was knowing the people he was cooking for.
               </p>
               <p className="text-zinc-300 leading-relaxed mb-10">
-                Every dinner is composed from the morning market — seasonal, soulful, and deeply personal. Each plate tells the story of a spice route, a family recipe, and twenty years of devoted craft.
+                He'll meet you before service. Ask about your trip. Pour the first glass himself. By the time the tagine lid lifts, he'll know exactly how you like it.
               </p>
 
               {/* Ingredients strip */}
@@ -535,7 +536,7 @@ export default function Home() {
                 data-testid="btn-meet-chef"
                 className="group inline-flex items-center gap-3 border border-amber-400/50 text-amber-300 hover:bg-amber-400/10 hover:border-amber-300 transition-all duration-300 px-8 py-4 uppercase tracking-widest text-xs"
               >
-                Meet the Chef
+                Meet The Chef
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -563,7 +564,7 @@ export default function Home() {
             className="text-center mb-24"
           >
             <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">The Process</p>
-            <h2 className="font-serif text-4xl md:text-5xl">How It Works</h2>
+            <h2 className="font-serif text-4xl md:text-5xl">From message to mint tea.</h2>
             <div className="w-12 h-px bg-primary mx-auto mt-8" />
           </motion.div>
 
@@ -622,8 +623,9 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-24"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Guest Stories</p>
-            <h2 className="font-serif text-4xl md:text-5xl">What Our Guests Say</h2>
+            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">What Guests Say</p>
+            <h2 className="font-serif text-4xl md:text-5xl">"The best meal of our trip."</h2>
+            <p className="text-muted-foreground mt-6 max-w-xl mx-auto leading-relaxed italic">Said often. We keep cooking like it's the first time.</p>
           </motion.div>
 
           <motion.div
@@ -666,7 +668,7 @@ export default function Home() {
             className="text-center mt-12"
           >
             <Link href="/testimonials" className="text-xs uppercase tracking-widest text-primary hover:underline">
-              Read All Testimonials →
+              Read All Reviews →
             </Link>
           </motion.div>
         </div>
@@ -701,46 +703,49 @@ export default function Home() {
           className="relative z-10 text-center text-white px-6 max-w-3xl mx-auto"
         >
           <motion.p variants={fadeUp} className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-6">
-            Ready to Begin?
+            Ready?
           </motion.p>
           <motion.h2 variants={fadeUp} className="font-serif text-4xl md:text-6xl leading-tight mb-8">
-            Reserve Your Table<br />
-            <span className="italic text-amber-200">in Marrakech</span>
+            Pick a night.<br />
+            <span className="italic text-amber-200">We'll handle the rest.</span>
           </motion.h2>
           <motion.div variants={fadeUp} className="w-16 h-px bg-amber-400/50 mx-auto mb-8" />
           <motion.p variants={fadeUp} className="text-white/65 text-lg mb-14 max-w-xl mx-auto leading-relaxed">
-            Every reservation is handled personally. Your private chef experience begins the moment you reach out.
+            Tell us when you're free and where you're staying. We'll reply within the hour during the day.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              data-testid="btn-final-cta"
-              className="group inline-flex items-center justify-center gap-3 px-14 py-5 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.25em] text-sm transition-all duration-300"
-            >
-              Reserve Your Experience
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
             <a
               href="https://wa.me/212721354757"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-green-400 hover:text-green-400 uppercase tracking-[0.2em] text-sm transition-all duration-300"
+              data-testid="btn-final-cta-whatsapp"
+              className="group inline-flex items-center justify-center gap-3 px-14 py-5 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.25em] text-sm transition-all duration-300"
             >
-              WhatsApp Us
+              WhatsApp +212 721 354 757
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
+            <Link
+              href="/contact"
+              data-testid="btn-final-cta-form"
+              className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-sm transition-all duration-300"
+            >
+              Or Send A Form
+            </Link>
           </motion.div>
         </motion.div>
       </section>
 
       {/* ── STICKY MOBILE BAR ────────────────────────────────────────────── */}
       <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-zinc-950 p-4 border-t border-zinc-800">
-        <Link
-          href="/contact"
+        <a
+          href="https://wa.me/212721354757"
+          target="_blank"
+          rel="noopener noreferrer"
           data-testid="mobile-sticky-cta"
           className="block w-full text-center py-4 bg-amber-600 hover:bg-amber-700 text-white uppercase tracking-[0.2em] text-sm transition-colors"
         >
-          Reserve Your Experience
-        </Link>
+          WhatsApp +212 721 354 757
+        </a>
       </div>
 
       {/* ── WHATSAPP FLOAT ───────────────────────────────────────────────── */}
