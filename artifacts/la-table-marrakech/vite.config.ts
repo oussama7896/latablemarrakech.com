@@ -49,23 +49,24 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
+        // Only split chunks that are guaranteed not to share React internals
+        // with other code. Splitting React itself (or anything that depends on
+        // React initialisation order) caused a "Cannot set properties of
+        // undefined (setting 'Children')" runtime crash in production because
+        // Rollup couldn't guarantee load order between react-core and vendor.
+        //
+        // Safe rule: only split heavy leaf libraries with no React-internals
+        // cross-talk. Everything else stays in the main bundle, which Rollup
+        // can correctly order.
         manualChunks(id) {
           if (!id.includes("node_modules")) return undefined;
           if (id.includes("framer-motion") || id.includes("motion-dom") || id.includes("motion-utils")) {
             return "framer-motion";
           }
-          if (id.includes("@radix-ui")) return "radix";
           if (id.includes("react-hook-form") || id.includes("@hookform") || id.includes("/zod/")) {
             return "forms";
           }
-          if (
-            id.includes("/react/") ||
-            id.includes("/react-dom/") ||
-            id.includes("/scheduler/")
-          ) {
-            return "react-core";
-          }
-          return "vendor";
+          return undefined;
         },
       },
     },
