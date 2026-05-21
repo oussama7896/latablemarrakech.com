@@ -26,15 +26,15 @@ const staggerFast = { visible: { transition: { staggerChildren: 0.08 } } };
 
 /* ─── Data ───────────────────────────────────────────────────────────────── */
 const MARQUEE_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=600&q=80", alt: "Moroccan tagine" },
-  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan spices" },
-  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan mint tea" },
-  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan couscous" },
-  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan lanterns" },
-  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan spice souk" },
-  { src: "https://images.pexels.com/photos/5737365/pexels-photo-5737365.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Moroccan food platter" },
-  { src: "https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", alt: "Dining under stars Marrakech" },
-  { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80", alt: "Candlelit dinner" },
+  { src: "/images/chef-food-1.jpg", alt: "Moroccan tagine" },
+  { src: "/images/chef-food-2.jpg", alt: "Moroccan spices" },
+  { src: "/images/gallery-tea.png", alt: "Moroccan mint tea" },
+  { src: "/images/luxury-breakfast.png", alt: "Moroccan couscous" },
+  { src: "/images/desert-dining.png", alt: "Moroccan lanterns" },
+  { src: "/images/moroccan-experience.png", alt: "Moroccan spice souk" },
+  { src: "/images/gallery-plating.png", alt: "Moroccan food platter" },
+  { src: "/images/desert-dining.png", alt: "Dining under stars Marrakech" },
+  { src: "/images/romantic-dinner.png", alt: "Candlelit dinner" },
 ];
 
 const EXPERIENCES = [
@@ -43,37 +43,37 @@ const EXPERIENCES = [
     tag: "For Two",
     description: "A candlelit evening crafted for two. Intimate, personal, and utterly unforgettable.",
     href: "/romantic-dinner-marrakech",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/romantic-dinner.png",
   },
   {
     title: "Villa Private Chef",
     tag: "Groups & Families",
     description: "Your villa, your menu. A full dining experience tailored to your group's desires.",
     href: "/villa-chef-marrakech",
-    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/villa-chef.png",
   },
   {
     title: "Moroccan Cooking Class",
     tag: "Cultural",
     description: "Learn the ancient art of Moroccan cuisine, guided by a master chef in your own kitchen.",
     href: "/moroccan-cooking-experience",
-    image: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
+    image: "/images/moroccan-experience.png",
   },
   {
     title: "Desert Dining",
     tag: "Agafay",
     description: "Dine under the stars above the medina with lanterns and Gnawa music as your backdrop.",
     href: "/experiences",
-    image: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=800&q=85",
+    image: "/images/desert-dining.png",
   },
 ];
 
 const FOOD_MOSAIC = [
-  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80", alt: "Slow-cooked tagine", span: "row-span-2" },
-  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan mint tea ceremony", span: "" },
-  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Moroccan spice palette", span: "" },
-  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Friday couscous", span: "" },
-  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=800&q=85", alt: "Riad lanterns at dusk", span: "" },
+  { src: "/images/chef-food-1.jpg", alt: "Slow-cooked tagine", span: "row-span-2" },
+  { src: "/images/gallery-tea.png", alt: "Moroccan mint tea ceremony", span: "" },
+  { src: "/images/chef-food-2.jpg", alt: "Moroccan spice palette", span: "" },
+  { src: "/images/luxury-breakfast.png", alt: "Friday couscous", span: "" },
+  { src: "/images/desert-dining.png", alt: "Riad lanterns at dusk", span: "" },
 ];
 
 const TESTIMONIALS = [
@@ -132,6 +132,34 @@ function AnimatedStat({ value, label, icon }: { value: string; label: string; ic
   );
 }
 
+/* ─── Chefs Data ─────────────────────────────────────────────────────────── */
+const CHEFS = [
+  {
+    name: "Chef Amine",
+    role: "Executive Chef",
+    experience: "20+ Years",
+    specialty: "Traditional Moroccan Cuisine",
+    image: "/images/chef-portrait-1.jpg",
+    bio: "Trained in the finest kitchens of Marrakech and France, Chef Amine brings a profound reverence for Morocco's spice-laden culinary heritage together with the precision of modern European technique.",
+  },
+  {
+    name: "Chef Leila",
+    role: "Pastry Chef",
+    experience: "15+ Years",
+    specialty: "Moroccan Sweets & Desserts",
+    image: "/images/chef-portrait-2.jpg",
+    bio: "Specializing in traditional Moroccan pastries, Chef Leila creates exquisite desserts that blend ancient recipes with contemporary presentation.",
+  },
+  {
+    name: "Chef Karim",
+    role: "Grill Master",
+    experience: "18+ Years",
+    specialty: "Outdoor & Desert Dining",
+    image: "/images/chef-portrait-3.jpg",
+    bio: "Expert in open-fire cooking and desert cuisine, Chef Karim creates unforgettable outdoor dining experiences under the stars.",
+  },
+];
+
 /* ─── Component ─────────────────────────────────────────────────────────── */
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -139,11 +167,6 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
-
-  const chefRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: chefScroll } = useScroll({ target: chefRef, offset: ["start end", "end start"] });
-  const chefImgY = useTransform(chefScroll, [0, 1], ["-8%", "8%"]);
-  const chefImgSpring = useSpring(chefImgY, { stiffness: 60, damping: 20 });
 
   return (
     <>
@@ -153,11 +176,11 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
-            alt="Elegant Moroccan dining table at night"
-            className="w-full h-full object-cover object-center"
-          />
+<img
+             src="/images/hero-riad.png"
+             alt="Elegant Moroccan dining table at night"
+             className="w-full h-full object-cover object-center"
+           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/85" />
         </motion.div>
 
@@ -453,93 +476,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CHEF INTRO ───────────────────────────────────────────────────── */}
-      <section ref={chefRef} className="py-32 bg-zinc-950 text-white overflow-hidden">
+{/* ── CHEFS ───────────────────────────────────────────────────────────── */}
+      <section className="py-32 bg-zinc-950 text-white overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: easeOut }}
-              className="relative"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <motion.img
-                  style={{ y: chefImgSpring }}
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=85"
-                  alt="Private Chef in Marrakech"
-                  className="w-full h-[110%] object-cover object-top -mt-[5%]"
-                />
-                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-zinc-950 to-transparent" />
-              </div>
-              {/* Floating badge */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="text-center mb-20"
+          >
+            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">Our Culinary Team</p>
+            <h2 className="font-serif text-4xl md:text-5xl">Meet Our Chefs</h2>
+            <div className="w-12 h-px bg-amber-600 mx-auto mt-8" />
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {CHEFS.map((chef, i) => (
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="absolute -bottom-6 -right-6 bg-amber-600 text-white p-6 text-center w-32 h-32 flex flex-col items-center justify-center"
+                key={i}
+                variants={fadeUp}
+                className="group bg-zinc-900 border border-zinc-800 hover:border-amber-600/30 transition-all duration-300"
               >
-                <span className="font-serif text-3xl">20</span>
-                <span className="text-xs uppercase tracking-wider mt-1 leading-tight">Years Experience</span>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={chef.image}
+                    alt={chef.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="text-[0.6rem] tracking-[0.3em] uppercase bg-amber-600 text-white px-2 py-1">
+                      {chef.role}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-2xl text-white mb-2">{chef.name}</h3>
+                  <p className="text-amber-400 text-xs uppercase tracking-widest mb-3">{chef.experience} • {chef.specialty}</p>
+                  <p className="text-zinc-400 text-sm leading-relaxed">{chef.bio}</p>
+                </div>
               </motion.div>
-            </motion.div>
+            ))}
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: easeOut, delay: 0.15 }}
-              className="md:pl-8 pt-8 md:pt-0"
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mt-16"
+          >
+            <Link
+              href="/chef"
+              data-testid="btn-meet-chefs"
+              className="group inline-flex items-center gap-3 border border-amber-400/50 text-amber-300 hover:bg-amber-400/10 hover:border-amber-300 transition-all duration-300 px-8 py-4 uppercase tracking-widest text-xs"
             >
-              <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-6">The Chef</p>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-8">
-                Twenty Years of<br />
-                <span className="italic text-amber-200">Moroccan Culinary</span><br />
-                Mastery
-              </h2>
-              <div className="w-8 h-px bg-amber-600 mb-8" />
-              <p className="text-zinc-300 leading-relaxed mb-6">
-                Trained in the finest kitchens of Marrakech and France, our chef brings a profound reverence for Morocco's spice-laden culinary heritage together with the precision of modern European technique.
-              </p>
-              <p className="text-zinc-300 leading-relaxed mb-10">
-                Every dinner is composed from the morning market — seasonal, soulful, and deeply personal. Each plate tells the story of a spice route, a family recipe, and twenty years of devoted craft.
-              </p>
-
-              {/* Ingredients strip */}
-              <div className="flex gap-6 mb-10 overflow-x-auto pb-2">
-                {[
-                  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", label: "Spices" },
-                  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", label: "Souk" },
-                  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=400&q=80", label: "Mint Tea" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.1 }}
-                    className="shrink-0 text-center"
-                  >
-                    <div className="w-20 h-20 overflow-hidden mb-2">
-                      <img src={item.src} alt={item.label} className="w-full h-full object-cover" />
-                    </div>
-                    <span className="text-[0.6rem] uppercase tracking-widest text-zinc-500">{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <Link
-                href="/chef"
-                data-testid="btn-meet-chef"
-                className="group inline-flex items-center gap-3 border border-amber-400/50 text-amber-300 hover:bg-amber-400/10 hover:border-amber-300 transition-all duration-300 px-8 py-4 uppercase tracking-widest text-xs"
-              >
-                Meet the Chef
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </div>
+              Meet Our Culinary Team
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -682,7 +684,7 @@ export default function Home() {
           className="absolute inset-0"
         >
           <img
-            src="https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=1920&q=90"
+            src="/images/desert-dining.png"
             alt="Moroccan lantern evening dinner"
             className="w-full h-full object-cover"
           />
@@ -730,6 +732,136 @@ export default function Home() {
             </a>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* ── MOROCCAN PLATES & TRADITIONAL RECIPES ─────────────────────────── */}
+      <section className="py-32 bg-stone-50 relative overflow-hidden">
+        {/* Background geometry */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+          <div className="absolute top-0 left-1/3 w-[500px] h-[500px] text-amber-900" style={{borderRadius:"50%"}} />
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px]" style={{borderRadius:"50%",border:"1px solid currentColor",color:"hsl(var(--primary))"}} />
+        </div>
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="text-center mb-20"
+          >
+            <div className="flex justify-center mb-6">
+              <svg viewBox="0 0 80 80" className="w-10 h-10 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="40,4 50,20 68,20 55,32 60,50 40,40 20,50 25,32 12,20 30,20" stroke="currentColor" strokeWidth="1" fill="none"/>
+                <circle cx="40" cy="40" r="10" stroke="currentColor" strokeWidth="0.8" fill="none"/>
+              </svg>
+            </div>
+            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">The Heritage</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6">Moroccan Traditional Plates<br/><span className="italic text-primary/70">&amp; Recipes</span></h2>
+            <div className="w-12 h-px bg-primary mx-auto mb-8" />
+            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Every plate is a chapter in Morocco's culinary story. Passed through generations, slow-simmered in clay tagines, and perfumed with spice blends unique to the Empire. These are the dishes that define a table.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={staggerFast}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {[
+              {
+                name: "Chicken Tagine with Preserved Lemon",
+                origin: "Fez & Marrakech",
+                desc: "Slow-simmered free-range chicken layered with olive oil, saffron, ginger, and preserved lemon. The lid, sealed with a薄bread dough, locks in three hours of fragrant steam. The result is meat so tender it parts with a knife, the broth golden and aromatic.",
+                tags: ["Tagine", "Citrus", "Saffron"],
+              },
+              {
+                name: "Lamb Mrouzia",
+                origin: "Rabat & Sala",
+                desc: "Sweet, spiced, androwned in honey and cinnamon. Named after the Moulay Ismail dynasty, this dish once graced royal tables. Plump raisins and almonds mingle with lamb shoulder in a sauce of honey, cinnamon, and a whisper of rose water.",
+                tags: ["Royal Dish", "Honey", "Spiced"],
+              },
+              {
+                name: "Bastilla",
+                origin: "Fez",
+                desc: "The crown jewel of Moroccan pastry: flaky warqa pastry stuffed with braised pigeon or chicken, almonds dusted in cinnamon and sugar, eggs, and a whisper of saffron. Sweet dusting of icing sugar completes this pièce de résistance.",
+                tags: ["Pastry", "Pigeon", "Sweet-Spiced"],
+              },
+              {
+                name: "Traditional Couscous",
+                origin: "All of Morocco",
+                desc: "Every Friday, memory returns to the couscoussier. Seven vegetables — carrots, zucchini, turnips, cabbage, chickpeas, tomato, and pumpkin — steamed over the semolina cloud. Each grain of couscous is hand-fluffed with butter and raised by steam alone.",
+                tags: ["Friday Feast", "Seven Vegetables", "Hand-Fluffed"],
+              },
+              {
+                name: "Harira Soup",
+                origin: "Fez & Casablanca",
+                desc: "The soup of Ramadan and celebration: lamb, lentils, chickpeas, vermicelli, and a zahter spice blend. Tomatoes give it depth, herbs give it brightness, and a squeeze of lemon at the table awakens the whole plate. A mezze of dates beside it, for tradition.",
+                tags: ["Soup", "Ramadan", "Herbs"],
+              },
+              {
+                name: "Chebakia Pastries",
+                origin: "Fez & Meknes",
+                desc: "Thin strips of dough coiled into a rosette, briefly fried, and plunged into warm honey scented with sesame and orange flower water. Glittered with sesame seeds. The ceremonial sweet of Ramadan mornings — impossible in any bakery, ours are made by hand.",
+                tags: ["Pastry", "Honey", "Ramadan"],
+              },
+            ].map((plate, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.3 }}
+                className="group bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={
+                      i === 0 ? "/images/chef-food-1.jpg"
+                      : i === 1 ? "/images/moroccan-experience.png"
+                      : i === 2 ? "/images/luxury-breakfast.png"
+                      : i === 3 ? "/images/desert-dining.png"
+                      : i === 4 ? "/images/gallery-tea.png"
+                      : "/images/chef-food-2.jpg"
+                    }
+                    alt={plate.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-[0.6rem] tracking-[0.3em] uppercase text-amber-300/90 mb-1">{plate.origin}</p>
+                    <h3 className="font-serif text-xl text-white leading-tight">{plate.name}</h3>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {plate.tags.map((tag, j) => (
+                      <span key={j} className="text-[0.6rem] tracking-widest uppercase text-primary/60 border border-primary/20 px-2 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{plate.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mt-16"
+          >
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4">
+              <Link href="/contact" data-testid="recipes-cta" className="px-12 py-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors uppercase tracking-[0.2em] text-xs">
+                Book a Moroccan Feast
+              </Link>
+              <p className="text-xs text-muted-foreground tracking-wider">Spices. Heritage. Unforgettable plates.</p>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── STICKY MOBILE BAR ────────────────────────────────────────────── */}
