@@ -41,28 +41,28 @@ const EXPERIENCES = [
   {
     title: "Romantic Dinner",
     tag: "For Two",
-    description: "A candlelit evening crafted for two. Intimate, personal, and utterly unforgettable.",
+    description: "A candlelit table for two — flowers, slow service, and a menu built around the both of you.",
     href: "/romantic-dinner-marrakech",
     image: "/images/romantic-dinner.png",
   },
   {
     title: "Villa Private Chef",
     tag: "Groups & Families",
-    description: "Your villa, your menu. A full dining experience tailored to your group's desires.",
+    description: "Your villa kitchen, our chef. A full menu for the group — amuse-bouche to mint tea, washing-up included.",
     href: "/villa-chef-marrakech",
     image: "/images/villa-chef.png",
   },
   {
     title: "Moroccan Cooking Class",
     tag: "Cultural",
-    description: "Learn the ancient art of Moroccan cuisine, guided by a master chef in your own kitchen.",
+    description: "Shop the souk with the chef, then cook a full Moroccan lunch — and eat everything you make.",
     href: "/moroccan-cooking-experience",
     image: "/images/moroccan-experience.png",
   },
   {
     title: "Desert Dining",
     tag: "Agafay",
-    description: "Dine under the stars above the medina with lanterns and Gnawa music as your backdrop.",
+    description: "Dinner on the Agafay sand — Berber lanterns, live Gnawa music, the city an hour behind you.",
     href: "/experiences",
     image: "/images/desert-dining.png",
   },
@@ -95,10 +95,10 @@ const TESTIMONIALS = [
 ];
 
 const STEPS = [
-  { number: "01", title: "Choose Your Experience", desc: "Browse our curated experiences and select the one that speaks to your soul." },
-  { number: "02", title: "Send Your Reservation", desc: "Complete the booking form with your details, date, and preferences." },
-  { number: "03", title: "Personal Confirmation", desc: "We reach out within 24 hours to confirm every detail personally." },
-  { number: "04", title: "Relax & Savour", desc: "Your chef arrives. You simply enjoy the most memorable meal of your journey." },
+  { number: "01", title: "Choose Your Evening", desc: "Pick the experience that fits your trip — or message us and we'll help you choose." },
+  { number: "02", title: "Send Your Details", desc: "Your date, group size, where you're staying, and anything you don't eat." },
+  { number: "03", title: "Personal Confirmation", desc: "We reply within 24 hours with a menu, a price, and a few questions." },
+  { number: "04", title: "Sit Down to Dinner", desc: "Your chef shops, cooks, serves, and cleans up. You just arrive at the table." },
 ];
 
 /* ─── Moroccan SVG Ornament ─────────────────────────────────────────────── */
@@ -132,34 +132,6 @@ function AnimatedStat({ value, label, icon }: { value: string; label: string; ic
   );
 }
 
-/* ─── Chefs Data ─────────────────────────────────────────────────────────── */
-const CHEFS = [
-  {
-    name: "Chef Amine",
-    role: "Executive Chef",
-    experience: "20+ Years",
-    specialty: "Traditional Moroccan Cuisine",
-    image: "/images/chef-portrait-1.jpg",
-    bio: "Trained in the finest kitchens of Marrakech and France, Chef Amine brings a profound reverence for Morocco's spice-laden culinary heritage together with the precision of modern European technique.",
-  },
-  {
-    name: "Chef Leila",
-    role: "Pastry Chef",
-    experience: "15+ Years",
-    specialty: "Moroccan Sweets & Desserts",
-    image: "/images/chef-portrait-2.jpg",
-    bio: "Specializing in traditional Moroccan pastries, Chef Leila creates exquisite desserts that blend ancient recipes with contemporary presentation.",
-  },
-  {
-    name: "Chef Karim",
-    role: "Grill Master",
-    experience: "18+ Years",
-    specialty: "Outdoor & Desert Dining",
-    image: "/images/chef-portrait-3.jpg",
-    bio: "Expert in open-fire cooking and desert cuisine, Chef Karim creates unforgettable outdoor dining experiences under the stars.",
-  },
-];
-
 /* ─── Component ─────────────────────────────────────────────────────────── */
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -170,8 +142,8 @@ export default function Home() {
 
   return (
     <>
-      <title>La Table Marrakech — Private Chef Experiences in Marrakech</title>
-      <meta name="description" content="Book a private chef in Marrakech for romantic dinners, villa dining, cooking classes, rooftop experiences, and luxury breakfasts. Michelin-level private dining for tourists." />
+      <title>Private Chef in Marrakech | Villa, Riad & Desert Dining — La Table Marrakech</title>
+      <meta name="description" content="Hire a private chef in Marrakech. Souk-fresh Moroccan menus cooked and served in your villa or riad — romantic dinners, cooking classes, desert dining. From €85 per person." />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
@@ -204,7 +176,7 @@ export default function Home() {
             transition={{ delay: 0.3, duration: 1.2 }}
             className="text-xs uppercase mb-8 text-amber-300/90"
           >
-            Marrakech — Private Chef Experiences
+            Private Chef · Villa, Riad & Desert Dining
           </motion.p>
 
           <motion.h1
@@ -213,7 +185,7 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 1.1, ease: easeOut }}
             className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.93] mb-8"
           >
-            Private Chef
+            A Private Chef
             <br />
             <motion.span
               initial={{ opacity: 0, x: -30 }}
@@ -221,7 +193,7 @@ export default function Home() {
               transition={{ delay: 0.9, duration: 1 }}
               className="italic text-amber-200/90"
             >
-              Experiences
+              at Your Table
             </motion.span>
             <br />
             in Marrakech
@@ -240,7 +212,7 @@ export default function Home() {
             transition={{ delay: 1, duration: 0.9 }}
             className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed mb-12"
           >
-            Luxury Moroccan and international dining in your villa, riad, or private event.
+            Moroccan menus cooked in your own kitchen — souk-fresh, served at your table, washed up after. Dinners from €85 per person.
           </motion.p>
 
           <motion.div
@@ -254,7 +226,7 @@ export default function Home() {
               data-testid="hero-cta-reserve"
               className="group px-10 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-sm transition-all duration-300 flex items-center justify-center gap-3"
             >
-              Reserve Your Experience
+              Reserve Your Table
               <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
             </Link>
             <Link
@@ -332,8 +304,8 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-24"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Curated Experiences</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-foreground">Dining Unlike Any Other</h2>
+            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Choose Your Evening</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-foreground">Pick the kind of evening you want.</h2>
             <div className="w-12 h-px bg-primary mx-auto mt-8" />
           </motion.div>
 
@@ -384,7 +356,7 @@ export default function Home() {
                     initial={{ x: 0 }}
                     whileHover={{ x: 4 }}
                   >
-                    <Link href={exp.href}>Discover</Link>
+                    <Link href={exp.href}>See This Evening</Link>
                     <ArrowRight className="w-3 h-3" />
                   </motion.div>
                 </div>
@@ -404,7 +376,7 @@ export default function Home() {
               data-testid="btn-all-experiences"
               className="group inline-flex items-center gap-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 px-12 py-4 uppercase tracking-[0.2em] text-xs"
             >
-              All Experiences
+              See All Experiences
               <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -423,10 +395,10 @@ export default function Home() {
           >
             <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Flavours of Morocco</p>
             <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight">
-              Every Dish, a Story
+              What Morocco actually tastes like.
             </h2>
             <p className="text-zinc-400 mt-6 max-w-xl mx-auto leading-relaxed">
-              From slow-simmered tagines perfumed with preserved lemon and saffron, to bastilla dusted in cinnamon and icing sugar — Morocco's culinary vocabulary is unlike any other on earth.
+              Lamb tagine that's been on the fire since morning. Bastilla — pigeon pie under cinnamon and icing sugar. Mint tea poured from a height until it foams. None of it the version on the tourist menus.
             </p>
           </motion.div>
 
@@ -476,74 +448,6 @@ export default function Home() {
         </div>
       </section>
 
-{/* ── CHEFS ───────────────────────────────────────────────────────────── */}
-      <section className="py-32 bg-zinc-950 text-white overflow-hidden">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            className="text-center mb-20"
-          >
-            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">Our Culinary Team</p>
-            <h2 className="font-serif text-4xl md:text-5xl">Meet Our Chefs</h2>
-            <div className="w-12 h-px bg-amber-600 mx-auto mt-8" />
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {CHEFS.map((chef, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                className="group bg-zinc-900 border border-zinc-800 hover:border-amber-600/30 transition-all duration-300"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={chef.image}
-                    alt={chef.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <span className="text-[0.6rem] tracking-[0.3em] uppercase bg-amber-600 text-white px-2 py-1">
-                      {chef.role}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-2xl text-white mb-2">{chef.name}</h3>
-                  <p className="text-amber-400 text-xs uppercase tracking-widest mb-3">{chef.experience} • {chef.specialty}</p>
-                  <p className="text-zinc-400 text-sm leading-relaxed">{chef.bio}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-center mt-16"
-          >
-            <Link
-              href="/chef"
-              data-testid="btn-meet-chefs"
-              className="group inline-flex items-center gap-3 border border-amber-400/50 text-amber-300 hover:bg-amber-400/10 hover:border-amber-300 transition-all duration-300 px-8 py-4 uppercase tracking-widest text-xs"
-            >
-              Meet Our Culinary Team
-              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
 
       {/* ── HOW IT WORKS ─────────────────────────────────────────────────── */}
       <section className="py-32 bg-stone-50 relative overflow-hidden">
@@ -711,7 +615,7 @@ export default function Home() {
           </motion.h2>
           <motion.div variants={fadeUp} className="w-16 h-px bg-amber-400/50 mx-auto mb-8" />
           <motion.p variants={fadeUp} className="text-white/65 text-lg mb-14 max-w-xl mx-auto leading-relaxed">
-            Every reservation is handled personally. Your private chef experience begins the moment you reach out.
+            Tell us your dates and where you're staying. We'll reply within 24 hours with a menu and a price — no obligation.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -719,7 +623,7 @@ export default function Home() {
               data-testid="btn-final-cta"
               className="group inline-flex items-center justify-center gap-3 px-14 py-5 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.25em] text-sm transition-all duration-300"
             >
-              Reserve Your Experience
+              Reserve Your Table
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
@@ -728,7 +632,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-green-400 hover:text-green-400 uppercase tracking-[0.2em] text-sm transition-all duration-300"
             >
-              WhatsApp Us
+              Message Us on WhatsApp
             </a>
           </motion.div>
         </motion.div>
@@ -759,7 +663,7 @@ export default function Home() {
             <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6">Moroccan Traditional Plates<br/><span className="italic text-primary/70">&amp; Recipes</span></h2>
             <div className="w-12 h-px bg-primary mx-auto mb-8" />
             <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Every plate is a chapter in Morocco's culinary story. Passed through generations, slow-simmered in clay tagines, and perfumed with spice blends unique to the Empire. These are the dishes that define a table.
+              Every plate carries a piece of Morocco's story — passed down through generations, slow-cooked in clay tagines, and perfumed with spice blends you won't find anywhere else. These are the dishes that define a Moroccan table.
             </p>
           </motion.div>
 
@@ -774,13 +678,13 @@ export default function Home() {
               {
                 name: "Chicken Tagine with Preserved Lemon",
                 origin: "Fez & Marrakech",
-                desc: "Slow-simmered free-range chicken layered with olive oil, saffron, ginger, and preserved lemon. The lid, sealed with a薄bread dough, locks in three hours of fragrant steam. The result is meat so tender it parts with a knife, the broth golden and aromatic.",
+                desc: "Slow-simmered free-range chicken layered with olive oil, saffron, ginger, and preserved lemon. The lid, sealed with a ring of bread dough, locks in three hours of fragrant steam. The result is meat so tender it parts with a knife, the broth golden and aromatic.",
                 tags: ["Tagine", "Citrus", "Saffron"],
               },
               {
                 name: "Lamb Mrouzia",
                 origin: "Rabat & Sala",
-                desc: "Sweet, spiced, androwned in honey and cinnamon. Named after the Moulay Ismail dynasty, this dish once graced royal tables. Plump raisins and almonds mingle with lamb shoulder in a sauce of honey, cinnamon, and a whisper of rose water.",
+                desc: "Sweet, spiced, and slow-cooked in honey and cinnamon. Named after the Moulay Ismail dynasty, this dish once graced royal tables. Plump raisins and almonds mingle with lamb shoulder in a sauce of honey, cinnamon, and a whisper of rose water.",
                 tags: ["Royal Dish", "Honey", "Spiced"],
               },
               {
@@ -871,7 +775,7 @@ export default function Home() {
           data-testid="mobile-sticky-cta"
           className="block w-full text-center py-4 bg-amber-600 hover:bg-amber-700 text-white uppercase tracking-[0.2em] text-sm transition-colors"
         >
-          Reserve Your Experience
+          Reserve Your Table
         </Link>
       </div>
 

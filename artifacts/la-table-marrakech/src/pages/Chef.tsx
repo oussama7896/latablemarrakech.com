@@ -28,15 +28,15 @@ const values = [
   },
   {
     title: "Served with Presence",
-    desc: "Dinner is not merely eaten. It is experienced. Our chef is present throughout — explaining, adjusting, and ensuring every moment is memorable.",
+    desc: "The chef stays the whole evening — pouring the first glass, explaining each course, adjusting as he goes. It isn't service. It's company.",
   },
 ];
 
 export default function Chef() {
   return (
     <>
-      <title>The Private Chef — La Table Marrakech</title>
-      <meta name="description" content="Meet the private chef behind La Table Marrakech. A master of Moroccan and Mediterranean cuisine with 20 years of experience creating unforgettable private dining experiences." />
+      <title>The Chef — Born in Fez, Trained in Paris | La Table Marrakech</title>
+      <meta name="description" content="Meet the chef behind La Table Marrakech — born in Fez, trained at Le Cordon Bleu Paris, twenty years cooking Moroccan and Mediterranean menus for private tables in Marrakech." />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[800px] flex items-center overflow-hidden">
@@ -54,13 +54,13 @@ export default function Chef() {
             className="max-w-xl text-white"
           >
             <motion.p variants={fadeUp} className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-6">
-              The Artisan
+              The Chef
             </motion.p>
             <motion.h1 variants={fadeUp} className="font-serif text-5xl md:text-7xl leading-tight mb-8">
-              Where Tradition Meets Precision
+              From a Fez kitchen to yours.
             </motion.h1>
             <motion.p variants={fadeUp} className="text-white/70 text-lg leading-relaxed">
-              Twenty years. One obsession: the perfect dinner.
+              Twenty years at the stove. One obsession: your evening.
             </motion.p>
           </motion.div>
         </div>
@@ -167,14 +167,14 @@ export default function Chef() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h2 className="font-serif text-4xl mb-6">Reserve Your Table</h2>
-            <p className="text-muted-foreground mb-10">Let us compose an evening you will speak of for years.</p>
+            <h2 className="font-serif text-4xl mb-6">Want him to cook for you?</h2>
+            <p className="text-muted-foreground mb-10">One message is enough to start — your dates, your group, and where you're staying.</p>
             <Link
               href="/contact"
               data-testid="btn-chef-cta"
               className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-12 py-5 uppercase tracking-[0.2em] text-xs"
             >
-              Begin Your Experience <ArrowRight className="w-3 h-3" />
+              Reserve Your Table <ArrowRight className="w-3 h-3" />
             </Link>
           </motion.div>
         </div>
