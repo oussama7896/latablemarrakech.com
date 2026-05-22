@@ -204,7 +204,7 @@ export default function Chef() {
                 data-testid="btn-chef-cta-form"
                 className="inline-flex items-center justify-center gap-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors px-12 py-5 uppercase tracking-[0.2em] text-xs"
               >
-                Or Send A Form
+                Or Write It All Out
               </Link>
             </div>
           </motion.div>

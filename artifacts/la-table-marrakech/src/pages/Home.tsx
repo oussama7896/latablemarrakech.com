@@ -406,7 +406,7 @@ export default function Home() {
                     initial={{ x: 0 }}
                     whileHover={{ x: 4 }}
                   >
-                    <Link href={exp.href}>See This</Link>
+                    <Link href={exp.href}>See This Evening</Link>
                     <ArrowRight className="w-3 h-3" />
                   </motion.div>
                 </div>
@@ -782,7 +782,7 @@ export default function Home() {
               data-testid="btn-final-cta-form"
               className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-sm transition-all duration-300"
             >
-              Or Send A Form
+              Or Write It All Out
             </Link>
           </motion.div>
         </motion.div>
