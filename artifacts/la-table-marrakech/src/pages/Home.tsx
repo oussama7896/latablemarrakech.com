@@ -706,10 +706,10 @@ export default function Home() {
                 tags: ["Soup", "Ramadan", "Herbs"],
               },
               {
-                name: "Chebakia Pastries",
-                origin: "Fez & Meknes",
-                desc: "Thin strips of dough coiled into a rosette, briefly fried, and plunged into warm honey scented with sesame and orange flower water. Glittered with sesame seeds. The ceremonial sweet of Ramadan mornings — impossible in any bakery, ours are made by hand.",
-                tags: ["Pastry", "Honey", "Ramadan"],
+                name: "Moroccan Pastries",
+                origin: "Fez & Marrakech",
+                desc: "The full pastry tray — kaab el ghzal (gazelle horns), almond ghriba, briouats, and honeyed coils. Almonds, sesame, orange flower water, and a dusting of icing sugar. Made by hand the day of your dinner and served with mint tea.",
+                tags: ["Pastry", "Almond", "Mint Tea"],
               },
             ].map((plate, i) => (
               <motion.div
@@ -727,7 +727,7 @@ export default function Home() {
                       : i === 2 ? "/images/luxury-breakfast.png"
                       : i === 3 ? "/images/desert-dining.png"
                       : i === 4 ? "/images/gallery-tea.png"
-                      : "/images/chef-food-2.jpg"
+                      : "/images/moroccan-pastries.jpg"
                     }
                     alt={plate.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
