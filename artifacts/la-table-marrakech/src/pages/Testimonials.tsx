@@ -1,6 +1,7 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Star } from "lucide-react";
 import { Link } from "wouter";
+import { useSEO, breadcrumbSchema, reviewAggregateSchema } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -60,11 +61,23 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  useSEO({
+    title: "Guest Testimonials — La Table Marrakech",
+    description: "Read testimonials from guests who have experienced La Table Marrakech private chef dinners. From romantic dinners to desert dining, discover what makes our experiences unforgettable.",
+    canonical: "https://latablemarrakech.com/testimonials",
+    jsonLd: [
+      breadcrumbSchema([
+        { name: "Home", url: "https://latablemarrakech.com/" },
+        { name: "Testimonials", url: "https://latablemarrakech.com/testimonials" },
+      ]),
+      reviewAggregateSchema(
+        testimonials.map((t) => ({ author: t.author, text: t.text, rating: 5 })),
+      ),
+    ],
+  });
+
   return (
     <>
-      <title>Guest Testimonials — La Table Marrakech</title>
-      <meta name="description" content="Read testimonials from guests who have experienced La Table Marrakech private chef dinners. From romantic dinners to desert dining, discover what makes our experiences unforgettable." />
-      <link rel="canonical" href="https://latablemarrakech.com/testimonials" />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">

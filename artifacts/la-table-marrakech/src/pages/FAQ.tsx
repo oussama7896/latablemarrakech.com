@@ -2,6 +2,8 @@ import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Link } from "wouter";
+import { useSEO, breadcrumbSchema, faqSchema } from "@/lib/seo";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -24,7 +26,7 @@ const faqs = [
   },
   {
     question: "What is included in the price?",
-    answer: "The price includes the chef's time, menu design, all ingredients sourced fresh that morning, preparation, cooking, service, and clean-up. Drinks are not included unless arranged separately. There are no hidden charges.",
+    answer: "Prices start from €85 per person. Final pricing depends on group size, menu selection, and special requirements. The price includes the chef's time, menu design, ingredients sourced fresh that morning, preparation, cooking, service, and clean-up.",
   },
   {
     question: "How does the booking process work?",
@@ -89,27 +91,21 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
 }
 
 export default function FAQ() {
+  useSEO({
+    title: "Frequently Asked Questions — La Table Marrakech Private Chef",
+    description: "Everything you need to know about booking a private chef in Marrakech. FAQs about dietary requirements, locations, pricing, booking process, and more.",
+    canonical: "https://latablemarrakech.com/faq",
+    jsonLd: [
+      breadcrumbSchema([
+        { name: "Home", url: "https://latablemarrakech.com/" },
+        { name: "FAQ", url: "https://latablemarrakech.com/faq" },
+      ]),
+      faqSchema(faqs.map((f) => ({ question: f.question, answer: f.answer }))),
+    ],
+  });
+
   return (
     <>
-      <title>Frequently Asked Questions — La Table Marrakech Private Chef</title>
-      <meta name="description" content="Everything you need to know about booking a private chef in Marrakech. FAQs about dietary requirements, locations, pricing, booking process, and more." />
-      <link rel="canonical" href="https://latablemarrakech.com/faq" />
-
-      {/* Schema: FAQ */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map((faq) => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer,
-            },
-          })),
-        }),
-      }} />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
@@ -147,13 +143,15 @@ export default function FAQ() {
           >
             <p className="text-muted-foreground mb-4">Still have a question?</p>
             <a
-              href="https://wa.me/212721354757"
+              href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="btn-faq-whatsapp"
+              data-cta-label="Request a quote on WhatsApp"
+              data-cta-position="faq"
               className="inline-block border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-10 py-4 uppercase tracking-[0.2em] text-xs mr-4"
             >
-              Ask on WhatsApp
+              Request a quote on WhatsApp
             </a>
             <Link
               href="/contact"
@@ -168,7 +166,6 @@ export default function FAQ() {
     </>
   );
 }
-
 
 
 

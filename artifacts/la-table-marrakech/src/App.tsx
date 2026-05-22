@@ -15,6 +15,9 @@ const FAQ = lazy(() => import("@/pages/FAQ"));
 const Contact = lazy(() => import("@/pages/Contact"));
 
 const PrivateChefMarrakech = lazy(() => import("@/pages/SEO/PrivateChefMarrakech"));
+const PrivateChefCostMarrakech = lazy(() => import("@/pages/SEO/PrivateChefCostMarrakech"));
+const CookingClassVsPrivateChef = lazy(() => import("@/pages/SEO/CookingClassVsPrivateChef"));
+const MarrakechVillaWithPrivateChef = lazy(() => import("@/pages/SEO/MarrakechVillaWithPrivateChef"));
 const RomanticDinnerMarrakech = lazy(() => import("@/pages/SEO/RomanticDinnerMarrakech"));
 const VillaChefMarrakech = lazy(() => import("@/pages/SEO/VillaChefMarrakech"));
 const MoroccanCookingExperience = lazy(() => import("@/pages/SEO/MoroccanCookingExperience"));
@@ -42,6 +45,10 @@ function Router() {
             <Route path="/contact" component={Contact} />
 
             <Route path="/private-chef-marrakech" component={PrivateChefMarrakech} />
+            <Route path="/pricing" component={PrivateChefCostMarrakech} />
+            <Route path="/private-chef-cost-marrakech" component={PrivateChefCostMarrakech} />
+            <Route path="/marrakech-cooking-class-vs-private-chef" component={CookingClassVsPrivateChef} />
+            <Route path="/marrakech-villa-with-private-chef" component={MarrakechVillaWithPrivateChef} />
             <Route path="/romantic-dinner-marrakech" component={RomanticDinnerMarrakech} />
             <Route path="/villa-chef-marrakech" component={VillaChefMarrakech} />
             <Route path="/moroccan-cooking-experience" component={MoroccanCookingExperience} />

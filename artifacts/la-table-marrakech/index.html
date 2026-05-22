@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta name="theme-color" content="#0a0a0a" />
 
-    <title>Private Chef in Marrakech | Villa, Riad & Desert Dining — La Table Marrakech</title>
-    <meta name="description" content="A private chef at your villa, riad, or in the Agafay desert. Romantic dinners, family feasts, cooking classes — designed for travellers in Marrakech. WhatsApp +212 721 354 757." />
+    <!-- Per-page title/description/canonical are managed at runtime by    -->
+    <!-- src/lib/seo.ts (useSEO hook). The defaults below are the homepage -->
+    <!-- fallback that crawlers / social previews see before JS executes.   -->
+    <title>Private Chef Marrakech | Villa & Riad Dining from €85/Person — La Table Marrakech</title>
+    <meta name="description" content="Private chef at your villa or riad in Marrakech. Bespoke Moroccan menus, souk-fresh ingredients, full service & cleanup. From €85/person. WhatsApp +212 721 354 757." />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://latablemarrakech.com/" />
+    <link rel="canonical" href="https://latablemarrakech.com" />
+    <link rel="alternate" hreflang="en" href="https://latablemarrakech.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://latablemarrakech.com/" />
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="La Table Marrakech" />
-    <meta property="og:title" content="Private Chef in Marrakech | Villa, Riad & Desert Dining" />
-    <meta property="og:description" content="A private chef at your villa, riad, or in the Agafay desert. Romantic dinners, family feasts, cooking classes — designed for travellers in Marrakech." />
+    <meta property="og:title" content="Private Chef Marrakech | Villa & Riad Dining from €85/Person — La Table Marrakech" />
+    <meta property="og:description" content="Private chef at your villa or riad in Marrakech. Bespoke Moroccan menus, souk-fresh ingredients, full service & cleanup. From €85/person. WhatsApp +212 721 354 757." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://latablemarrakech.com/" />
+    <meta property="og:url" content="https://latablemarrakech.com" />
     <meta property="og:image" content="https://latablemarrakech.com/opengraph.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -23,36 +28,43 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Private Chef in Marrakech — La Table Marrakech" />
-    <meta name="twitter:description" content="Private chef at your villa, riad, rooftop, or in the Agafay desert. WhatsApp +212 721 354 757." />
+    <meta name="twitter:title" content="Private Chef Marrakech | Villa & Riad Dining from €85/Person — La Table Marrakech" />
+    <meta name="twitter:description" content="Private chef at your villa or riad in Marrakech. Bespoke Moroccan menus, souk-fresh ingredients, full service & cleanup. From €85/person. WhatsApp +212 721 354 757." />
     <meta name="twitter:image" content="https://latablemarrakech.com/opengraph.jpg" />
 
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
-    <!-- LocalBusiness structured data (Restaurant) -->
+    <!-- FoodEstablishment structured data -->
+    <!-- Keep aggregateRating live only if the 4.9/200+ review claim is backed by real public reviews. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Restaurant",
+      "@type": "FoodEstablishment",
+      "@id": "https://latablemarrakech.com/#business",
       "name": "La Table Marrakech",
-      "description": "Private chef experiences in Marrakech — villa, riad, rooftop and desert dining.",
-      "url": "https://latablemarrakech.com/",
+      "description": "Private chef experiences for villas and riads in Marrakech.",
+      "url": "https://latablemarrakech.com",
       "image": "https://latablemarrakech.com/opengraph.jpg",
       "telephone": "+212721354757",
       "priceRange": "€€€",
-      "servesCuisine": ["Moroccan", "Mediterranean", "French"],
+      "servesCuisine": ["Moroccan", "Mediterranean"],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Marrakech",
         "addressCountry": "MA"
       },
-      "areaServed": [
-        { "@type": "City", "name": "Marrakech" },
-        { "@type": "Place", "name": "Agafay Desert" }
-      ],
-      "sameAs": []
+      "areaServed": {
+        "@type": "City",
+        "name": "Marrakech"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "200",
+        "bestRating": "5"
+      }
     }
     </script>
 
@@ -87,25 +99,61 @@
     <!-- ANALYTICS — initialize dataLayer + gtag stubs early so any  -->
     <!-- whatsapp_click / page_view events fire and queue even if    -->
     <!-- GTM and GA4 are added later.                                -->
+    <!--                                                              -->
+    <!-- Tracking IDs are read at BUILD TIME from environment vars:  -->
+    <!--   VITE_GTM_ID   (e.g. GTM-XXXXXXX) — optional               -->
+    <!--   VITE_GA4_ID   (e.g. G-XXXXXXXXXX) — optional              -->
+    <!-- Vite replaces %VITE_X% placeholders with the env value, or  -->
+    <!-- leaves the literal "%VITE_X%" string if the var is unset.   -->
+    <!-- The conditional checks below skip injection in that case.   -->
     <!-- ─────────────────────────────────────────────────────────── -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
       window.gtag('js', new Date());
+
+      (function () {
+        var gtmId = '%VITE_GTM_ID%';
+        var ga4Id = '%VITE_GA4_ID%';
+        var hasGtm = gtmId && /^GTM-[A-Z0-9]+$/.test(gtmId);
+        var hasGa4 = ga4Id && /^G-[A-Z0-9]+$/.test(ga4Id);
+
+        // Google Tag Manager — preferred. GA4 should be configured inside
+        // GTM, not also injected directly, to avoid duplicate page_views.
+        if (hasGtm) {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer',gtmId);
+          window.__ltmGtm = gtmId;
+        } else if (hasGa4) {
+          // No GTM container — install GA4 directly via gtag.js.
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+          document.head.appendChild(s);
+          // send_page_view: false because useSEO() fires its own SPA page_view
+          // on every route change. Without this we'd double-count the first
+          // page_view on initial load.
+          window.gtag('config', ga4Id, { send_page_view: false });
+          window.__ltmGa4 = ga4Id;
+        }
+
+        // GTM noscript iframe — injected from JS so we don't emit a 404
+        // request when GTM_ID is not configured.
+        if (hasGtm) {
+          document.addEventListener('DOMContentLoaded', function () {
+            var ns = document.createElement('noscript');
+            ns.innerHTML = '<iframe src="https://www.googletagmanager.com/ns.html?id=' +
+              gtmId + '" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
+            document.body.insertBefore(ns, document.body.firstChild);
+          });
+        }
+      })();
     </script>
-
-    <!-- TODO: paste Google Tag Manager container snippet HERE         -->
-    <!-- (Tag Manager → Admin → Install Google Tag Manager → HEAD).    -->
-    <!-- It looks like: <script>(function(w,d,s,l,i){...})(window,...,'GTM-XXXXXXX');</script> -->
-
-    <!-- TODO: paste GA4 measurement snippet HERE (if not using GTM):  -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
-    <!-- <script>gtag('config', 'G-XXXXXXXXXX');</script>               -->
   </head>
   <body>
-    <!-- TODO: paste GTM <noscript> iframe HERE (right after <body>)   -->
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

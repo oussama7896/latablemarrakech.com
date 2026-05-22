@@ -1,6 +1,7 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, ChefHat } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -11,11 +12,18 @@ const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 const dishes = ["Chicken Tagine with Preserved Lemon", "Lamb Mrouzia", "Classic Couscous with Seven Vegetables", "Bastilla (Pigeon Pie)", "Harira Soup", "Chebakia Pastries", "Moroccan Mint Tea Ceremony"];
 
 export default function MoroccanCookingExperience() {
+  useSEO({
+    title: "Moroccan Cooking Class in Marrakech — Private Chef Experience | La Table Marrakech",
+    description: "Learn to cook authentic Moroccan cuisine with a private chef in Marrakech. Hands-on cooking class in your riad or villa, followed by a full Moroccan feast. Book your cooking experience.",
+    canonical: "https://latablemarrakech.com/moroccan-cooking-experience",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "Moroccan Cooking Experience", url: "https://latablemarrakech.com/moroccan-cooking-experience" },
+    ]),
+  });
+
   return (
     <>
-      <title>Moroccan Cooking Class in Marrakech — Private Chef Experience | La Table Marrakech</title>
-      <meta name="description" content="Learn to cook authentic Moroccan cuisine with a private chef in Marrakech. Hands-on cooking class in your riad or villa, followed by a full Moroccan feast. Book your cooking experience." />
-      <link rel="canonical" href="https://latablemarrakech.com/moroccan-cooking-experience" />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[700px] flex items-center justify-center overflow-hidden">

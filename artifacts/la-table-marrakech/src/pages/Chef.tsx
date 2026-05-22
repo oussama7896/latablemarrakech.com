@@ -1,6 +1,8 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -33,11 +35,18 @@ const values = [
 ];
 
 export default function Chef() {
+  useSEO({
+    title: "The Chef — Twenty Years In The Kitchen | La Table Marrakech",
+    description: "Trained in Paris. Cooked at Palais Namaskar. Now cooks one table at a time for travellers in Marrakech. Meet the chef behind La Table Marrakech.",
+    canonical: "https://latablemarrakech.com/chef",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "The Chef", url: "https://latablemarrakech.com/chef" },
+    ]),
+  });
+
   return (
     <>
-      <title>The Chef — Twenty Years In The Kitchen | La Table Marrakech</title>
-      <meta name="description" content="Trained in Paris. Cooked at Palais Namaskar. Now cooks one table at a time for travellers in Marrakech. Meet the chef behind La Table Marrakech." />
-      <link rel="canonical" href="https://latablemarrakech.com/chef" />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[800px] flex items-center overflow-hidden">
@@ -180,13 +189,15 @@ export default function Chef() {
             <p className="text-muted-foreground mb-10">One message is enough to start.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/212721354757"
+                href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="btn-chef-cta-whatsapp"
+                data-cta-label="Request a quote on WhatsApp"
+                data-cta-position="chef_cta"
                 className="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-12 py-5 uppercase tracking-[0.2em] text-xs"
               >
-                WhatsApp The Chef <ArrowRight className="w-3 h-3" />
+                Request a quote on WhatsApp <ArrowRight className="w-3 h-3" />
               </a>
               <Link
                 href="/contact"
@@ -202,7 +213,6 @@ export default function Chef() {
     </>
   );
 }
-
 
 
 

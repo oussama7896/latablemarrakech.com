@@ -1,6 +1,7 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Star } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -9,29 +10,35 @@ const fadeUp = {
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 export default function PrivateChefMarrakech() {
+  useSEO({
+    title: "Private Chef in Marrakech — Luxury Dining at Your Villa or Riad",
+    description: "Book a private chef in Marrakech for your villa, riad, or Airbnb. Romantic dinners, Moroccan feasts, rooftop experiences, and cooking classes. Luxury private dining for tourists.",
+    canonical: "https://latablemarrakech.com/private-chef-marrakech",
+    jsonLd: [
+      breadcrumbSchema([
+        { name: "Home", url: "https://latablemarrakech.com/" },
+        { name: "Private Chef Marrakech", url: "https://latablemarrakech.com/private-chef-marrakech" },
+      ]),
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "La Table Marrakech",
+        description: "Private chef experiences in Marrakech for tourists",
+        url: "https://latablemarrakech.com/private-chef-marrakech",
+        telephone: "+212721354757",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Marrakech",
+          addressCountry: "MA",
+        },
+        priceRange: "€€€",
+        servesCuisine: ["Moroccan", "Mediterranean", "International"],
+      },
+    ],
+  });
+
   return (
     <>
-      <title>Private Chef in Marrakech — Luxury Dining at Your Villa or Riad</title>
-      <meta name="description" content="Book a private chef in Marrakech for your villa, riad, or Airbnb. Romantic dinners, Moroccan feasts, rooftop experiences, and cooking classes. Luxury private dining for tourists." />
-      <link rel="canonical" href="https://latablemarrakech.com/private-chef-marrakech" />
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "La Table Marrakech",
-          "description": "Private chef experiences in Marrakech for tourists",
-          "url": "https://latablemarrakech.com",
-          "telephone": "+212721354757",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Marrakech",
-            "addressCountry": "MA",
-          },
-          "priceRange": "€€€",
-          "servesCuisine": ["Moroccan", "Mediterranean", "International"],
-        }),
-      }} />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[700px] flex items-center justify-center overflow-hidden">

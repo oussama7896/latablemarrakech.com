@@ -9,6 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { CheckCircle, X } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
+import {
+  debugTracking,
+  getAttributionContext,
+  trackBookingSubmit,
+} from "@/lib/analytics";
+import { createWhatsAppUrl, getWhatsAppUrl } from "@/lib/whatsapp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -59,6 +66,8 @@ const experienceOptions = [
 
 export default function Contact() {
    const [showSuccess, setShowSuccess] = useState(false);
+   const [bookingSubmitted, setBookingSubmitted] = useState(false);
+   const attribution = getAttributionContext();
    const form = useForm<ReservationFormValues>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
@@ -77,6 +86,14 @@ export default function Contact() {
   });
 
    const onSubmit = (values: ReservationFormValues) => {
+     if (bookingSubmitted) {
+       debugTracking("duplicate booking form submit suppressed", {
+         form_name: "reservation",
+       });
+       return;
+     }
+     setBookingSubmitted(true);
+
      // Format reservation data for WhatsApp message
      const whatsappMessage = `
 New Reservation Request:
@@ -93,22 +110,47 @@ Dietary Preferences: ${values.dietaryPreferences || 'None'}
 Message: ${values.message || 'None'}
      `.trim();
      
-     // Encode the message for URL
-     const encodedMessage = encodeURIComponent(whatsappMessage);
-     
+     const bookingPayload = {
+       experience_type: values.experienceType,
+       guest_count: values.guests,
+       date: values.date,
+       time: values.time,
+       country: values.country,
+       form_submission_channel: "whatsapp_prefill",
+     };
+
      // Open WhatsApp with the pre-filled message
-     window.open(`https://wa.me/212721354757?text=${encodedMessage}`, '_blank');
-     
+     window.open(createWhatsAppUrl(whatsappMessage), '_blank');
+
+     // React Hook Form only calls this handler after validation succeeds.
+     // At this point the booking request has been accepted and WhatsApp is open.
+     trackBookingSubmit("reservation", bookingPayload);
+     debugTracking("form submission success", bookingPayload);
+
      // Show success message
      setShowSuccess(true);
      form.reset();
    };
 
+   const onInvalid = () => {
+     debugTracking("form submission failure", {
+       form_name: "reservation",
+       errors: form.formState.errors,
+     });
+   };
+
+  useSEO({
+    title: "Reserve A Private Chef In Marrakech — La Table Marrakech",
+    description: "Book a private chef for your villa, riad, or rooftop in Marrakech. WhatsApp +212 721 354 757 — usually under an hour to reply, in English or French.",
+    canonical: "https://latablemarrakech.com/contact",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "Contact", url: "https://latablemarrakech.com/contact" },
+    ]),
+  });
+
   return (
     <>
-      <title>Reserve A Private Chef In Marrakech — La Table Marrakech</title>
-      <meta name="description" content="Book a private chef for your villa, riad, or rooftop in Marrakech. WhatsApp +212 721 354 757 — usually under an hour to reply, in English or French." />
-      <link rel="canonical" href="https://latablemarrakech.com/contact" />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">
@@ -138,13 +180,15 @@ Message: ${values.message || 'None'}
               <p className="text-zinc-400 text-sm md:text-base leading-relaxed">Tell us the date, how many of you, and where you're staying. We usually reply in under an hour.</p>
             </div>
             <a
-              href="https://wa.me/212721354757"
+              href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="contact-whatsapp-band"
+              data-cta-label="Request a quote on WhatsApp"
+              data-cta-position="contact_fast_path"
               className="shrink-0 inline-block text-center px-8 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-xs md:text-sm transition-colors"
             >
-              WhatsApp +212 721 354 757
+              Request a quote on WhatsApp
             </a>
           </div>
         </div>
@@ -164,8 +208,8 @@ Message: ${values.message || 'None'}
               <div className="space-y-6 text-sm text-muted-foreground">
                 <div>
                   <p className="text-foreground font-medium mb-1 uppercase tracking-wider text-xs">WhatsApp — usually under an hour</p>
-                  <a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                    +212 721 354 757
+                  <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" data-cta-label="Request a quote on WhatsApp" data-cta-position="contact_info" className="hover:text-primary transition-colors">
+                    Request a quote on WhatsApp
                   </a>
                 </div>
                 <div>
@@ -193,10 +237,18 @@ Message: ${values.message || 'None'}
               </div>
               <Form {...form}>
                 <form
-                  onSubmit={form.handleSubmit(onSubmit)}
+                  onSubmit={form.handleSubmit(onSubmit, onInvalid)}
                   className="space-y-6"
                   data-testid="reservation-form"
                 >
+                  <input type="hidden" name="utm_source" defaultValue={attribution.utm_source || ""} />
+                  <input type="hidden" name="utm_medium" defaultValue={attribution.utm_medium || ""} />
+                  <input type="hidden" name="utm_campaign" defaultValue={attribution.utm_campaign || ""} />
+                  <input type="hidden" name="utm_term" defaultValue={attribution.utm_term || ""} />
+                  <input type="hidden" name="utm_content" defaultValue={attribution.utm_content || ""} />
+                  <input type="hidden" name="landing_page" defaultValue={attribution.landing_page || ""} />
+                  <input type="hidden" name="referrer" defaultValue={attribution.referrer || ""} />
+                  <input type="hidden" name="first_visit_timestamp" defaultValue={attribution.first_visit_timestamp || ""} />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormField
                       control={form.control}
@@ -365,6 +417,7 @@ Message: ${values.message || 'None'}
                    <button
                      type="submit"
                      data-testid="button-submit"
+                     disabled={bookingSubmitted}
                      className="w-full py-5 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-60 uppercase tracking-[0.2em] text-sm transition-colors"
                    >
                      Send & Continue On WhatsApp →
@@ -404,7 +457,7 @@ Message: ${values.message || 'None'}
               <CheckCircle className="w-12 h-12 text-primary mx-auto mb-6" />
               <h2 className="font-serif text-3xl mb-4">Got it.</h2>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                We've opened WhatsApp with your request. Send it through and we'll reply within the hour. If you closed the WhatsApp tab, message us directly: <a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+212 721 354 757</a>.
+                We've opened WhatsApp with your request. Send it through and we'll reply within the hour. If you closed the WhatsApp tab, message us directly: <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" data-cta-label="Request a quote on WhatsApp" data-cta-position="contact_success_modal" className="text-primary hover:underline">Request a quote on WhatsApp</a>.
               </p>
               <p className="text-xs uppercase tracking-widest text-muted-foreground">A pleasure awaits.</p>
             </motion.div>
@@ -415,18 +468,16 @@ Message: ${values.message || 'None'}
       {/* Sticky Mobile Button */}
       <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-zinc-950 p-4 border-t border-zinc-800">
         <a
-          href="https://wa.me/212721354757"
+          href={getWhatsAppUrl()}
           target="_blank"
           rel="noopener noreferrer"
+          data-cta-label="Request a quote on WhatsApp"
+          data-cta-position="contact_mobile_sticky"
           className="block w-full text-center py-4 bg-green-600 text-white uppercase tracking-[0.2em] text-sm"
         >
-          Message on WhatsApp
+          Request a quote on WhatsApp
         </a>
       </div>
     </>
   );
 }
-
-
-
-

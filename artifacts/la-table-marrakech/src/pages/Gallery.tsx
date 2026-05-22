@@ -2,6 +2,7 @@ import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Link } from "wouter";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -27,11 +28,18 @@ const images = [
 export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null);
 
+  useSEO({
+    title: "Gallery — La Table Marrakech Private Chef Experiences",
+    description: "Browse the gallery of La Table Marrakech private chef experiences — from candlelit romantic dinners to Moroccan feasts, rooftop evenings, and desert dining in the Agafay.",
+    canonical: "https://latablemarrakech.com/gallery",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "Gallery", url: "https://latablemarrakech.com/gallery" },
+    ]),
+  });
+
   return (
     <>
-      <title>Gallery — La Table Marrakech Private Chef Experiences</title>
-      <meta name="description" content="Browse the gallery of La Table Marrakech private chef experiences — from candlelit romantic dinners to Moroccan feasts, rooftop evenings, and desert dining in the Agafay." />
-      <link rel="canonical" href="https://latablemarrakech.com/gallery" />
 
       {/* Hero */}
       <section className="relative h-72 flex items-end justify-center overflow-hidden">

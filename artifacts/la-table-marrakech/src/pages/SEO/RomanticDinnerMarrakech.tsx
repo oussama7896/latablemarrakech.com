@@ -1,6 +1,7 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Heart } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,11 +19,18 @@ const includes = [
 ];
 
 export default function RomanticDinnerMarrakech() {
+  useSEO({
+    title: "Romantic Dinner in Marrakech — Private Chef for Two | La Table Marrakech",
+    description: "Book a romantic private chef dinner in Marrakech for your anniversary, honeymoon, or special occasion. Candlelit dinner in your riad or villa, curated just for the two of you.",
+    canonical: "https://latablemarrakech.com/romantic-dinner-marrakech",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "Romantic Dinner Marrakech", url: "https://latablemarrakech.com/romantic-dinner-marrakech" },
+    ]),
+  });
+
   return (
     <>
-      <title>Romantic Dinner in Marrakech — Private Chef for Two | La Table Marrakech</title>
-      <meta name="description" content="Book a romantic private chef dinner in Marrakech for your anniversary, honeymoon, or special occasion. Candlelit dinner in your riad or villa, curated just for the two of you." />
-      <link rel="canonical" href="https://latablemarrakech.com/romantic-dinner-marrakech" />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[700px] flex items-center justify-center overflow-hidden">

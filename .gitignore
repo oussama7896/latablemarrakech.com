@@ -64,3 +64,7 @@ __pycache__/
 .local_serve.sh
 .ssl_poll.sh
 .local_*.sh
+
+# Vite local env files (tracking IDs)
+.env.local
+*.env.local

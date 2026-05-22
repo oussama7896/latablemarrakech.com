@@ -7,6 +7,8 @@ import {
   getListReservationsQueryKey,
   useUpdateReservationStatus,
   ListReservationsStatus,
+  type ExperienceCount,
+  type Reservation,
 } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -118,7 +120,7 @@ export default function Admin() {
             <motion.div initial="hidden" animate="visible" variants={fadeUp} className="bg-white border border-border p-6 mb-10">
               <h2 className="font-serif text-xl mb-6">Bookings by Experience</h2>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {stats.byExperience.map((item) => (
+                {stats.byExperience.map((item: ExperienceCount) => (
                   <div key={item.experienceType} className="text-center">
                     <div className="font-serif text-2xl text-primary">{item.count}</div>
                     <div className="text-xs text-muted-foreground mt-1">
@@ -172,7 +174,7 @@ export default function Admin() {
                     </tr>
                   </thead>
                   <tbody>
-                    {reservationsData.reservations.map((r) => (
+                    {reservationsData.reservations.map((r: Reservation) => (
                       <tr key={r.id} className="border-b border-border hover:bg-zinc-50 transition-colors" data-testid={`row-reservation-${r.id}`}>
                         <td className="px-6 py-4">
                           <div className="font-medium">{r.name}</div>
@@ -247,5 +249,4 @@ export default function Admin() {
     </>
   );
 }
-
 

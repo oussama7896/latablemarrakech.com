@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,6 +30,8 @@ export function Footer() {
           <h4 className="text-white font-serif uppercase tracking-widest text-sm mb-6">Information</h4>
           <ul className="space-y-3 text-sm">
             <li><Link href="/chef" className="hover:text-primary transition-colors">The Chef</Link></li>
+            <li><Link href="/private-chef-cost-marrakech" className="hover:text-primary transition-colors">Pricing</Link></li>
+            <li><Link href="/marrakech-cooking-class-vs-private-chef" className="hover:text-primary transition-colors">Cooking Class vs Chef</Link></li>
             <li><Link href="/gallery" className="hover:text-primary transition-colors">Gallery</Link></li>
             <li><Link href="/testimonials" className="hover:text-primary transition-colors">Testimonials</Link></li>
             <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
@@ -39,7 +42,7 @@ export function Footer() {
           <h4 className="text-white font-serif uppercase tracking-widest text-sm mb-6">Contact</h4>
           <ul className="space-y-3 text-sm">
             <li><a href="mailto:reservations@latablemarrakech.com" className="hover:text-primary transition-colors">reservations@latablemarrakech.com</a></li>
-            <li><a href="https://wa.me/212721354757" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+212 721 354 757</a></li>
+            <li><a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" data-cta-label="Request a quote on WhatsApp" data-cta-position="footer_contact" className="hover:text-primary transition-colors">Request a quote on WhatsApp</a></li>
             <li className="pt-4">
               <Link href="/contact" className="inline-block border border-zinc-700 hover:border-primary hover:text-primary transition-colors px-4 py-2 uppercase tracking-wider text-xs">
                 Make a Reservation
@@ -52,8 +55,8 @@ export function Footer() {
       <div className="container mx-auto px-6 mt-16 pt-8 border-t border-zinc-900 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
         <p>&copy; {currentYear} La Table Marrakech. All rights reserved.</p>
         <div className="flex gap-4">
-          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-          <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+          <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+          <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Users } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -9,11 +10,18 @@ const fadeUp = {
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 export default function VillaChefMarrakech() {
+  useSEO({
+    title: "Villa Private Chef in Marrakech — Luxury Chef at Your Villa | La Table Marrakech",
+    description: "Book a private chef for your villa in Marrakech. Full dining experience in your private villa or riad, from appetisers through dessert. Perfect for groups and family holidays.",
+    canonical: "https://latablemarrakech.com/villa-chef-marrakech",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "Villa Chef Marrakech", url: "https://latablemarrakech.com/villa-chef-marrakech" },
+    ]),
+  });
+
   return (
     <>
-      <title>Villa Private Chef in Marrakech — Luxury Chef at Your Villa | La Table Marrakech</title>
-      <meta name="description" content="Book a private chef for your villa in Marrakech. Full dining experience in your private villa or riad, from appetisers through dessert. Perfect for groups and family holidays." />
-      <link rel="canonical" href="https://latablemarrakech.com/villa-chef-marrakech" />
 
       {/* Hero */}
       <section className="relative h-screen max-h-[700px] flex items-center justify-center overflow-hidden">

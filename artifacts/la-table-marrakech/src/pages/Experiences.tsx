@@ -1,6 +1,8 @@
 import { motion, easeOut, easeInOut, backOut } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { useSEO, breadcrumbSchema } from "@/lib/seo";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -82,11 +84,18 @@ const experiences = [
 ];
 
 export default function Experiences() {
+  useSEO({
+    title: "Ten Ways To Eat Well In Marrakech — La Table Marrakech",
+    description: "Romantic dinners, villa chefs, rooftop tables, cooking classes, desert dining and more. Pick the evening you want — or message us on WhatsApp and we'll help you choose.",
+    canonical: "https://latablemarrakech.com/experiences",
+    jsonLd: breadcrumbSchema([
+      { name: "Home", url: "https://latablemarrakech.com/" },
+      { name: "Experiences", url: "https://latablemarrakech.com/experiences" },
+    ]),
+  });
+
   return (
     <>
-      <title>Ten Ways To Eat Well In Marrakech — La Table Marrakech</title>
-      <meta name="description" content="Romantic dinners, villa chefs, rooftop tables, cooking classes, desert dining and more. Pick the evening you want — or message us on WhatsApp and we'll help you choose." />
-      <link rel="canonical" href="https://latablemarrakech.com/experiences" />
 
       {/* Hero */}
       <section className="relative h-80 flex items-end justify-center overflow-hidden">
@@ -159,19 +168,20 @@ export default function Experiences() {
           <h2 className="font-serif text-3xl md:text-4xl mb-6">Still deciding?</h2>
           <p className="text-zinc-300 mb-10 leading-relaxed">Send us a WhatsApp with your dates and group size. We'll suggest the right evening in two messages.</p>
           <a
-            href="https://wa.me/212721354757"
+            href={getWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
+            data-cta-label="Request a quote on WhatsApp"
+            data-cta-position="experiences_final_cta"
             className="inline-block px-12 py-4 bg-amber-600 hover:bg-amber-700 text-white uppercase tracking-[0.2em] text-sm transition-colors"
           >
-            WhatsApp Us
+            Request a quote on WhatsApp
           </a>
         </div>
       </section>
     </>
   );
 }
-
 
 
 
