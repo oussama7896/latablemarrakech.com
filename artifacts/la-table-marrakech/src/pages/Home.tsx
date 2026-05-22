@@ -678,37 +678,37 @@ export default function Home() {
               {
                 name: "Chicken Tagine with Preserved Lemon",
                 origin: "Fez & Marrakech",
-                desc: "Slow-simmered free-range chicken layered with olive oil, saffron, ginger, and preserved lemon. The lid, sealed with a ring of bread dough, locks in three hours of fragrant steam. The result is meat so tender it parts with a knife, the broth golden and aromatic.",
+                desc: "Free-range chicken slow-simmered with saffron, ginger, preserved lemon, and olives — three hours under the lid, until it falls off the bone.",
                 tags: ["Tagine", "Citrus", "Saffron"],
               },
               {
                 name: "Lamb Mrouzia",
                 origin: "Rabat & Sala",
-                desc: "Sweet, spiced, and slow-cooked in honey and cinnamon. Named after the Moulay Ismail dynasty, this dish once graced royal tables. Plump raisins and almonds mingle with lamb shoulder in a sauce of honey, cinnamon, and a whisper of rose water.",
+                desc: "Lamb shoulder slow-cooked in honey and cinnamon with raisins and almonds — the sweet, spiced dish once served at royal tables.",
                 tags: ["Royal Dish", "Honey", "Spiced"],
               },
               {
-                name: "Bastilla",
-                origin: "Fez",
-                desc: "The crown jewel of Moroccan pastry: flaky warqa pastry stuffed with braised pigeon or chicken, almonds dusted in cinnamon and sugar, eggs, and a whisper of saffron. Sweet dusting of icing sugar completes this pièce de résistance.",
-                tags: ["Pastry", "Pigeon", "Sweet-Spiced"],
+                name: "Seafood Bastilla",
+                origin: "Coastal Morocco",
+                desc: "Paper-thin warqa pastry baked around shrimp, fish, and vermicelli — Morocco's celebrated pastilla in its seafood form.",
+                tags: ["Pastry", "Seafood", "Warqa"],
               },
               {
                 name: "Traditional Couscous",
                 origin: "All of Morocco",
-                desc: "Every Friday, memory returns to the couscoussier. Seven vegetables — carrots, zucchini, turnips, cabbage, chickpeas, tomato, and pumpkin — steamed over the semolina cloud. Each grain of couscous is hand-fluffed with butter and raised by steam alone.",
+                desc: "Hand-fluffed semolina steamed over seven vegetables and tender lamb — Morocco's Friday ritual, in one bowl.",
                 tags: ["Friday Feast", "Seven Vegetables", "Hand-Fluffed"],
               },
               {
                 name: "Harira Soup",
                 origin: "Fez & Casablanca",
-                desc: "The soup of Ramadan and celebration: lamb, lentils, chickpeas, vermicelli, and a zahter spice blend. Tomatoes give it depth, herbs give it brightness, and a squeeze of lemon at the table awakens the whole plate. A mezze of dates beside it, for tradition.",
+                desc: "Lamb, lentils, chickpeas, and vermicelli in a bright tomato-and-herb broth — the soup that breaks the fast in Ramadan.",
                 tags: ["Soup", "Ramadan", "Herbs"],
               },
               {
                 name: "Moroccan Pastries",
                 origin: "Fez & Marrakech",
-                desc: "The full pastry tray — kaab el ghzal (gazelle horns), almond ghriba, briouats, and honeyed coils. Almonds, sesame, orange flower water, and a dusting of icing sugar. Made by hand the day of your dinner and served with mint tea.",
+                desc: "Gazelle horns, almond ghriba, and honeyed briouats — made by hand the day of your dinner, served with mint tea.",
                 tags: ["Pastry", "Almond", "Mint Tea"],
               },
             ].map((plate, i) => (
@@ -722,11 +722,11 @@ export default function Home() {
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={
-                      i === 0 ? "/images/chef-food-1.jpg"
+                      i === 0 ? "/images/chicken-tagine.jpg"
                       : i === 1 ? "/images/moroccan-experience.png"
-                      : i === 2 ? "/images/luxury-breakfast.png"
-                      : i === 3 ? "/images/desert-dining.png"
-                      : i === 4 ? "/images/gallery-tea.png"
+                      : i === 2 ? "/images/bastilla.jpg"
+                      : i === 3 ? "/images/couscous.jpg"
+                      : i === 4 ? "/images/harira.jpg"
                       : "/images/moroccan-pastries.jpg"
                     }
                     alt={plate.name}
