@@ -200,7 +200,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 w-full text-center text-white px-6 max-w-5xl mx-auto">
           <motion.p
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={{ opacity: 1, letterSpacing: "0.4em" }}
