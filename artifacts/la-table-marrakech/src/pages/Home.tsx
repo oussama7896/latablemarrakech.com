@@ -35,32 +35,32 @@ const staggerFast = { visible: { transition: { staggerChildren: 0.08 } } };
 /* ─── Data ───────────────────────────────────────────────────────────────── */
 const EXPERIENCES = [
   {
-    title: "Romantic Dinner",
-    tag: "Villa & Riad Dining",
-    description: "Candlelit table, slow service, a menu built around the two of you.",
-    href: "/romantic-dinner-marrakech",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=720&q=75",
-  },
-  {
-    title: "Villa Private Chef",
-    tag: "Private Chef Marrakech",
-    description: "Your kitchen, our chef, your menu. From amuse-bouche to mint tea.",
+    number: "01",
+    title: ["Private Chef", "at Home"],
+    description: "Enjoy a fully customized menu in the comfort of your villa or riad.",
     href: "/villa-chef-marrakech",
-    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=720&q=75",
+    image: "/images/villa-chef.png",
   },
   {
-    title: "Moroccan Cooking Class",
-    tag: "Hands-on Souk Menu",
-    description: "Morning at the souk, then cook (and eat) a full Moroccan lunch.",
-    href: "/moroccan-cooking-experience",
-    image: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=720&q=75",
+    number: "02",
+    title: ["Special", "Occasions"],
+    description: "Celebrate birthdays, proposals, anniversaries and more.",
+    href: "/romantic-dinner-marrakech",
+    image: "/images/romantic-dinner.png",
   },
   {
-    title: "Desert Dining",
-    tag: "Agafay Experience",
-    description: "Dinner under the stars, Berber lanterns, Gnawa music as the sun goes.",
+    number: "03",
+    title: ["Events &", "Retreats"],
+    description: "We create memorable food experiences for groups, retreats and private events.",
     href: "/experiences",
-    image: "https://images.pexels.com/photos/36209321/pexels-photo-36209321.jpeg?auto=compress&cs=tinysrgb&w=720&q=75",
+    image: "/images/desert-dining.png",
+  },
+  {
+    number: "04",
+    title: ["Let Us", "Inspire You"],
+    description: "Not sure what you want? Tell us a little about your stay and we'll take it from there.",
+    href: "/contact",
+    image: "/images/moroccan-experience.png",
   },
 ];
 
@@ -410,92 +410,104 @@ export default function Home() {
       </section>
 
       {/* ── EXPERIENCES ──────────────────────────────────────────────────── */}
-      <section className="py-32 bg-background">
-        <div className="container mx-auto px-6">
+      <section className="relative py-28 md:py-36 overflow-hidden">
+        {/* Warm courtyard background with vignette + dark wash */}
+        <div className="absolute inset-0">
+          <img
+            src="/images/experiences-bg.jpg"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover scale-110 blur-[2px]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
+          <div className="absolute inset-0 bg-stone-950/20" />
+        </div>
+
+        <div className="relative container mx-auto px-6">
+          {/* Section header */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
-            className="text-center mb-24"
+            className="text-center mb-16 md:mb-20 text-white"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Choose Your Evening</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-foreground">Not sure what you want? Start here.</h2>
-            <p className="text-muted-foreground mt-6 max-w-xl mx-auto leading-relaxed">Four ways most of our guests begin. Pick one, or message us and we'll match the evening to your trip.</p>
-            <div className="w-12 h-px bg-primary mx-auto mt-8" />
+            <p className="text-[0.7rem] md:text-xs tracking-[0.45em] uppercase text-white/85 mb-5">How It Begins</p>
+            <div className="w-10 h-px bg-white/40 mx-auto mb-8" />
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] max-w-4xl mx-auto">
+              Four ways most of <span className="italic">our</span> guests begin.
+            </h2>
+            <p className="mt-6 max-w-2xl mx-auto text-white/80 leading-relaxed">
+              Pick one, or{" "}
+              <Link href="/contact" className="underline underline-offset-4 hover:text-amber-200 transition-colors">
+                message us
+              </Link>{" "}
+              and we'll help you create something entirely your own.
+            </p>
           </motion.div>
 
+          {/* Cards */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
           >
             {EXPERIENCES.map((exp, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.35, ease: easeOut }}
                 data-testid={`experience-card-${i}`}
-                className="group relative overflow-hidden aspect-[4/3] cursor-pointer"
+                className="group flex flex-col"
               >
-                <motion.img
-                  src={exp.image}
-                  alt={exp.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.06 }}
-                  transition={{ duration: 0.7, ease: easeOut }}
-                />
-                {/* Gradient always visible */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                {/* Hover color wash */}
-                <div className="absolute inset-0 bg-amber-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Link href={exp.href} className="flex flex-col h-full">
+                  {/* Portrait photo with number + title overlay */}
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <motion.img
+                      src={exp.image}
+                      alt={exp.title.join(" ")}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.7, ease: easeOut }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60" />
 
-                {/* Tag */}
-                <div className="absolute top-6 left-6">
-                  <span className="text-[0.6rem] tracking-[0.3em] uppercase bg-black/40 text-amber-300 px-3 py-1.5 backdrop-blur-sm">
-                    {exp.tag}
-                  </span>
-                </div>
+                    {/* Number */}
+                    <div className="absolute top-6 left-6">
+                      <span className="font-serif text-amber-400 text-lg tracking-wider">{exp.number}</span>
+                      <div className="w-7 h-px bg-amber-400/80 mt-2" />
+                    </div>
 
-                {/* Text */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="font-serif text-2xl text-white mb-2 group-hover:text-amber-200 transition-colors duration-300">
-                    {exp.title}
-                  </h3>
-                  <p className="text-white/65 text-sm leading-relaxed mb-5 max-h-0 group-hover:max-h-20 overflow-hidden transition-all duration-500">
-                    {exp.description}
-                  </p>
-                  <motion.div
-                    className="flex items-center gap-2 text-amber-300 text-xs uppercase tracking-widest"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 4 }}
-                  >
-                    <Link href={exp.href}>See This Evening</Link>
-                    <ArrowRight className="w-3 h-3" />
-                  </motion.div>
-                </div>
+                    {/* Title */}
+                    <h3 className="absolute top-20 left-6 right-6 font-serif text-white text-2xl md:text-[1.7rem] leading-[1.15]">
+                      {exp.title.map((line, idx) => (
+                        <span key={idx} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </h3>
+                  </div>
+
+                  {/* Caption block */}
+                  <div className="bg-stone-100 px-6 py-7 flex-1 flex flex-col justify-between">
+                    <p className="text-stone-700 text-sm leading-relaxed">{exp.description}</p>
+                    <div className="mt-6 pt-5 border-t border-stone-300/70">
+                      <span className="inline-flex items-center gap-2 text-amber-700 text-xs tracking-[0.25em] uppercase group-hover:text-amber-600 transition-colors">
+                        Learn More
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-center mt-16"
-          >
-            <Link
-              href="/experiences"
-              data-testid="btn-all-experiences"
-              className="group inline-flex items-center gap-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 px-12 py-4 uppercase tracking-[0.2em] text-xs"
-            >
-              See All Experiences
-              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </motion.div>
         </div>
       </section>
