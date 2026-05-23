@@ -411,7 +411,7 @@ export default function Home() {
 
       {/* ── EXPERIENCES ──────────────────────────────────────────────────── */}
       <section className="relative py-28 md:py-36 overflow-hidden">
-        {/* Warm courtyard background with vignette + dark wash */}
+        {/* Warm courtyard background with subtle dark wash */}
         <div className="absolute inset-0">
           <img
             src="/images/experiences-bg.jpg"
@@ -419,10 +419,9 @@ export default function Home() {
             aria-hidden="true"
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover scale-110 blur-[2px]"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
-          <div className="absolute inset-0 bg-stone-950/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55" />
         </div>
 
         <div className="relative container mx-auto px-6">
