@@ -5,12 +5,11 @@ import {
   useSpring,
   useInView,
   easeOut,
-  easeInOut,
   backOut,
 } from "framer-motion";
 import { Link } from "wouter";
 import { useRef } from "react";
-import { ArrowRight, Star, Users, ChefHat, MapPin } from "lucide-react";
+import { ArrowRight, Star, Users, ChefHat, MapPin, Leaf, ConciergeBell } from "lucide-react";
 import {
   HOMEPAGE_DESC,
   HOMEPAGE_TITLE,
@@ -34,16 +33,6 @@ const stagger = { visible: { transition: { staggerChildren: 0.14 } } };
 const staggerFast = { visible: { transition: { staggerChildren: 0.08 } } };
 
 /* ─── Data ───────────────────────────────────────────────────────────────── */
-const MARQUEE_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=320&q=70", alt: "Moroccan tagine" },
-  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan spices" },
-  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan mint tea" },
-  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan couscous" },
-  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan lanterns" },
-  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Moroccan spice souk" },
-  { src: "https://images.pexels.com/photos/30769609/pexels-photo-30769609.jpeg?auto=compress&cs=tinysrgb&w=320&q=70", alt: "Dining under stars Marrakech" },
-];
-
 const EXPERIENCES = [
   {
     title: "Romantic Dinner",
@@ -75,12 +64,55 @@ const EXPERIENCES = [
   },
 ];
 
-const FOOD_MOSAIC = [
-  { src: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=600&q=75", alt: "Slow-cooked tagine", span: "row-span-2" },
-  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Moroccan mint tea ceremony", span: "" },
-  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Moroccan spice palette", span: "" },
-  { src: "https://images.pexels.com/photos/5410419/pexels-photo-5410419.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Friday couscous", span: "" },
-  { src: "https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=480&q=75", alt: "Riad lanterns at dusk", span: "" },
+const DISHES = [
+  {
+    name: "Lamb Couscous",
+    origin: "Friday Classic",
+    image: "/images/dish-couscous-lamb.jpg",
+    alt: "Moroccan lamb couscous with seven vegetables",
+    description:
+      "Hand-rolled semolina, slow-braised lamb shoulder, seven vegetables stacked tall. The broth is ladled at the table — the way grandmothers have served it for centuries.",
+  },
+  {
+    name: "Chicken Tagine",
+    origin: "Preserved Lemon & Olives",
+    image: "/images/dish-chicken-tagine.jpg",
+    alt: "Chicken tagine with preserved lemon and green olives",
+    description:
+      "Free-range chicken simmered for hours with preserved lemon, green olives, ginger and saffron. The sauce reduces to a sticky, citrus-bright glaze you'll want to mop up with warm khobz.",
+  },
+  {
+    name: "Harira",
+    origin: "Soup of Marrakech",
+    image: "/images/dish-harira.jpg",
+    alt: "Bowl of Moroccan harira soup with lentils and chickpeas",
+    description:
+      "The soup we break the fast with. Lamb, lentils, chickpeas, tomato, coriander, a squeeze of lemon. Served with sticky chebakia and a fresh date on the side.",
+  },
+  {
+    name: "Mrouzia",
+    origin: "Sweet Lamb Tagine",
+    image: "/images/dish-mrouzia.jpg",
+    alt: "Mrouzia — sweet lamb tagine with prunes, honey and almonds",
+    description:
+      "A holiday dish from the Atlas: lamb caramelised with prunes, honey, cinnamon and toasted almonds. Sweet and savoury at once — usually the surprise of the evening.",
+  },
+  {
+    name: "Fish Bastilla",
+    origin: "Atlantic Coast",
+    image: "/images/dish-mezze.jpg",
+    alt: "Moroccan fish bastilla — flaky pastry parcel filled with spiced fish",
+    description:
+      "Flaky warqa pastry wrapped around white fish, vermicelli, preserved lemon and fresh herbs. Cracked open at the table — the steam, the lemon, the surprise of what's inside.",
+  },
+  {
+    name: "Moroccan Pastries",
+    origin: "With Mint Tea",
+    image: "/images/dish-pastries.jpg",
+    alt: "Plate of Moroccan pastries — kaab el ghazal, fekkas, briouates, ghriba",
+    description:
+      "Kaab el ghazal, fekkas, briouates, ghriba — pastries layered with almond paste, sesame, orange-blossom water and honey. Served with mint tea poured from a height so it foams.",
+  },
 ];
 
 const TESTIMONIALS = [
@@ -173,129 +205,112 @@ export default function Home() {
     <>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-screen min-h-[820px] flex items-start md:items-center overflow-hidden pt-28 md:pt-32 pb-44 md:pb-40">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80"
-            srcSet="https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=800&q=70 800w, https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1200&q=75 1200w, https://images.pexels.com/photos/29125650/pexels-photo-29125650.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80 1600w"
-            sizes="100vw"
-            fetchPriority="high"
-            decoding="async"
-            alt="Elegant Moroccan dining table at night"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/85" />
+          <picture>
+            <source media="(max-width: 767px)" srcSet="/images/hero-villa-terrace-mobile.jpg" />
+            <img
+              src="/images/hero-villa-terrace.jpg"
+              fetchPriority="high"
+              decoding="async"
+              alt="Candlelit Moroccan dinner table on a Marrakech villa terrace overlooking the Koutoubia at dusk"
+              className="w-full h-full object-cover object-[65%_center] md:object-center"
+            />
+          </picture>
+          {/* Mobile: stronger top-to-bottom wash so text reads anywhere. Desktop: left-to-right wash keeps the terrace bright on the right of the layout. */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/85 md:hidden" />
+          <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
+          <div className="absolute inset-0 hidden md:block bg-gradient-to-b from-black/30 via-transparent to-black/70" />
         </motion.div>
 
-        {/* Rotating ornament */}
         <motion.div
-          initial={{ opacity: 0, rotate: -20 }}
-          animate={{ opacity: 0.15, rotate: 0 }}
-          transition={{ delay: 0.5, duration: 2 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] text-amber-300 pointer-events-none"
-          style={{ rotate: 0 }}
+          style={{ opacity: heroOpacity }}
+          className="relative z-10 w-full text-white px-6 md:px-12 lg:px-20 max-w-7xl mx-auto"
         >
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" as const }}>
-            <MoroccanOrnament className="w-full h-full" />
-          </motion.div>
+          <div className="max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.9 }}
+              className="text-xs md:text-sm tracking-[0.35em] uppercase mb-6 text-amber-400"
+            >
+              Private Chef In Marrakech
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 1, ease: easeOut }}
+              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 text-white"
+            >
+              A private Moroccan experience, cooked at your villa.
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.9 }}
+              className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed mb-10"
+            >
+              Your chef shops the souk in the morning, prepares a seasonal Moroccan menu, serves it on your terrace, and leaves the kitchen spotless.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.9 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="hero-cta-whatsapp"
+                data-cta-label="Book on WhatsApp"
+                data-cta-position="hero"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-xs md:text-sm transition-all duration-300"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current shrink-0" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Book on WhatsApp
+              </a>
+              <Link
+                href="/experiences"
+                data-testid="hero-cta-experiences"
+                className="inline-flex items-center justify-center px-8 py-4 border border-white/50 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-xs md:text-sm transition-all duration-300"
+              >
+                Discover The Experience
+              </Link>
+            </motion.div>
+          </div>
         </motion.div>
 
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 w-full text-center text-white px-6 max-w-5xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, letterSpacing: "0.1em" }}
-            animate={{ opacity: 1, letterSpacing: "0.4em" }}
-            transition={{ delay: 0.3, duration: 1.2 }}
-            className="text-xs uppercase mb-8 text-amber-300/90"
-          >
-            Private Chef In Marrakech · Villa & Riad Dining
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1.1, ease: easeOut }}
-            className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.02] md:leading-[0.95] mb-8"
-          >
-            A private chef at your table.
-            <br />
-            <motion.span
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.9, duration: 1 }}
-              className="italic text-amber-200/90"
-            >
-              In Marrakech, tonight.
-            </motion.span>
-          </motion.h1>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 1.2, duration: 0.8, ease: easeOut }}
-            className="w-24 h-px bg-amber-400/50 mx-auto mb-8 origin-left"
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.9 }}
-            className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed mb-12"
-          >
-            From €85 per person — about the same as a mid-range Marrakech restaurant, but served privately on your own terrace with a chef who shopped the souk that morning.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.08, duration: 0.8 }}
-            className="mb-10 flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm uppercase tracking-[0.16em] text-white/70"
-          >
-            <span>From €85 per person · Up to 10 guests per chef</span>
-            <span className="hidden sm:inline text-amber-300/50">/</span>
-            <span>Shopping, cooking, serving, cleanup</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.9 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <a
-              href={getWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="hero-cta-whatsapp"
-              data-cta-label="Request a quote on WhatsApp"
-              data-cta-position="hero"
-              className="group px-10 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-sm transition-all duration-300 flex items-center justify-center gap-3"
-            >
-              Request a quote on WhatsApp
-              <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-            </a>
-            <Link
-              href="/experiences"
-              data-testid="hero-cta-experiences"
-              className="px-10 py-4 border border-white/40 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-sm transition-all duration-300"
-            >
-              See The Experiences
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
+        {/* Trust strip */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.9 }}
+          className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/15 bg-black/30 backdrop-blur-sm"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: easeInOut }}
-            className="w-px h-14 bg-gradient-to-b from-white/50 to-transparent"
-          />
-          <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/40">Scroll</span>
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-5 grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-6 text-white/85 text-xs md:text-sm">
+            <div className="flex items-center gap-3">
+              <Star className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
+              <span>4.9/5 from 200+ reviews</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <ChefHat className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
+              <span>Professional Chefs</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Leaf className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
+              <span>Fresh &amp; Local Ingredients</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <ConciergeBell className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
+              <span>Full Service &amp; Cleanup</span>
+            </div>
+          </div>
         </motion.div>
       </section>
 
@@ -311,32 +326,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── MARQUEE ──────────────────────────────────────────────────────── */}
-      <section className="overflow-hidden bg-zinc-950 pb-0 pt-0">
-        <div className="relative flex">
-          {/* Left fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
-          {/* Right fade */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
+      {/* ── DISH SHOWCASE ────────────────────────────────────────────────── */}
+      <section className="bg-zinc-950 overflow-hidden">
+        <div className="container mx-auto px-6 py-28">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="text-center mb-20"
+          >
+            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Flavours</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight">
+              What Morocco actually tastes like.
+            </h2>
+            <p className="text-zinc-400 mt-6 max-w-2xl mx-auto leading-relaxed">
+              A glimpse of what your chef may cook for you — each menu is built around the season, the souk that morning, and how you like to eat. Six dishes that show up most often on our tables.
+            </p>
+          </motion.div>
 
           <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" as const }}
-            className="flex gap-4 py-6 will-change-transform"
-            style={{ width: "max-content" }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={staggerFast}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           >
-            {[...MARQUEE_IMAGES, ...MARQUEE_IMAGES].map((img, i) => (
-              <div key={i} className="shrink-0 w-64 h-44 overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  decoding="async"
-                  width={256}
-                  height={176}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
+            {DISHES.map((dish, i) => (
+              <motion.article
+                key={i}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.35, ease: easeOut }}
+                data-testid={`dish-card-${i}`}
+                className="group bg-zinc-900/60 border border-zinc-800 hover:border-amber-600/40 transition-colors duration-300 flex flex-col overflow-hidden"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <motion.img
+                    src={dish.image}
+                    alt={dish.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.6, ease: easeOut }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent" />
+                  <span className="absolute top-4 left-4 text-[0.6rem] tracking-[0.3em] uppercase bg-black/55 backdrop-blur-sm text-amber-300 px-3 py-1.5">
+                    {dish.origin}
+                  </span>
+                </div>
+                <div className="p-6 md:p-7 flex-1 flex flex-col">
+                  <h3 className="font-serif text-2xl text-white mb-3 group-hover:text-amber-200 transition-colors duration-300">
+                    {dish.name}
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    {dish.description}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+
+          {/* Spice labels */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="flex flex-wrap justify-center gap-3 md:gap-4 mt-16"
+          >
+            {["Ras el Hanout", "Preserved Lemon", "Saffron", "Argan Oil", "Rose Water", "Cumin", "Harissa"].map((spice, i) => (
+              <motion.span
+                key={i}
+                variants={fadeUp}
+                className="px-4 py-2 border border-amber-600/30 text-amber-400/70 text-xs uppercase tracking-widest"
+              >
+                {spice}
+              </motion.span>
             ))}
           </motion.div>
         </div>
@@ -429,72 +496,6 @@ export default function Home() {
               See All Experiences
               <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
             </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── MOROCCAN FOOD MOSAIC ─────────────────────────────────────────── */}
-      <section className="py-0 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 py-28">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            className="text-center mb-20"
-          >
-            <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-4">The Flavours</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight">
-              What Morocco actually tastes like.
-            </h2>
-            <p className="text-zinc-400 mt-6 max-w-xl mx-auto leading-relaxed">
-              Lamb tagine that's been on the fire since morning. Bastilla — pigeon pie, dusted in icing sugar and cinnamon, the most surprising thing you'll eat all week. Mint tea poured from a height so it foams. None of it is what you ate in the medina restaurants.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={staggerFast}
-            className="grid grid-cols-3 grid-rows-2 gap-3 h-[520px]"
-          >
-            {FOOD_MOSAIC.map((img, i) => (
-              <motion.div
-                key={i}
-                variants={fadeIn}
-                className={`overflow-hidden group ${img.span} ${i === 0 ? "col-span-1 row-span-2" : ""}`}
-              >
-                <motion.img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.6, ease: easeOut }}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Spice labels */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="flex flex-wrap justify-center gap-4 mt-12"
-          >
-            {["Ras el Hanout", "Preserved Lemon", "Saffron", "Argan Oil", "Rose Water", "Cumin", "Harissa"].map((spice, i) => (
-              <motion.span
-                key={i}
-                variants={fadeUp}
-                className="px-4 py-2 border border-amber-600/30 text-amber-400/70 text-xs uppercase tracking-widest"
-              >
-                {spice}
-              </motion.span>
-            ))}
           </motion.div>
         </div>
       </section>
