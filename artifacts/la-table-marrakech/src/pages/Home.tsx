@@ -2,7 +2,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
   useInView,
   easeOut,
   backOut,
@@ -178,11 +177,6 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
-
-  const chefRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: chefScroll } = useScroll({ target: chefRef, offset: ["start end", "end start"] });
-  const chefImgY = useTransform(chefScroll, [0, 1], ["-8%", "8%"]);
-  const chefImgSpring = useSpring(chefImgY, { stiffness: 60, damping: 20 });
 
   // 🔒 LOCKED 2026-05-19 — Do NOT change for 90 days.
   // Title has been edited multiple times in the last 30 days, destroying SEO ranking
@@ -508,98 +502,6 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── CHEF INTRO ───────────────────────────────────────────────────── */}
-      <section ref={chefRef} className="py-32 bg-zinc-950 text-white overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: easeOut }}
-              className="relative"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <motion.img
-                  style={{ y: chefImgSpring }}
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=720&q=75"
-                  alt="Private Chef in Marrakech"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-[110%] object-cover object-top -mt-[5%]"
-                />
-                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-zinc-950 to-transparent" />
-              </div>
-              {/* Floating badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="absolute -bottom-6 -right-6 bg-amber-600 text-white p-6 text-center w-32 h-32 flex flex-col items-center justify-center"
-              >
-                <span className="font-serif text-3xl">20</span>
-                <span className="text-xs uppercase tracking-wider mt-1 leading-tight">Years Experience</span>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: easeOut, delay: 0.15 }}
-              className="md:pl-8 pt-8 md:pt-0"
-            >
-              <p className="text-xs tracking-[0.4em] uppercase text-amber-400 mb-6">The Chef</p>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-8">
-                Twenty years in the kitchen.<br />
-                <span className="italic text-amber-200">One obsession:</span><br />
-                your evening.
-              </h2>
-              <div className="w-8 h-px bg-amber-600 mb-8" />
-              <p className="text-zinc-300 leading-relaxed mb-6">
-                He trained in Paris, cooked at Palais Namaskar, and walked away from restaurants because the best part of his work was never the dining room — it was knowing the people he was cooking for.
-              </p>
-              <p className="text-zinc-300 leading-relaxed mb-10">
-                He'll meet you before service. Ask about your trip. Pour the first glass himself. By the time the tagine lid lifts, he'll know exactly how you like it.
-              </p>
-
-              {/* Ingredients strip */}
-              <div className="flex gap-6 mb-10 overflow-x-auto pb-2">
-                {[
-                  { src: "https://images.pexels.com/photos/2260825/pexels-photo-2260825.jpeg?auto=compress&cs=tinysrgb&w=160&q=70", label: "Spices" },
-                  { src: "https://images.pexels.com/photos/30356249/pexels-photo-30356249.jpeg?auto=compress&cs=tinysrgb&w=160&q=70", label: "Souk" },
-                  { src: "https://images.pexels.com/photos/30560980/pexels-photo-30560980.jpeg?auto=compress&cs=tinysrgb&w=160&q=70", label: "Mint Tea" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.1 }}
-                    className="shrink-0 text-center"
-                  >
-                    <div className="w-20 h-20 overflow-hidden mb-2">
-                      <img src={item.src} alt={item.label} loading="lazy" decoding="async" width={80} height={80} className="w-full h-full object-cover" />
-                    </div>
-                    <span className="text-[0.6rem] uppercase tracking-widest text-zinc-500">{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <Link
-                href="/chef"
-                data-testid="btn-meet-chef"
-                className="group inline-flex items-center gap-3 border border-amber-400/50 text-amber-300 hover:bg-amber-400/10 hover:border-amber-300 transition-all duration-300 px-8 py-4 uppercase tracking-widest text-xs"
-              >
-                Meet The Chef
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </div>
         </div>
       </section>
 
