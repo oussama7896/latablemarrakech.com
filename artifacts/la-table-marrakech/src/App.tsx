@@ -6,21 +6,27 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 import Home from "@/pages/Home";
+const HomeFR = lazy(() => import("@/pages/HomeFR"));
 
 const Experiences = lazy(() => import("@/pages/Experiences"));
-const Chef = lazy(() => import("@/pages/Chef"));
-const Gallery = lazy(() => import("@/pages/Gallery"));
+const ExperiencesFR = lazy(() => import("@/pages/ExperiencesFR"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
+const TestimonialsFR = lazy(() => import("@/pages/TestimonialsFR"));
 const FAQ = lazy(() => import("@/pages/FAQ"));
+const FAQFR = lazy(() => import("@/pages/FAQFR"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const ContactFR = lazy(() => import("@/pages/ContactFR"));
 
 const PrivateChefMarrakech = lazy(() => import("@/pages/SEO/PrivateChefMarrakech"));
+const PrivateChefMarrakechFR = lazy(() => import("@/pages/SEO/PrivateChefMarrakechFR"));
 const PrivateChefCostMarrakech = lazy(() => import("@/pages/SEO/PrivateChefCostMarrakech"));
 const CookingClassVsPrivateChef = lazy(() => import("@/pages/SEO/CookingClassVsPrivateChef"));
 const MarrakechVillaWithPrivateChef = lazy(() => import("@/pages/SEO/MarrakechVillaWithPrivateChef"));
 const RomanticDinnerMarrakech = lazy(() => import("@/pages/SEO/RomanticDinnerMarrakech"));
 const VillaChefMarrakech = lazy(() => import("@/pages/SEO/VillaChefMarrakech"));
 const MoroccanCookingExperience = lazy(() => import("@/pages/SEO/MoroccanCookingExperience"));
+const MarrakechCookingClass = lazy(() => import("@/pages/SEO/MarrakechCookingClass"));
+const MarrakechCookingClassFR = lazy(() => import("@/pages/SEO/MarrakechCookingClassFR"));
 
 const NotFound = lazy(() => import("@/pages/not-found"));
 
@@ -38,8 +44,6 @@ function Router() {
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/experiences" component={Experiences} />
-            <Route path="/chef" component={Chef} />
-            <Route path="/gallery" component={Gallery} />
             <Route path="/testimonials" component={Testimonials} />
             <Route path="/faq" component={FAQ} />
             <Route path="/contact" component={Contact} />
@@ -52,6 +56,16 @@ function Router() {
             <Route path="/romantic-dinner-marrakech" component={RomanticDinnerMarrakech} />
             <Route path="/villa-chef-marrakech" component={VillaChefMarrakech} />
             <Route path="/moroccan-cooking-experience" component={MoroccanCookingExperience} />
+            <Route path="/marrakech-cooking-class" component={MarrakechCookingClass} />
+            <Route path="/fr/marrakech-cooking-class" component={MarrakechCookingClassFR} />
+
+            {/* French routes */}
+            <Route path="/fr" component={HomeFR} />
+            <Route path="/fr/experiences" component={ExperiencesFR} />
+            <Route path="/fr/testimonials" component={TestimonialsFR} />
+            <Route path="/fr/faq" component={FAQFR} />
+            <Route path="/fr/contact" component={ContactFR} />
+            <Route path="/fr/private-chef-marrakech" component={PrivateChefMarrakechFR} />
 
             <Route component={NotFound} />
           </Switch>

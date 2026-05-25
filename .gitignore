@@ -68,3 +68,22 @@ __pycache__/
 # Vite local env files (tracking IDs)
 .env.local
 *.env.local
+
+# Local research / scratch — never commit
+.impeccable/
+competitor-profiles/
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.pdf
+!artifacts/**/*.png
+!artifacts/**/*.jpg
+!artifacts/**/*.jpeg
+!artifacts/**/*.webp
+
+# macOS duplicate files
+* 2.tsx
+* 2.ts
+* 2.jpg
+* 2.png

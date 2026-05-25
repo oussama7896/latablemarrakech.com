@@ -200,6 +200,20 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal tracking-tight;
   }
+
+  /* Visible keyboard-focus indicator for every interactive element.
+     Mouse clicks do not trigger :focus-visible, so this never shows on hover. */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid hsl(38 92% 55%);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 @layer utilities {

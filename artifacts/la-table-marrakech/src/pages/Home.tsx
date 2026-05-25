@@ -2,13 +2,12 @@ import {
   motion,
   useScroll,
   useTransform,
-  useInView,
   easeOut,
   backOut,
 } from "framer-motion";
 import { Link } from "wouter";
 import { useRef } from "react";
-import { ArrowRight, Star, Users, ChefHat, MapPin, Leaf, ConciergeBell } from "lucide-react";
+import { ArrowRight, Star, ChefHat, Leaf, ConciergeBell, Quote } from "lucide-react";
 import {
   HOMEPAGE_DESC,
   HOMEPAGE_TITLE,
@@ -23,10 +22,6 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: easeOut } },
-};
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 1 } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.14 } } };
 const staggerFast = { visible: { transition: { staggerChildren: 0.08 } } };
@@ -70,7 +65,7 @@ const DISHES = [
     image: "/images/dish-couscous-lamb.jpg",
     alt: "Moroccan lamb couscous with seven vegetables",
     description:
-      "Hand-rolled semolina, slow-braised lamb shoulder, seven vegetables stacked tall. The broth is ladled at the table — the way grandmothers have served it for centuries.",
+      "Hand-rolled semolina, slow-braised lamb shoulder, seven vegetables stacked tall. The broth is ladled at the table, the way grandmothers have served it for centuries.",
   },
   {
     name: "Chicken Tagine",
@@ -92,25 +87,25 @@ const DISHES = [
     name: "Mrouzia",
     origin: "Sweet Lamb Tagine",
     image: "/images/dish-mrouzia.jpg",
-    alt: "Mrouzia — sweet lamb tagine with prunes, honey and almonds",
+    alt: "Mrouzia: sweet lamb tagine with prunes, honey and almonds",
     description:
-      "A holiday dish from the Atlas: lamb caramelised with prunes, honey, cinnamon and toasted almonds. Sweet and savoury at once — usually the surprise of the evening.",
+      "A holiday dish from the Atlas: lamb caramelised with prunes, honey, cinnamon and toasted almonds. Sweet and savoury at once, usually the surprise of the evening.",
   },
   {
     name: "Fish Bastilla",
     origin: "Atlantic Coast",
     image: "/images/dish-mezze.jpg",
-    alt: "Moroccan fish bastilla — flaky pastry parcel filled with spiced fish",
+    alt: "Moroccan fish bastilla: flaky pastry parcel filled with spiced fish",
     description:
-      "Flaky warqa pastry wrapped around white fish, vermicelli, preserved lemon and fresh herbs. Cracked open at the table — the steam, the lemon, the surprise of what's inside.",
+      "Flaky warqa pastry wrapped around white fish, vermicelli, preserved lemon and fresh herbs. Cracked open at the table; the steam, the lemon, the surprise of what's inside.",
   },
   {
-    name: "Moroccan Pastries",
-    origin: "With Mint Tea",
-    image: "/images/dish-pastries.jpg",
-    alt: "Plate of Moroccan pastries — kaab el ghazal, fekkas, briouates, ghriba",
+    name: "Tanjia Marrakchia",
+    origin: "Slow-Cooked in Clay",
+    image: "/images/dish-tanjia.jpg",
+    alt: "Marrakchi tanjia: clay urn tipped open revealing slow-cooked lamb",
     description:
-      "Kaab el ghazal, fekkas, briouates, ghriba — pastries layered with almond paste, sesame, orange-blossom water and honey. Served with mint tea poured from a height so it foams.",
+      "The bachelor's dish of Marrakech: lamb shoulder, preserved lemon, cumin, smen and saffron sealed in a clay urn and buried for hours in the embers of the hammam. Tipped open at the table; the meat falls apart at a glance.",
   },
 ];
 
@@ -121,12 +116,12 @@ const TESTIMONIALS = [
     origin: "Paris, France",
   },
   {
-    text: "Booking La Table Marrakech was the best decision of our entire trip. The tagine was extraordinary — the most complex, layered, perfumed dish I have ever tasted.",
+    text: "Booking La Table Marrakech was the best decision of our entire trip. The tagine was extraordinary: the most complex, layered, perfumed dish I have ever tasted.",
     author: "James W.",
     origin: "London, UK",
   },
   {
-    text: "The cooking class was pure magic. We came home with skills and memories that will last a lifetime. Worth every dirham.",
+    text: "Our chef walked in with baskets from the souk and turned our riad kitchen into the best restaurant in Marrakech for one night. The chicken tagine was perfect: bright, savory, deeply comforting.",
     author: "Elena & Thomas K.",
     origin: "Munich, Germany",
   },
@@ -135,8 +130,8 @@ const TESTIMONIALS = [
 const STEPS = [
   { number: "01", title: "Tell Us What You Want", desc: "Message on WhatsApp. A date, how many of you, where you're staying. That's enough to start." },
   { number: "02", title: "We Design Your Evening", desc: "We send a menu, a price, and a few questions back. Tweak anything." },
-  { number: "03", title: "Confirm The Night", desc: "Send a small deposit. Everything else — shopping, cooking, serving, cleanup — is on us." },
-  { number: "04", title: "Sit Down And Eat", desc: "We arrive two hours before. You arrive at the table." },
+  { number: "03", title: "Confirm the Night", desc: "Send a small deposit. Everything else (shopping, cooking, serving, cleanup) is on us." },
+  { number: "04", title: "Sit Down and Eat", desc: "We arrive two hours before. You arrive at the table." },
 ];
 
 /* ─── Moroccan SVG Ornament ─────────────────────────────────────────────── */
@@ -148,25 +143,6 @@ function MoroccanOrnament({ className = "" }: { className?: string }) {
       <polygon points="40,14 46,26 60,26 50,34 54,46 40,38 26,46 30,34 20,26 34,26" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.3"/>
       <circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.2" strokeDasharray="4 4"/>
     </svg>
-  );
-}
-
-/* ─── Animated Number ────────────────────────────────────────────────────── */
-function AnimatedStat({ value, label, icon }: { value: string; label: string; icon: React.ReactNode }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: easeOut }}
-      className="text-center"
-    >
-      {icon}
-      <div className="font-serif text-3xl md:text-4xl text-amber-200">{value}</div>
-      <div className="text-xs tracking-widest uppercase text-zinc-400 mt-2">{label}</div>
-    </motion.div>
   );
 }
 
@@ -199,7 +175,7 @@ export default function Home() {
     <>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative h-screen min-h-[820px] flex items-start md:items-center overflow-hidden pt-28 md:pt-32 pb-44 md:pb-40">
+      <section ref={heroRef} className="relative h-screen min-h-[820px] flex flex-col overflow-hidden pt-28 md:pt-32">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <picture>
             <source media="(max-width: 767px)" srcSet="/images/hero-villa-terrace-mobile.jpg" />
@@ -219,16 +195,17 @@ export default function Home() {
 
         <motion.div
           style={{ opacity: heroOpacity }}
-          className="relative z-10 w-full text-white px-6 md:px-12 lg:px-20 max-w-7xl mx-auto"
+          className="relative z-10 w-full flex-1 flex items-start md:items-center text-white pb-24 md:pb-32"
         >
-          <div className="max-w-2xl">
+          <div className="w-full px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+            <div className="max-w-2xl">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.9 }}
               className="text-xs md:text-sm tracking-[0.35em] uppercase mb-6 text-amber-400"
             >
-              Private Chef In Marrakech
+              Private Chef in Marrakech
             </motion.p>
 
             <motion.h1
@@ -260,23 +237,32 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="hero-cta-whatsapp"
-                data-cta-label="Book on WhatsApp"
+                data-cta-label="Get a Menu and Quote on WhatsApp"
                 data-cta-position="hero"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.2em] text-xs md:text-sm transition-all duration-300"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current shrink-0" aria-hidden="true">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-                Book on WhatsApp
+                Get a Menu &amp; Quote
               </a>
               <Link
                 href="/experiences"
                 data-testid="hero-cta-experiences"
                 className="inline-flex items-center justify-center px-8 py-4 border border-white/50 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-xs md:text-sm transition-all duration-300"
               >
-                Discover The Experience
+                Browse Experiences
               </Link>
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.05, duration: 0.9 }}
+              className="text-xs md:text-sm text-white/65 mt-5 tracking-wide"
+            >
+              From &euro;85 / person &middot; <span className="text-amber-300/90">No deposit until you confirm the menu</span>
+            </motion.p>
+            </div>
           </div>
         </motion.div>
 
@@ -285,20 +271,20 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.9 }}
-          className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/15 bg-black/30 backdrop-blur-sm"
+          className="relative z-10 mt-auto border-t border-white/15 bg-black/40 backdrop-blur-sm"
         >
-          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-5 grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-6 text-white/85 text-xs md:text-sm">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 md:py-7 grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-6 text-white/85 text-xs md:text-sm">
             <div className="flex items-center gap-3">
               <Star className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
-              <span>4.9/5 from 200+ reviews</span>
+              <span>4.9&#9733; &middot; 200+ private dinners</span>
             </div>
             <div className="flex items-center gap-3">
               <ChefHat className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
-              <span>Professional Chefs</span>
+              <span>Menus from &euro;85 / person</span>
             </div>
             <div className="flex items-center gap-3">
               <Leaf className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
-              <span>Fresh &amp; Local Ingredients</span>
+              <span>Souk-Fresh Ingredients</span>
             </div>
             <div className="flex items-center gap-3">
               <ConciergeBell className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
@@ -308,15 +294,150 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ── STATS ────────────────────────────────────────────────────────── */}
-      <section className="bg-zinc-950 text-white py-16">
+      {/* ── RECOMMENDED BY ───────────────────────────────────────────────── */}
+      <section className="bg-stone-50 border-y border-stone-200 py-10 md:py-14 overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-            <AnimatedStat value="5.0" label="Guest Rating" icon={<Star className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-            <AnimatedStat value="200" label="Dinners Cooked" icon={<Users className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-            <AnimatedStat value="10" label="Experiences" icon={<ChefHat className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-            <AnimatedStat value="Marrakech" label="+ Agafay Desert" icon={<MapPin className="w-5 h-5 text-amber-400 mx-auto mb-3" />} />
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center text-[0.7rem] md:text-xs tracking-[0.4em] uppercase text-stone-500 mb-8"
+          >
+            Recommended By
+          </motion.p>
+        </div>
+        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+            className="flex items-center gap-x-16 md:gap-x-24 whitespace-nowrap w-max"
+          >
+            {(() => {
+              const logos = [
+                { name: "Condé Nast Traveler", className: "font-serif italic text-2xl md:text-3xl tracking-tight", color: "#B8860B" },
+                { name: "TRIPADVISOR", className: "font-sans font-bold text-xl md:text-2xl tracking-[0.15em]", color: "#00AF87" },
+                { name: "The Guardian", className: "font-serif font-bold text-2xl md:text-3xl tracking-tight", color: "#052962" },
+                { name: "FORBES", className: "font-serif font-black text-2xl md:text-3xl tracking-[0.05em]", color: "#D71921" },
+                { name: "VOGUE", className: "font-serif font-bold text-2xl md:text-3xl tracking-[0.4em]", color: "#000000" },
+              ];
+              return logos.concat(logos).map((logo, i) => (
+                <span
+                  key={i}
+                  style={{ color: logo.color }}
+                  className={`opacity-90 hover:opacity-100 transition-opacity shrink-0 ${logo.className}`}
+                >
+                  {logo.name}
+                </span>
+              ));
+            })()}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── EXPERIENCES ──────────────────────────────────────────────────── */}
+      <section className="relative py-28 md:py-36 overflow-hidden bg-gradient-to-b from-stone-50 via-white to-stone-100">
+        {/* Decorative ornaments */}
+        <div className="absolute -top-24 -left-24 w-80 h-80 text-amber-600/[0.06] pointer-events-none">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+        <div className="absolute -bottom-24 -right-24 w-80 h-80 text-amber-600/[0.06] pointer-events-none -rotate-12">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+
+        <div className="relative container mx-auto px-6">
+          {/* Section header */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="text-center mb-16 md:mb-20"
+          >
+            <p className="text-[0.7rem] md:text-xs tracking-[0.45em] uppercase text-amber-700 mb-5">How It Begins</p>
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="w-12 h-px bg-amber-600/40" />
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+              <div className="w-12 h-px bg-amber-600/40" />
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] max-w-4xl mx-auto">
+              Four ways to <span className="italic text-amber-700">begin.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl mx-auto text-muted-foreground leading-relaxed">
+              Pick one, or{" "}
+              <Link href="/contact" className="underline underline-offset-4 text-amber-700 hover:text-amber-600 transition-colors">
+                tell us what you&rsquo;re picturing
+              </Link>{" "}
+              and we&rsquo;ll build it.
+            </p>
+          </motion.div>
+
+          {/* Cards */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={stagger}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          >
+            {EXPERIENCES.map((exp, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.4, ease: easeOut }}
+                data-testid={`experience-card-${i}`}
+                className="group flex flex-col"
+              >
+                <Link
+                  href={exp.href}
+                  className="flex flex-col h-full bg-white border border-stone-200/80 hover:border-amber-600/40 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                >
+                  {/* Portrait photo with number + title overlay */}
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <motion.img
+                      src={exp.image}
+                      alt={exp.title.join(" ")}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.8, ease: easeOut }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/75" />
+
+                    {/* Number badge */}
+                    <div className="absolute top-5 left-5 w-12 h-12 rounded-full bg-amber-500 text-zinc-950 font-serif text-base flex items-center justify-center shadow-lg shadow-black/30">
+                      {exp.number}
+                    </div>
+
+                    {/* Title overlay at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="font-serif text-white text-2xl md:text-[1.7rem] leading-[1.1]">
+                        {exp.title.map((line, idx) => (
+                          <span key={idx} className="block">
+                            {line}
+                          </span>
+                        ))}
+                      </h3>
+                      <div className="w-10 h-px bg-amber-400 mt-3 group-hover:w-20 transition-all duration-500" />
+                    </div>
+                  </div>
+
+                  {/* Caption block */}
+                  <div className="bg-white px-6 py-7 flex-1 flex flex-col justify-between">
+                    <p className="text-stone-700 text-sm leading-relaxed">{exp.description}</p>
+                    <div className="mt-6 pt-5 border-t border-stone-200">
+                      <span className="inline-flex items-center gap-2 text-amber-700 text-xs tracking-[0.25em] uppercase group-hover:text-amber-600 transition-colors">
+                        Learn More
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -335,7 +456,7 @@ export default function Home() {
               What Morocco actually tastes like.
             </h2>
             <p className="text-zinc-400 mt-6 max-w-2xl mx-auto leading-relaxed">
-              A glimpse of what your chef may cook for you — each menu is built around the season, the souk that morning, and how you like to eat. Six dishes that show up most often on our tables.
+              A glimpse of what your chef may cook for you. Each menu is built around the season, the souk that morning, and how you like to eat. These six show up most often. Yours can look completely different.
             </p>
           </motion.div>
 
@@ -382,125 +503,26 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Spice labels */}
+          {/* More plates CTA */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="flex flex-wrap justify-center gap-3 md:gap-4 mt-16"
-          >
-            {["Ras el Hanout", "Preserved Lemon", "Saffron", "Argan Oil", "Rose Water", "Cumin", "Harissa"].map((spice, i) => (
-              <motion.span
-                key={i}
-                variants={fadeUp}
-                className="px-4 py-2 border border-amber-600/30 text-amber-400/70 text-xs uppercase tracking-widest"
-              >
-                {spice}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── EXPERIENCES ──────────────────────────────────────────────────── */}
-      <section className="relative py-28 md:py-36 overflow-hidden">
-        {/* Warm courtyard background with subtle dark wash */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/experiences-bg.jpg"
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55" />
-        </div>
-
-        <div className="relative container mx-auto px-6">
-          {/* Section header */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            className="text-center mb-16 md:mb-20 text-white"
-          >
-            <p className="text-[0.7rem] md:text-xs tracking-[0.45em] uppercase text-white/85 mb-5">How It Begins</p>
-            <div className="w-10 h-px bg-white/40 mx-auto mb-8" />
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] max-w-4xl mx-auto">
-              Four ways most of <span className="italic">our</span> guests begin.
-            </h2>
-            <p className="mt-6 max-w-2xl mx-auto text-white/80 leading-relaxed">
-              Pick one, or{" "}
-              <Link href="/contact" className="underline underline-offset-4 hover:text-amber-200 transition-colors">
-                message us
-              </Link>{" "}
-              and we'll help you create something entirely your own.
-            </p>
-          </motion.div>
-
-          {/* Cards */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            variants={stagger}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
+            transition={{ duration: 0.7, ease: easeOut }}
+            className="flex justify-center mt-16"
           >
-            {EXPERIENCES.map((exp, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.35, ease: easeOut }}
-                data-testid={`experience-card-${i}`}
-                className="group flex flex-col"
-              >
-                <Link href={exp.href} className="flex flex-col h-full">
-                  {/* Portrait photo with number + title overlay */}
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <motion.img
-                      src={exp.image}
-                      alt={exp.title.join(" ")}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.7, ease: easeOut }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60" />
-
-                    {/* Number */}
-                    <div className="absolute top-6 left-6">
-                      <span className="font-serif text-amber-400 text-lg tracking-wider">{exp.number}</span>
-                      <div className="w-7 h-px bg-amber-400/80 mt-2" />
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="absolute top-20 left-6 right-6 font-serif text-white text-2xl md:text-[1.7rem] leading-[1.15]">
-                      {exp.title.map((line, idx) => (
-                        <span key={idx} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </h3>
-                  </div>
-
-                  {/* Caption block */}
-                  <div className="bg-stone-100 px-6 py-7 flex-1 flex flex-col justify-between">
-                    <p className="text-stone-700 text-sm leading-relaxed">{exp.description}</p>
-                    <div className="mt-6 pt-5 border-t border-stone-300/70">
-                      <span className="inline-flex items-center gap-2 text-amber-700 text-xs tracking-[0.25em] uppercase group-hover:text-amber-600 transition-colors">
-                        Learn More
-                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="btn-dishes-whatsapp"
+              data-cta-label="Get a Menu and Quote on WhatsApp"
+              data-cta-position="dishes"
+              className="group inline-flex items-center justify-center gap-3 px-10 py-4 border border-amber-600/40 text-amber-300 hover:bg-amber-600/10 hover:border-amber-500 uppercase tracking-[0.25em] text-xs md:text-sm transition-all duration-300"
+            >
+              Get the Full Menu on WhatsApp
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
           </motion.div>
         </div>
       </section>
@@ -570,23 +592,38 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
-      <section className="py-32 bg-background relative overflow-hidden">
-        {/* Decorative ornament */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 text-primary/5 pointer-events-none">
+      <section className="py-32 bg-gradient-to-b from-stone-50 via-background to-stone-50 relative overflow-hidden">
+        {/* Decorative ornaments */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 text-amber-600/5 pointer-events-none">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 text-amber-600/5 pointer-events-none rotate-45">
           <MoroccanOrnament className="w-full h-full" />
         </div>
 
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 relative">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
-            className="text-center mb-24"
+            className="text-center mb-20"
           >
-            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">What Guests Say</p>
-            <h2 className="font-serif text-4xl md:text-5xl">"The best meal of our trip."</h2>
-            <p className="text-muted-foreground mt-6 max-w-xl mx-auto leading-relaxed italic">Said often. We keep cooking like it's the first time.</p>
+            <p className="text-xs tracking-[0.4em] uppercase text-amber-700 mb-4">What Guests Say</p>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-px bg-amber-600/40" />
+              <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+              <div className="w-12 h-px bg-amber-600/40" />
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
+              &ldquo;The best meal <span className="italic text-amber-700">of our trip.</span>&rdquo;
+            </h2>
+            <p className="text-muted-foreground mt-6 max-w-xl mx-auto leading-relaxed italic">
+              Said often. We keep cooking like it's the first time.
+            </p>
+            <p className="text-xs tracking-[0.25em] uppercase text-amber-700/80 mt-5">
+              4.9&#9733; on TripAdvisor &middot; 200+ verified reviews
+            </p>
           </motion.div>
 
           <motion.div
@@ -594,31 +631,86 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 md:items-stretch"
           >
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.3 }}
-                data-testid={`testimonial-card-${i}`}
-                className="bg-stone-50 border border-border p-10 flex flex-col justify-between hover:shadow-lg hover:border-primary/20 transition-all duration-300"
-              >
-                <div>
-                  <div className="flex gap-1 mb-6">
-                    {Array.from({ length: 5 }).map((_, j) => (
-                      <Star key={j} className="w-3 h-3 fill-amber-400 text-amber-400" />
-                    ))}
+            {TESTIMONIALS.map((t, i) => {
+              const featured = i === 1;
+              const initials = t.author
+                .replace(/[.]/g, "")
+                .split(/\s|&/)
+                .filter(Boolean)
+                .slice(0, 2)
+                .map((p) => p[0])
+                .join("")
+                .toUpperCase();
+              return (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.35, ease: easeOut }}
+                  data-testid={`testimonial-card-${i}`}
+                  className={`relative p-10 md:p-12 flex flex-col justify-between transition-all duration-300 ${
+                    featured
+                      ? "bg-zinc-950 text-white border border-amber-600/40 shadow-2xl md:-mt-6 md:mb-0"
+                      : "bg-white border border-stone-200/80 hover:border-amber-600/30 hover:shadow-xl"
+                  }`}
+                >
+                  {/* Decorative quote icon */}
+                  <Quote
+                    className={`absolute top-6 right-6 w-16 h-16 ${
+                      featured ? "text-amber-500/15" : "text-amber-600/10"
+                    }`}
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative">
+                    <div className="flex gap-1 mb-6">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <p
+                      className={`font-serif leading-relaxed ${
+                        featured
+                          ? "text-white/95 text-lg md:text-xl"
+                          : "text-foreground/85 text-base md:text-lg"
+                      }`}
+                    >
+                      &ldquo;{t.text}&rdquo;
+                    </p>
                   </div>
-                  <p className="text-foreground/80 leading-relaxed italic font-serif">&ldquo;{t.text}&rdquo;</p>
-                </div>
-                <div className="mt-8 pt-6 border-t border-border">
-                  <p className="text-sm font-medium text-foreground">{t.author}</p>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">{t.origin}</p>
-                </div>
-              </motion.div>
-            ))}
+
+                  <div
+                    className={`relative mt-10 pt-6 border-t flex items-center gap-4 ${
+                      featured ? "border-amber-500/20" : "border-stone-200"
+                    }`}
+                  >
+                    <div
+                      className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-serif text-sm tracking-wider ${
+                        featured
+                          ? "bg-amber-500 text-zinc-950"
+                          : "bg-amber-600/10 text-amber-700 border border-amber-600/20"
+                      }`}
+                    >
+                      {initials}
+                    </div>
+                    <div>
+                      <p className={`text-sm font-medium ${featured ? "text-white" : "text-foreground"}`}>
+                        {t.author}
+                      </p>
+                      <p
+                        className={`text-xs uppercase tracking-[0.2em] mt-1 ${
+                          featured ? "text-amber-300/80" : "text-muted-foreground"
+                        }`}
+                      >
+                        {t.origin}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <motion.div
@@ -636,69 +728,53 @@ export default function Home() {
       </section>
 
       {/* ── FINAL CTA ────────────────────────────────────────────────────── */}
-      <section className="relative py-48 flex items-center justify-center overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.1 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: easeOut }}
-          className="absolute inset-0"
-        >
-          <img
-            src="https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=1600&q=75"
-            srcSet="https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=800&q=70 800w, https://images.pexels.com/photos/28730586/pexels-photo-28730586.jpeg?auto=compress&cs=tinysrgb&w=1600&q=75 1600w"
-            sizes="100vw"
-            loading="lazy"
-            decoding="async"
-            alt="Moroccan lantern evening dinner"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/75" />
-          {/* Moroccan geometry overlay */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
-            <MoroccanOrnament className="w-[800px] h-[800px] text-amber-200" />
-          </div>
-        </motion.div>
+      <section className="relative py-28 md:py-36 bg-zinc-950 text-white overflow-hidden">
+        {/* Subtle ornaments */}
+        <div className="absolute -top-24 -left-24 w-80 h-80 text-amber-500/[0.05] pointer-events-none">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+        <div className="absolute -bottom-24 -right-24 w-80 h-80 text-amber-500/[0.05] pointer-events-none -rotate-12">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="relative z-10 text-center text-white px-6 max-w-3xl mx-auto"
+          className="relative z-10 text-center px-6 max-w-3xl mx-auto"
         >
-          <motion.p variants={fadeUp} className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-6">
-            Ready?
-          </motion.p>
-          <motion.h2 variants={fadeUp} className="font-serif text-4xl md:text-6xl leading-tight mb-8">
+          <motion.h2 variants={fadeUp} className="font-serif text-4xl md:text-6xl leading-[1.05]">
             Pick a night.<br />
             <span className="italic text-amber-200">We'll handle the rest.</span>
           </motion.h2>
-          <motion.div variants={fadeUp} className="w-16 h-px bg-amber-400/50 mx-auto mb-8" />
-          <motion.p variants={fadeUp} className="text-white/65 text-lg mb-14 max-w-xl mx-auto leading-relaxed">
-            Tell us when you're free and where you're staying. We'll reply within the hour during the day.
+          <motion.p variants={fadeUp} className="text-white/70 text-base md:text-lg mt-8 max-w-xl mx-auto leading-relaxed">
+            Tell us your date and where you&rsquo;re staying. We reply within an hour during the day.
           </motion.p>
-          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <a
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="btn-final-cta-whatsapp"
-              data-cta-label="Request a quote on WhatsApp"
+              data-cta-label="Get a Menu and Quote on WhatsApp"
               data-cta-position="final_cta"
-              className="group inline-flex items-center justify-center gap-3 px-14 py-5 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.25em] text-sm transition-all duration-300"
+              className="group inline-flex items-center justify-center gap-3 px-12 py-5 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.22em] text-xs md:text-sm transition-all duration-300"
             >
-              Request a quote on WhatsApp
+              Get a Menu &amp; Quote on WhatsApp
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <Link
               href="/contact"
               data-testid="btn-final-cta-form"
-              className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.2em] text-sm transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.22em] text-xs md:text-sm transition-all duration-300"
             >
-              Or Write It All Out
+              Send Us the Details
             </Link>
           </motion.div>
+          <motion.p variants={fadeUp} className="text-white/50 text-xs tracking-[0.2em] uppercase mt-8">
+            No deposit until you confirm the menu
+          </motion.p>
         </motion.div>
       </section>
 
@@ -709,11 +785,11 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
           data-testid="mobile-sticky-cta"
-          data-cta-label="Request a quote on WhatsApp"
+          data-cta-label="Get a Menu and Quote on WhatsApp"
           data-cta-position="mobile_sticky"
           className="block w-full text-center py-4 bg-amber-600 hover:bg-amber-700 text-white uppercase tracking-[0.2em] text-sm transition-colors"
         >
-          Request a quote on WhatsApp
+          Get a Menu &amp; Quote on WhatsApp
         </a>
       </div>
 
@@ -723,15 +799,15 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         data-testid="whatsapp-float"
-        data-cta-label="Request a quote on WhatsApp"
+        data-cta-label="Get a Menu and Quote on WhatsApp"
         data-cta-position="floating_whatsapp"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 2, duration: 0.4, type: "spring" }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-2xl transition-colors"
-        aria-label="Request a quote on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 text-white hidden md:flex items-center justify-center shadow-2xl transition-colors"
+        aria-label="Get a Menu and Quote on WhatsApp"
       >
         <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>

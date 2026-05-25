@@ -1,6 +1,6 @@
-import { motion, easeOut, easeInOut, backOut } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Star, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
@@ -62,20 +62,49 @@ const faqs = [
   },
 ];
 
+/* ─── Moroccan SVG Ornament (same as Home / Testimonials) ──────────────── */
+function MoroccanOrnament({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 80 80" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="40,4 50,20 68,20 55,32 60,50 40,40 20,50 25,32 12,20 30,20" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.6"/>
+      <circle cx="40" cy="40" r="10" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.4"/>
+      <polygon points="40,14 46,26 60,26 50,34 54,46 40,38 26,46 30,34 20,26 34,26" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.3"/>
+      <circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.2" strokeDasharray="4 4"/>
+    </svg>
+  );
+}
+
 function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <motion.div variants={fadeUp} className="border-b border-border" data-testid={`faq-item-${index}`}>
+    <motion.div
+      variants={fadeUp}
+      data-testid={`faq-item-${index}`}
+      className={`bg-white border transition-all duration-300 ${
+        open
+          ? "border-amber-600/40 shadow-lg"
+          : "border-stone-200/80 hover:border-amber-600/30 hover:shadow-md"
+      }`}
+    >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full text-left py-7 flex items-start justify-between gap-4"
+        className="w-full text-left p-6 md:p-7 flex items-start justify-between gap-5"
         data-testid={`faq-toggle-${index}`}
         aria-expanded={open}
       >
-        <span className="font-serif text-lg pr-4">{faq.question}</span>
+        <span className="flex items-baseline gap-4 md:gap-5 flex-1 min-w-0">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-amber-700/80 shrink-0 mt-1">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="font-serif text-lg md:text-xl text-foreground leading-snug">
+            {faq.question}
+          </span>
+        </span>
         <ChevronDown
-          className={`w-5 h-5 text-primary shrink-0 mt-1 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-amber-700 shrink-0 mt-1.5 transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </button>
       <motion.div
@@ -84,7 +113,10 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
         transition={{ duration: 0.35, ease: easeOut }}
         className="overflow-hidden"
       >
-        <p className="text-muted-foreground leading-relaxed pb-7 pr-8">{faq.answer}</p>
+        <div className="px-6 md:px-7 pb-7 md:pb-8 md:pl-[5.25rem]">
+          <div className="w-10 h-px bg-amber-600/40 mb-5" />
+          <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -106,66 +138,136 @@ export default function FAQ() {
 
   return (
     <>
+      {/* ── HERO — typographic, matches Testimonials ─────────────────────── */}
+      <section className="relative pt-40 md:pt-52 pb-20 md:pb-28 bg-gradient-to-b from-stone-50 via-background to-stone-50 overflow-hidden">
+        {/* Moroccan ornaments */}
+        <div className="absolute -top-20 -right-24 w-80 h-80 text-amber-600/[0.07] pointer-events-none">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 text-amber-600/[0.06] pointer-events-none rotate-45">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
 
-      {/* Hero */}
-      <section className="relative h-72 flex items-end justify-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1920&q=80"
-          alt="FAQ La Table Marrakech"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 pb-14 text-center text-white">
-          <p className="text-xs tracking-[0.4em] uppercase text-amber-300 mb-3">Everything You Need to Know</p>
-          <h1 className="font-serif text-4xl md:text-6xl">FAQ</h1>
+        <div className="relative container mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.9 }}
+              className="text-xs md:text-sm tracking-[0.4em] uppercase text-amber-700 mb-6"
+            >
+              Frequently Asked
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.35, duration: 0.7, ease: easeOut }}
+              className="flex items-center justify-center gap-3 mb-8"
+            >
+              <div className="w-16 h-px bg-amber-600/40" />
+              <Star className="w-5 h-5 fill-amber-500 text-amber-500" />
+              <div className="w-16 h-px bg-amber-600/40" />
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 1, ease: easeOut }}
+              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-foreground"
+            >
+              Everything <span className="italic text-amber-700">worth asking.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.9 }}
+              className="text-base md:text-lg text-muted-foreground mt-8 max-w-2xl mx-auto leading-relaxed italic"
+            >
+              Twelve answers about booking a private chef in Marrakech. If yours isn&rsquo;t here, message us and we&rsquo;ll reply within an hour.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
-      {/* FAQ List */}
-      <section className="py-28 bg-background">
-        <div className="container mx-auto px-6 max-w-3xl">
+      {/* ── FAQ LIST ─────────────────────────────────────────────────────── */}
+      <section className="pt-8 md:pt-12 pb-28 md:pb-32 bg-gradient-to-b from-stone-50 via-background to-stone-50 relative overflow-hidden">
+        {/* Decorative ornaments */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 text-amber-600/5 pointer-events-none">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 text-amber-600/5 pointer-events-none rotate-45">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+
+        <div className="container mx-auto px-6 relative max-w-3xl">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={stagger}
+            className="space-y-4 md:space-y-5"
           >
             {faqs.map((faq, i) => (
               <FAQItem key={i} faq={faq} index={i} />
             ))}
           </motion.div>
+        </div>
+      </section>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="mt-20 text-center"
-          >
-            <p className="text-muted-foreground mb-4">Still have a question?</p>
+      {/* ── FINAL CTA ────────────────────────────────────────────────────── */}
+      <section className="relative py-28 md:py-36 bg-zinc-950 text-white overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-80 h-80 text-amber-500/[0.05] pointer-events-none">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+        <div className="absolute -bottom-24 -right-24 w-80 h-80 text-amber-500/[0.05] pointer-events-none -rotate-12">
+          <MoroccanOrnament className="w-full h-full" />
+        </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="relative z-10 text-center px-6 max-w-3xl mx-auto"
+        >
+          <motion.h2 variants={fadeUp} className="font-serif text-4xl md:text-6xl leading-[1.05]">
+            Still have a <span className="italic text-amber-200">question?</span>
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-white/70 text-base md:text-lg mt-8 max-w-xl mx-auto leading-relaxed">
+            Message us on WhatsApp or send the details. We reply within an hour during the day.
+          </motion.p>
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <a
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="btn-faq-whatsapp"
               data-cta-label="Request a quote on WhatsApp"
-              data-cta-position="faq"
-              className="inline-block border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-10 py-4 uppercase tracking-[0.2em] text-xs mr-4"
+              data-cta-position="faq_final_cta"
+              className="group inline-flex items-center justify-center gap-3 px-12 py-5 bg-amber-600 hover:bg-amber-500 text-white uppercase tracking-[0.22em] text-xs md:text-sm transition-all duration-300"
             >
-              Request a quote on WhatsApp
+              Ask on WhatsApp
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <Link
               href="/contact"
               data-testid="btn-faq-reserve"
-              className="inline-block bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-10 py-4 uppercase tracking-[0.2em] text-xs"
+              className="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/30 text-white hover:border-amber-300 hover:text-amber-200 uppercase tracking-[0.22em] text-xs md:text-sm transition-all duration-300"
             >
-              Reserve Now
+              Send Us the Details
             </Link>
           </motion.div>
-        </div>
+          <motion.p variants={fadeUp} className="text-white/50 text-xs tracking-[0.2em] uppercase mt-8">
+            No deposit until you confirm the menu
+          </motion.p>
+        </motion.div>
       </section>
     </>
   );
 }
-
-
-

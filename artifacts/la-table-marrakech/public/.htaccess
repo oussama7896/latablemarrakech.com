@@ -7,6 +7,11 @@ RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# ── Permanent redirects (removed / renamed pages) ────────────
+# Preserves SEO equity when pages move; sends Google to the new URL.
+RewriteRule ^gallery/?$ /marrakech-cooking-class [R=301,L]
+RewriteRule ^chef/?$ / [R=301,L]
+
 # ── SPA fallback ─────────────────────────────────────────────
 # Serve real files / directories untouched, send everything else to index.html
 RewriteCond %{REQUEST_FILENAME} -f [OR]
